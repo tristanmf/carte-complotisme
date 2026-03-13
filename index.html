@@ -1418,6 +1418,51 @@
         { source: "Ipsos Perils of Perception 2024", url: "https://www.ipsos.com/sites/default/files/ct/news/documents/2024-11/ipsos-the-perils-of-perception-2024.pdf", year: "2024", topic: "Croyances complotistes — 30 pays", data: [{ label: "Score faible (fourchette basse)", val: 22 }] },
         { source: "PMC / Int'l Journal of Environmental Research and Public Health", url: "https://pmc.ncbi.nlm.nih.gov/articles/PMC8624959/", year: "2021", topic: "Croyances complotistes COVID en Corée du Sud (n=1 525)", data: [{ label: "Croyances complotistes COVID mesurées", val: 28 }] }
       ]
+    },
+
+    // ── CHINE ──
+    "CN": {
+      name: "Chine", flag: "🇨🇳", nutriscore: "C", levelColor: "#ca8a04",
+      scoreMeta: "PLOS Global Public Health (2023, n=456 Chinois) : fausses croyances COVID globalement plus basses qu'aux États-Unis (moyenne 1,86 items vs 3,16). Mais 23,9% croient que 'l'armée américaine a apporté le COVID en Chine', 21% que le virus est 'fabriqué par l'homme'. Études PMC 2023 (n=745) sur le nationalisme et complotisme COVID : corrélation entre usage des médias d'État et croyances complotistes 'nation-related'. ⚠️ Profil très atypique : l'État censure le complotisme anti-gouvernement mais produit et amplifie des théories conspirationnistes anti-occidentales. Grade C.",
+      scoreDetail: "<strong>Pourquoi C ?</strong> Le cas chinois est unique : les croyances complotistes classiques (anti-gouvernement, anti-élites) sont supprimées par la censure, ce qui produit des chiffres bas sur les métriques habituelles. En revanche, les théories complotistes pro-État (anti-US, anti-Occident) sont activement promues. Le grade C reflète un niveau modéré de désinformation populaire mesurée, tout en signalant ce contexte très particulier.",
+      context: "La Chine présente un profil complotiste inversé : l'État censure les théories menaçant le pouvoir (Tiananmen, Xinjiang, origines COVID) mais fabrique et diffuse des contre-narratifs conspirationnistes anti-occidentaux via les médias d'État. Les sondages sous-estiment probablement la réalité en raison de l'autocensure des répondants.",
+      surveys: [
+        { source: "PLOS Global Public Health — Étude US/Chine comparée", url: "https://journals.plos.org/globalpublichealth/article?id=10.1371/journal.pgph.0005939", year: "2023", topic: "Fausses croyances COVID — comparaison US (n=454) vs Chine (n=456)", data: [{ label: "Fausses croyances COVID (items endossés)", val: 21 }, { label: "'Virus fabriqué par l'homme'", val: 21 }, { label: "'Armée US a apporté le COVID en Chine'", val: 24 }] },
+        { source: "PMC — Pandemic Nationalism & COVID conspiracy beliefs in China", url: "https://pmc.ncbi.nlm.nih.gov/articles/PMC9904989/", year: "2023", topic: "Médias d'État et croyances complotistes nationalistes (n=745)", data: [{ label: "Corrélation médias d'État / complotisme anti-US", val: 38 }] }
+      ]
+    },
+
+    // ── MAGHREB (Sigma Conseil / Konrad Adenauer 2016) ──
+    "TN": {
+      name: "Tunisie", flag: "🇹🇳", nutriscore: "D", levelColor: "#c2610c",
+      scoreMeta: "Sigma Conseil / Konrad Adenauer Stiftung (2016, n=1 000) : 53% des Tunisiens estiment que 'les USA sont derrière la création de l'État islamique'. Fondation Jean-Jaurès (2023) : le complotisme est 'clé de voûte' du régime Saïed, qui gouverne via des théories conspirationnistes (Grand Remplacement, complot démographique, complots économiques). ⚠️ Données partielles datant de 2016 sur une théorie spécifique. Grade D.",
+      scoreDetail: "<strong>Pourquoi D ?</strong> La seule donnée quantitative disponible (53% sur l'origine de Daech) date de 2016 et porte sur une théorie géopolitique spécifique. Le contexte politique actuel — avec un président qui gouverne explicitement par le complotisme (Grand Remplacement, 'complot contre la démocratie') — suggère que le niveau réel est élevé. Grade D conservateur en l'absence de sondage général récent.",
+      context: "La Tunisie post-révolution a vu fleurir les théories du complot sur les réseaux sociaux. Le président Kaïs Saïed utilise le conspirationnisme comme mode de gouvernance depuis 2021, amplifiant des théories sur le Grand Remplacement, les complots économiques étrangers et les 'traîtres' intérieurs. Données limitées à 2016.",
+      surveys: [
+        { source: "Sigma Conseil / Konrad Adenauer Stiftung — Maghreb & Égypte", url: "https://www.lecourrierdelatlas.com/tunisie-sondage-que-pensent-les-tunisiens-de-la-laicite-et-des-theories-de-la-conspiration-4987/", year: "2016", topic: "Théories du complot au Maghreb — Tunisie (n=1 000)", data: [{ label: "'Les USA sont derrière la création de Daech'", val: 53 }] },
+        { source: "Fondation Jean-Jaurès — Complotisme et gouvernance Saïed", url: "https://www.jean-jaures.org/publication/tunisie-le-complotisme-cle-de-voute-de-la-gouvernance-de-kais-saied/", year: "2023", topic: "Analyse du rôle du complotisme dans la gouvernance tunisienne", data: [{ label: "Complotisme institutionnalisé (analyse qualitative)", val: null }] }
+      ]
+    },
+    "MA": {
+      name: "Maroc", flag: "🇲🇦", nutriscore: "C", levelColor: "#ca8a04",
+      scoreMeta: "Sigma Conseil / Konrad Adenauer Stiftung (2016) : 37% des Marocains estiment que 'les USA sont derrière le terrorisme dans la région' — le taux le plus bas du Maghreb. Arab Barometer Wave VII (2021-22) : confiance institutionnelle relative plus élevée que ses voisins. ⚠️ Donnée unique de 2016 sur une théorie spécifique. Grade C.",
+      scoreDetail: "<strong>Pourquoi C ?</strong> Le Maroc affiche le score le plus bas de la région sur la théorie testée (37% vs 48-53% pour ses voisins). L'Arab Barometer confirme une confiance institutionnelle légèrement supérieure à la moyenne régionale, notamment envers les États-Unis (69% de favorabilité). En l'absence de sondage général récent, un grade C modéré est retenu.",
+      context: "Le Maroc présente relativement moins de défiance anti-occidentale que ses voisins algérien et tunisien selon les données disponibles. Les relations diplomatiques avec les USA (reconnaissance du Sahara occidental en 2020) et une monarchie stable expliquent partiellement ce différentiel. Données très limitées.",
+      surveys: [
+        { source: "Sigma Conseil / Konrad Adenauer Stiftung — Maghreb & Égypte", url: "https://www.lecourrierdelatlas.com/tunisie-sondage-que-pensent-les-tunisiens-de-la-laicite-et-des-theories-de-la-conspiration-4987/", year: "2016", topic: "Théories du complot au Maghreb — Maroc", data: [{ label: "'Les USA sont derrière le terrorisme dans la région'", val: 37 }] },
+        { source: "Arab Barometer Wave VII", url: "https://www.arabbarometer.org/surveys/arab-barometer-wave-vii/", year: "2022", topic: "Confiance institutionnelle et attitudes géopolitiques — 12 pays MENA", data: [{ label: "Favorabilité envers les États-Unis", val: 69 }] }
+      ]
+    },
+    "DZ": {
+      name: "Algérie", flag: "🇩🇿", nutriscore: "D", levelColor: "#c2610c",
+      scoreMeta: "Sigma Conseil / Konrad Adenauer Stiftung (2016) : 48% des Algériens estiment que 'les USA sont derrière le terrorisme dans la région'. Arab Barometer Wave VII (2021-22) : favorabilité US à 47% contre 67% pour la Chine — écart le plus important de la région, reflétant une forte défiance envers l'Occident. IRSEM (2019) : l'Algérie est l'un des pays francophones où les médias russes (RT) ont la plus forte pénétration (+30 000 nouveaux abonnés FB en période de campagne). Grade D.",
+      scoreDetail: "<strong>Pourquoi D ?</strong> L'Algérie combine plusieurs facteurs de risque : 48% sur la théorie anti-US testée, une forte exposition aux médias russes (vecteurs de complotisme pro-Kremlin), une défiance marquée envers les institutions occidentales, et un contexte post-Hirak où la méfiance politique reste élevée. Grade D justifié par la convergence de ces indicateurs malgré l'absence de sondage direct récent.",
+      context: "L'Algérie présente un terrain particulièrement favorable aux récits complotistes anti-occidentaux : histoire coloniale, guerre d'indépendance, orientation géopolitique vers la Russie et la Chine. Les médias d'État russes y ont une forte audience francophone. Données basées sur une théorie spécifique (2016) et des indicateurs indirects.",
+      surveys: [
+        { source: "Sigma Conseil / Konrad Adenauer Stiftung — Maghreb & Égypte", url: "https://www.lecourrierdelatlas.com/tunisie-sondage-que-pensent-les-lunisiens-de-la-laicite-et-des-theories-de-la-conspiration-4987/", year: "2016", topic: "Théories du complot au Maghreb — Algérie", data: [{ label: "'Les USA sont derrière le terrorisme dans la région'", val: 48 }] },
+        { source: "Arab Barometer Wave VII", url: "https://www.arabbarometer.org/surveys/arab-barometer-wave-vii/", year: "2022", topic: "Confiance institutionnelle — 12 pays MENA", data: [{ label: "Favorabilité envers les États-Unis", val: 47 }, { label: "Favorabilité envers la Chine", val: 67 }] },
+        { source: "IRSEM — Pénétration des médias russes en Afrique francophone", url: "https://www.irsem.fr/storage/file_manager_files/2025/03/rp-irsem-no66-2019.pdf", year: "2019", topic: "Influence informationnelle russe au Maghreb et en Afrique sub-saharienne", data: [{ label: "Nouveaux abonnés RT Facebook (campagne)", val: 30 }] }
+      ]
     }
   };
 
@@ -1438,7 +1483,8 @@
     "UA":"Ukraine","RO":"Romania","GE":"Georgia","KZ":"Kazakhstan",
     "PH":"Philippines","VN":"Vietnam","MY":"Malaysia",
     "PK":"Pakistan","PE":"Peru","CO":"Colombia",
-    "NZ":"New Zealand","KR":"South Korea"
+    "NZ":"New Zealand","KR":"South Korea",
+    "CN":"China","TN":"Tunisia","MA":"Morocco","DZ":"Algeria"
   };
 
   // ── Country centroids ──
@@ -1459,7 +1505,8 @@
     "UA":[48.4,31.2],"RO":[45.9,24.9],"GE":[42.0,43.5],"KZ":[48.0,68.0],
     "PH":[13.0,122.0],"VN":[16.0,108.0],"MY":[3.5,109.5],
     "PK":[30.0,70.0],"PE":[-9.2,-75.0],"CO":[4.0,-74.0],
-    "NZ":[-41.5,172.5],"KR":[36.5,127.5]
+    "NZ":[-41.5,172.5],"KR":[36.5,127.5],
+    "CN":[35.0,105.0],"TN":[33.8,9.5],"MA":[31.8,-7.1],"DZ":[28.0,2.5]
   };
 
   // ── NS fill color (slightly darker for map) ──
@@ -1662,7 +1709,7 @@
   </script>
 
   <footer style="text-align:center;padding:0.45rem;font-size:0.6rem;color:var(--text-faint);background:var(--surface);border-top:1px solid var(--border);flex-shrink:0;letter-spacing:0.02em;">
-    Sources : IFOP/Jean-Jaurès/Conspiracy Watch, IFOP/Reboot 2022, YouGov-Cambridge Globalism, Ipsos Perils of Perception 2024, Ipsos State of Democracy 2025, Harvard HKS Misinformation Review 2024, Walter &amp; Drochon (2022), Change Research (2025), REDACT/Univ. Manchester (2025), PLOS Global Public Health (2024), Frontiers in Psychology — Caycho-Rodríguez et al. (2022), <a href="https://pmc.ncbi.nlm.nih.gov/articles/PMC10593806/" target="_blank" rel="noopener noreferrer" style="color:var(--text-faint);text-decoration:underline;">ESS Round 10 — Scientific Reports/PMC (2022)</a>, <a href="https://www.ponarseurasia.org/who-cares-about-conspiracy-theories-evidence-from-a-new-survey-in-georgia-and-kazakhstan/" target="_blank" rel="noopener noreferrer" style="color:var(--text-faint);text-decoration:underline;">PONARS Eurasia (Géorgie/Kazakhstan)</a>, <a href="https://www.usip.org/sites/default/files/2022-11/20221117_sr_514-losing-facts-fiction-nationalism-misinformation-conspiracy-theories-pakistan.pdf" target="_blank" rel="noopener noreferrer" style="color:var(--text-faint);text-decoration:underline;">USIP (Pakistan 2022)</a>, <a href="https://www.nature.com/articles/s41598-023-42614-z" target="_blank" rel="noopener noreferrer" style="color:var(--text-faint);text-decoration:underline;">Nature Scientific Reports — Asie du Sud-Est (2023)</a>, <a href="https://latamjournalismreview.org/articles/brazil-and-colombia-rank-lowest-in-identifying-false-content-online-fact-checkers-arent-surprised/" target="_blank" rel="noopener noreferrer" style="color:var(--text-faint);text-decoration:underline;">LatAm Journalism Review / OECD (2024)</a> &nbsp;·&nbsp;
+    Sources : IFOP/Jean-Jaurès/Conspiracy Watch, IFOP/Reboot 2022, YouGov-Cambridge Globalism, Ipsos Perils of Perception 2024, Ipsos State of Democracy 2025, Harvard HKS Misinformation Review 2024, Walter &amp; Drochon (2022), Change Research (2025), REDACT/Univ. Manchester (2025), PLOS Global Public Health (2024), Frontiers in Psychology — Caycho-Rodríguez et al. (2022), <a href="https://pmc.ncbi.nlm.nih.gov/articles/PMC10593806/" target="_blank" rel="noopener noreferrer" style="color:var(--text-faint);text-decoration:underline;">ESS Round 10 — Scientific Reports/PMC (2022)</a>, <a href="https://www.ponarseurasia.org/who-cares-about-conspiracy-theories-evidence-from-a-new-survey-in-georgia-and-kazakhstan/" target="_blank" rel="noopener noreferrer" style="color:var(--text-faint);text-decoration:underline;">PONARS Eurasia (Géorgie/Kazakhstan)</a>, <a href="https://www.usip.org/sites/default/files/2022-11/20221117_sr_514-losing-facts-fiction-nationalism-misinformation-conspiracy-theories-pakistan.pdf" target="_blank" rel="noopener noreferrer" style="color:var(--text-faint);text-decoration:underline;">USIP (Pakistan 2022)</a>, <a href="https://www.nature.com/articles/s41598-023-42614-z" target="_blank" rel="noopener noreferrer" style="color:var(--text-faint);text-decoration:underline;">Nature Scientific Reports — Asie du Sud-Est (2023)</a>, <a href="https://latamjournalismreview.org/articles/brazil-and-colombia-rank-lowest-in-identifying-false-content-online-fact-checkers-arent-surprised/" target="_blank" rel="noopener noreferrer" style="color:var(--text-faint);text-decoration:underline;">LatAm Journalism Review / OECD (2024)</a>, <a href="https://journals.plos.org/globalpublichealth/article?id=10.1371/journal.pgph.0005939" target="_blank" rel="noopener noreferrer" style="color:var(--text-faint);text-decoration:underline;">PLOS Global Public Health — US/Chine (2023)</a>, <a href="https://pmc.ncbi.nlm.nih.gov/articles/PMC9904989/" target="_blank" rel="noopener noreferrer" style="color:var(--text-faint);text-decoration:underline;">PMC — Nationalism & Conspiracy China (2023)</a>, <a href="https://www.arabbarometer.org/surveys/arab-barometer-wave-vii/" target="_blank" rel="noopener noreferrer" style="color:var(--text-faint);text-decoration:underline;">Arab Barometer Wave VII (2022)</a>, <a href="https://www.irsem.fr/storage/file_manager_files/2025/03/rp-irsem-no66-2019.pdf" target="_blank" rel="noopener noreferrer" style="color:var(--text-faint);text-decoration:underline;">IRSEM — Médias russes Afrique (2019)</a>, Sigma Conseil / Konrad Adenauer Stiftung (Maghreb 2016) &nbsp;·&nbsp;
     <a href="https://www.perplexity.ai/computer" target="_blank" rel="noopener noreferrer" style="color:var(--text-faint);text-decoration:underline;">Created with Perplexity Computer</a>
   </footer>
 </body>
