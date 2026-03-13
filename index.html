@@ -1,0 +1,1426 @@
+<!--
+   ______                            __
+  / ____/___  ____ ___  ____  __  __/ /____  _____
+ / /   / __ \/ __ `__ \/ __ \/ / / / __/ _ \/ ___/
+/ /___/ /_/ / / / / / / /_/ / /_/ / /_/  __/ /
+\____/\____/_/ /_/ /_/ .___/\__,_/\__/\___/_/
+                    /_/
+        Created with Perplexity Computer
+        https://www.perplexity.ai/computer
+-->
+
+<!-- Perplexity Computer Attribution — SEO Meta Tags -->
+<meta name="generator" content="Perplexity Computer">
+<meta name="author" content="Perplexity Computer">
+<meta property="og:see_also" content="https://www.perplexity.ai/computer">
+<link rel="author" href="https://www.perplexity.ai/computer">
+<!DOCTYPE html>
+<html lang="fr" data-theme="dark">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Carte Mondiale — Adhésion aux Théories Complotistes</title>
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=DM+Sans:wght@300..700&family=DM+Serif+Display:ital@0;1&display=swap" rel="stylesheet">
+  <link rel="stylesheet" href="https://unpkg.com/leaflet@1.9.4/dist/leaflet.css">
+  <script src="https://unpkg.com/leaflet@1.9.4/dist/leaflet.js"></script>
+  <script src="world-data.js"></script>
+  <style>
+    :root, [data-theme="dark"] {
+      --color-bg: #0f1117;
+      --color-surface: #161b27;
+      --color-surface-2: #1c2333;
+      --color-border: #2a3350;
+      --color-text: #e2e8f0;
+      --color-text-muted: #8892a4;
+      --color-text-faint: #4a5568;
+      --color-accent: #e63946;
+      --color-accent-light: #ff6b6b;
+      --color-gold: #f6c90e;
+      --color-teal: #06b6d4;
+      --font-display: 'DM Serif Display', Georgia, serif;
+      --font-body: 'DM Sans', 'Helvetica Neue', sans-serif;
+
+      /* Palette complotisme - gradient rouge */
+      --c-very-high: #c0392b;
+      --c-high: #e74c3c;
+      --c-medium-high: #e67e22;
+      --c-medium: #f39c12;
+      --c-medium-low: #f1c40f;
+      --c-low: #2ecc71;
+      --c-no-data: #2a3350;
+    }
+    [data-theme="light"] {
+      --color-bg: #f0f2f5;
+      --color-surface: #ffffff;
+      --color-surface-2: #f7f9fc;
+      --color-border: #d1d9e6;
+      --color-text: #1a202c;
+      --color-text-muted: #4a5568;
+      --color-text-faint: #a0aec0;
+      --c-no-data: #d1d9e6;
+    }
+    *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+    html { font-size: 16px; -webkit-font-smoothing: antialiased; }
+    body {
+      font-family: var(--font-body);
+      background: var(--color-bg);
+      color: var(--color-text);
+      min-height: 100vh;
+      display: flex;
+      flex-direction: column;
+    }
+
+    /* HEADER */
+    header {
+      padding: 1.25rem 2rem;
+      background: var(--color-surface);
+      border-bottom: 1px solid var(--color-border);
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      gap: 1rem;
+      flex-shrink: 0;
+    }
+    .header-left { display: flex; align-items: center; gap: 1rem; }
+    .logo {
+      display: flex;
+      align-items: center;
+      gap: 0.5rem;
+    }
+    .logo-icon {
+      width: 36px;
+      height: 36px;
+      flex-shrink: 0;
+    }
+    .header-title {
+      font-family: var(--font-display);
+      font-size: clamp(1rem, 1.5vw, 1.35rem);
+      font-weight: 400;
+      line-height: 1.2;
+      color: var(--color-text);
+    }
+    .header-title span {
+      color: var(--color-accent-light);
+      font-style: italic;
+    }
+    .header-subtitle {
+      font-size: 0.75rem;
+      color: var(--color-text-muted);
+      margin-top: 0.15rem;
+    }
+    .header-controls {
+      display: flex;
+      align-items: center;
+      gap: 0.75rem;
+    }
+    .theme-btn {
+      background: var(--color-surface-2);
+      border: 1px solid var(--color-border);
+      color: var(--color-text);
+      border-radius: 8px;
+      padding: 0.4rem 0.75rem;
+      font-size: 0.8rem;
+      cursor: pointer;
+      font-family: var(--font-body);
+      transition: all 180ms ease;
+      display: flex;
+      align-items: center;
+      gap: 0.4rem;
+    }
+    .theme-btn:hover { background: var(--color-border); }
+
+    /* MAIN LAYOUT */
+    .main-layout {
+      display: flex;
+      flex: 1;
+      overflow: hidden;
+      height: calc(100vh - 72px);
+    }
+
+    /* MAP */
+    #map {
+      flex: 1;
+      z-index: 1;
+    }
+
+    /* SIDEBAR */
+    .sidebar {
+      width: 380px;
+      flex-shrink: 0;
+      background: var(--color-surface);
+      border-left: 1px solid var(--color-border);
+      display: flex;
+      flex-direction: column;
+      overflow: hidden;
+    }
+    .sidebar-header {
+      padding: 1.25rem 1.5rem;
+      border-bottom: 1px solid var(--color-border);
+      background: var(--color-surface-2);
+    }
+    .sidebar-header h2 {
+      font-family: var(--font-display);
+      font-size: 1.1rem;
+      font-weight: 400;
+      color: var(--color-text);
+      margin-bottom: 0.25rem;
+    }
+    .sidebar-header p {
+      font-size: 0.75rem;
+      color: var(--color-text-muted);
+    }
+    .sidebar-content {
+      flex: 1;
+      overflow-y: auto;
+      padding: 1.25rem 1.5rem;
+    }
+    .sidebar-content::-webkit-scrollbar { width: 6px; }
+    .sidebar-content::-webkit-scrollbar-track { background: transparent; }
+    .sidebar-content::-webkit-scrollbar-thumb { background: var(--color-border); border-radius: 3px; }
+
+    /* PLACEHOLDER */
+    .placeholder {
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      justify-content: center;
+      height: 100%;
+      text-align: center;
+      padding: 2rem;
+      gap: 1rem;
+    }
+    .placeholder-icon {
+      font-size: 3rem;
+      opacity: 0.3;
+    }
+    .placeholder h3 {
+      font-family: var(--font-display);
+      font-size: 1.1rem;
+      font-weight: 400;
+      color: var(--color-text-muted);
+    }
+    .placeholder p {
+      font-size: 0.8rem;
+      color: var(--color-text-faint);
+      line-height: 1.6;
+    }
+
+    /* COUNTRY PANEL */
+    .country-panel { display: none; }
+    .country-panel.active { display: block; }
+
+    .country-header {
+      display: flex;
+      align-items: center;
+      gap: 0.75rem;
+      margin-bottom: 1.25rem;
+    }
+    .country-flag {
+      font-size: 2.2rem;
+      line-height: 1;
+    }
+    .country-name-block {}
+    .country-name {
+      font-family: var(--font-display);
+      font-size: 1.4rem;
+      font-weight: 400;
+      color: var(--color-text);
+      line-height: 1.1;
+    }
+    .country-level-badge {
+      display: inline-block;
+      margin-top: 0.3rem;
+      padding: 0.2rem 0.6rem;
+      border-radius: 20px;
+      font-size: 0.7rem;
+      font-weight: 600;
+      letter-spacing: 0.05em;
+      text-transform: uppercase;
+    }
+
+    /* SCORE GAUGE */
+    .score-section {
+      background: var(--color-surface-2);
+      border: 1px solid var(--color-border);
+      border-radius: 12px;
+      padding: 1rem 1.25rem;
+      margin-bottom: 1.25rem;
+    }
+    .score-label {
+      font-size: 0.7rem;
+      text-transform: uppercase;
+      letter-spacing: 0.08em;
+      color: var(--color-text-muted);
+      margin-bottom: 0.6rem;
+    }
+    .score-main {
+      display: flex;
+      align-items: flex-end;
+      gap: 0.5rem;
+      margin-bottom: 0.75rem;
+    }
+    .score-number {
+      font-family: var(--font-display);
+      font-size: 2.8rem;
+      line-height: 1;
+      font-weight: 400;
+    }
+    .score-unit {
+      font-size: 1rem;
+      color: var(--color-text-muted);
+      padding-bottom: 0.3rem;
+    }
+    .score-desc {
+      font-size: 0.78rem;
+      color: var(--color-text-muted);
+      line-height: 1.5;
+    }
+    .gauge-bar {
+      height: 8px;
+      background: var(--color-border);
+      border-radius: 4px;
+      overflow: hidden;
+      margin-top: 0.75rem;
+    }
+    .gauge-fill {
+      height: 100%;
+      border-radius: 4px;
+      transition: width 0.6s cubic-bezier(0.16, 1, 0.3, 1);
+    }
+
+    /* SURVEYS TABLE */
+    .surveys-section {
+      margin-bottom: 1.25rem;
+    }
+    .section-title {
+      font-size: 0.7rem;
+      text-transform: uppercase;
+      letter-spacing: 0.08em;
+      color: var(--color-text-muted);
+      margin-bottom: 0.75rem;
+      display: flex;
+      align-items: center;
+      gap: 0.5rem;
+    }
+    .section-title::after {
+      content: '';
+      flex: 1;
+      height: 1px;
+      background: var(--color-border);
+    }
+
+    .survey-card {
+      background: var(--color-surface-2);
+      border: 1px solid var(--color-border);
+      border-radius: 10px;
+      padding: 0.9rem 1rem;
+      margin-bottom: 0.6rem;
+      transition: border-color 180ms ease;
+    }
+    .survey-card:hover { border-color: var(--color-accent); }
+
+    .survey-top {
+      display: flex;
+      justify-content: space-between;
+      align-items: flex-start;
+      margin-bottom: 0.5rem;
+    }
+    .survey-source {
+      font-size: 0.78rem;
+      font-weight: 600;
+      color: var(--color-text);
+    }
+    .survey-year {
+      font-size: 0.7rem;
+      color: var(--color-text-faint);
+      background: var(--color-border);
+      padding: 0.15rem 0.5rem;
+      border-radius: 4px;
+    }
+    .survey-topic {
+      font-size: 0.75rem;
+      color: var(--color-text-muted);
+      margin-bottom: 0.6rem;
+      line-height: 1.4;
+    }
+
+    /* Mini data table */
+    .data-rows { display: flex; flex-direction: column; gap: 0.35rem; }
+    .data-row {
+      display: flex;
+      align-items: center;
+      gap: 0.5rem;
+    }
+    .data-row-label {
+      font-size: 0.72rem;
+      color: var(--color-text-muted);
+      flex: 1;
+      min-width: 0;
+      white-space: nowrap;
+      overflow: hidden;
+      text-overflow: ellipsis;
+    }
+    .data-row-bar-wrap {
+      width: 80px;
+      flex-shrink: 0;
+    }
+    .data-row-bar {
+      height: 6px;
+      border-radius: 3px;
+      background: var(--color-border);
+      overflow: hidden;
+    }
+    .data-row-bar-fill {
+      height: 100%;
+      border-radius: 3px;
+    }
+    .data-row-val {
+      font-size: 0.72rem;
+      font-weight: 600;
+      color: var(--color-text);
+      width: 34px;
+      text-align: right;
+      flex-shrink: 0;
+    }
+
+    /* TREND / context */
+    .context-box {
+      background: linear-gradient(135deg, rgba(230, 57, 70, 0.08), rgba(6, 182, 212, 0.05));
+      border: 1px solid rgba(230, 57, 70, 0.2);
+      border-radius: 10px;
+      padding: 0.9rem 1rem;
+      margin-bottom: 1.25rem;
+    }
+    .context-box p {
+      font-size: 0.78rem;
+      color: var(--color-text-muted);
+      line-height: 1.6;
+    }
+    .context-box strong { color: var(--color-accent-light); }
+
+    /* LEGEND */
+    .legend-section {
+      padding: 1rem 1.5rem;
+      border-top: 1px solid var(--color-border);
+      background: var(--color-surface-2);
+    }
+    .legend-title {
+      font-size: 0.65rem;
+      text-transform: uppercase;
+      letter-spacing: 0.1em;
+      color: var(--color-text-faint);
+      margin-bottom: 0.6rem;
+    }
+    .legend-items {
+      display: flex;
+      gap: 0.5rem;
+      flex-wrap: wrap;
+    }
+    .legend-item {
+      display: flex;
+      align-items: center;
+      gap: 0.35rem;
+      font-size: 0.65rem;
+      color: var(--color-text-muted);
+    }
+    .legend-dot {
+      width: 10px;
+      height: 10px;
+      border-radius: 2px;
+      flex-shrink: 0;
+    }
+
+    /* Leaflet overrides */
+    .leaflet-container {
+      background: #0a0e1a;
+    }
+    .leaflet-popup-content-wrapper {
+      background: var(--color-surface);
+      border: 1px solid var(--color-border);
+      border-radius: 10px;
+      box-shadow: 0 8px 32px rgba(0,0,0,0.4);
+    }
+    .leaflet-popup-tip { background: var(--color-surface); }
+    .leaflet-popup-content {
+      margin: 0;
+      color: var(--color-text);
+      font-family: var(--font-body);
+    }
+    .map-popup {
+      padding: 0.75rem 1rem;
+      min-width: 200px;
+    }
+    .map-popup-flag { font-size: 1.5rem; margin-bottom: 0.25rem; }
+    .map-popup-name {
+      font-family: var(--font-display);
+      font-size: 1rem;
+      font-weight: 400;
+    }
+    .map-popup-score {
+      font-size: 1.6rem;
+      font-weight: 600;
+      margin: 0.2rem 0;
+    }
+    .map-popup-desc {
+      font-size: 0.72rem;
+      color: var(--color-text-muted);
+    }
+    .map-popup-cta {
+      margin-top: 0.5rem;
+      font-size: 0.7rem;
+      color: var(--color-teal);
+    }
+
+    /* Responsive */
+    @media (max-width: 768px) {
+      .sidebar { width: 100%; position: fixed; bottom: 0; left: 0; right: 0; height: 50vh; border-left: none; border-top: 1px solid var(--color-border); z-index: 1000; }
+      .main-layout { flex-direction: column; }
+      #map { height: 50vh; }
+      header { padding: 0.75rem 1rem; }
+      .header-title { font-size: 0.9rem; }
+    }
+  </style>
+</head>
+<body>
+  <header>
+    <div class="header-left">
+      <div class="logo">
+        <svg class="logo-icon" viewBox="0 0 36 36" fill="none" xmlns="http://www.w3.org/2000/svg" aria-label="Conspiracy Monitor">
+          <circle cx="18" cy="18" r="17" stroke="#e63946" stroke-width="1.5"/>
+          <circle cx="18" cy="18" r="11" stroke="#e63946" stroke-width="1" stroke-dasharray="3 2" opacity="0.5"/>
+          <line x1="18" y1="1" x2="18" y2="35" stroke="#e63946" stroke-width="0.75" opacity="0.3"/>
+          <line x1="1" y1="18" x2="35" y2="18" stroke="#e63946" stroke-width="0.75" opacity="0.3"/>
+          <circle cx="18" cy="18" r="3.5" fill="#e63946"/>
+          <circle cx="18" cy="18" r="1.5" fill="#fff"/>
+          <path d="M10 8 L26 28" stroke="#f6c90e" stroke-width="1" opacity="0.4"/>
+          <path d="M26 8 L10 28" stroke="#f6c90e" stroke-width="1" opacity="0.4"/>
+        </svg>
+      </div>
+      <div>
+        <div class="header-title">Carte mondiale — <span>Théories complotistes</span></div>
+        <div class="header-subtitle">Taux d'adhésion par pays · Sondages 2020–2025 · Cliquer sur un pays</div>
+      </div>
+    </div>
+    <div class="header-controls">
+      <button class="theme-btn" data-theme-toggle aria-label="Changer le thème">
+        <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M21 12.79A9 9 0 1 1 11.21 3 7 7 0 0 0 21 12.79z"/></svg>
+        Mode clair
+      </button>
+    </div>
+  </header>
+
+  <div class="main-layout">
+    <div id="map"></div>
+    <div class="sidebar">
+      <div class="sidebar-header">
+        <h2>Données par pays</h2>
+        <p>Cliquer sur un pays pour afficher les sondages détaillés</p>
+      </div>
+      <div class="sidebar-content">
+        <div class="placeholder" id="placeholder">
+          <div class="placeholder-icon">🌍</div>
+          <h3>Sélectionnez un pays</h3>
+          <p>Cliquez sur un territoire coloré pour consulter les résultats des principaux sondages nationaux sur l'adhésion aux théories complotistes.</p>
+        </div>
+        <div class="country-panel" id="country-panel"></div>
+      </div>
+      <div class="legend-section">
+        <div class="legend-title">Niveau d'adhésion (% population)</div>
+        <div class="legend-items">
+          <div class="legend-item"><div class="legend-dot" style="background:#c0392b"></div>&gt;70%</div>
+          <div class="legend-item"><div class="legend-dot" style="background:#e74c3c"></div>55–70%</div>
+          <div class="legend-item"><div class="legend-dot" style="background:#e67e22"></div>40–55%</div>
+          <div class="legend-item"><div class="legend-dot" style="background:#f39c12"></div>30–40%</div>
+          <div class="legend-item"><div class="legend-dot" style="background:#f1c40f"></div>20–30%</div>
+          <div class="legend-item"><div class="legend-dot" style="background:#2ecc71"></div>&lt;20%</div>
+          <div class="legend-item"><div class="legend-dot" style="background:#2a3350"></div>N/D</div>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <script>
+  // ============================================================
+  // DATA — Compiled from IFOP, YouGov-Cambridge, Ipsos, Harvard
+  // ============================================================
+  const COUNTRIES = {
+    "FR": {
+      name: "France",
+      flag: "🇫🇷",
+      score: 79,
+      level: "Très élevé",
+      levelColor: "#e74c3c",
+      context: "La France présente l'un des taux d'adhésion au complotisme les plus élevés d'Europe occidentale. <strong>21% des Français adhèrent à au moins 5 théories sur 10</strong> testées. Les jeunes de moins de 35 ans sont surreprésentés (21% contre 11% pour les plus de 35 ans).",
+      surveys: [
+        {
+          source: "IFOP / Fondation Jean-Jaurès / Conspiracy Watch",
+          year: "2018",
+          topic: "Adhésion à au moins une théorie complotiste",
+          data: [
+            { label: "≥1 théorie complotiste", val: 79 },
+            { label: "Vaccins cachés par État", val: 55 },
+            { label: "CIA & assassinat JFK", val: 54 },
+            { label: "Nouvel Ordre Mondial", val: 24 },
+            { label: "Américains jamais sur Lune", val: 16 },
+            { label: "Terre plate", val: 9 },
+          ]
+        },
+        {
+          source: "IFOP / Vague 2",
+          year: "2018",
+          topic: "Adhésion à 5 théories ou plus sur 10 testées",
+          data: [
+            { label: "≥5 théories (ensemble)", val: 21 },
+            { label: "Électeurs Le Pen ≥7 théories", val: 22 },
+            { label: "Électeurs Mélenchon ≥7", val: 16 },
+            { label: "Électeurs Macron ≥7", val: 8 },
+          ]
+        },
+        {
+          source: "Ipsos / Entretiens de Royaumont",
+          year: "2023",
+          topic: "Théories complotistes testées (10 pays)",
+          data: [
+            { label: "Gouvernement ukrainien néo-nazi", val: 16 },
+            { label: "Grand Remplacement", val: 13 },
+            { label: "Alunissage mis en scène", val: 16 },
+          ]
+        },
+        {
+          source: "YouGov-Cambridge Globalism",
+          year: "2020",
+          topic: "Théories spécifiques (21 pays)",
+          data: [
+            { label: "USA impliqués dans 11-Sept.", val: 20 },
+            { label: "Vaccins : effets cachés", val: 38 },
+            { label: "Monde gouverné en secret", val: 32 },
+            { label: "Alunissage truqué", val: 16 },
+            { label: "Contact aliens secret", val: 18 },
+          ]
+        }
+      ]
+    },
+    "US": {
+      name: "États-Unis",
+      flag: "🇺🇸",
+      score: 83,
+      level: "Très élevé",
+      levelColor: "#c0392b",
+      context: "Les États-Unis enregistrent des niveaux record de complotisme, renforcés par la méfiance institutionnelle. <strong>75% croient que les médias obéissent à des élites</strong>, et 60% pensent que des agents gouvernementaux ont fomenté le 6 janvier 2021.",
+      surveys: [
+        {
+          source: "Change Research",
+          year: "2025",
+          topic: "Complotisme institutionnel (1 590 électeurs inscrits)",
+          data: [
+            { label: "Médias contrôlés par élites", val: 74 },
+            { label: "Epstein assassiné pour taire", val: 75 },
+            { label: "Pharma cache des remèdes", val: 72 },
+            { label: "COVID créé en labo", val: 56 },
+            { label: "Fraude électorale 2020", val: 42 },
+            { label: "Alunissage truqué", val: 22 },
+          ]
+        },
+        {
+          source: "PRRI (Public Religion Research Inst.)",
+          year: "2023",
+          topic: "Croyances de type QAnon",
+          data: [
+            { label: "Élite pédosataniste (QAnon)", val: 23 },
+            { label: "Tempête imminente (QAnon)", val: 27 },
+            { label: "Biden élu illégitimement", val: 38 },
+          ]
+        },
+        {
+          source: "YouGov-Cambridge Globalism",
+          year: "2020",
+          topic: "Théories spécifiques",
+          data: [
+            { label: "USA impliqués dans 11-Sept.", val: 20 },
+            { label: "Vaccins : effets cachés", val: 33 },
+            { label: "Monde gouverné en secret", val: 37 },
+            { label: "Alunissage truqué", val: 13 },
+          ]
+        }
+      ]
+    },
+    "DE": {
+      name: "Allemagne",
+      flag: "🇩🇪",
+      score: 52,
+      level: "Moyen",
+      levelColor: "#e67e22",
+      context: "L'Allemagne présente un niveau modéré d'adhésion complotiste. La méfiance envers les vaccins et les théories sur les élites restent significatives, notamment dans les Länder de l'Est et parmi les électeurs AfD.",
+      surveys: [
+        {
+          source: "Ipsos / Entretiens de Royaumont",
+          year: "2023",
+          topic: "3 théories complotistes testées",
+          data: [
+            { label: "Gouvernement ukrainien néo-nazi", val: 24 },
+            { label: "Grand Remplacement", val: 15 },
+            { label: "Alunissage mis en scène", val: 24 },
+          ]
+        },
+        {
+          source: "YouGov-Cambridge Globalism",
+          year: "2020",
+          topic: "Théories spécifiques",
+          data: [
+            { label: "Vaccins : effets cachés", val: 25 },
+            { label: "Monde gouverné en secret", val: 30 },
+            { label: "Contact aliens secret", val: 13 },
+          ]
+        },
+        {
+          source: "Harvard / HKS Misinformation Review",
+          year: "2024",
+          topic: "Théories immigr. & COVID (10 pays UE)",
+          data: [
+            { label: "Ouvert à ≥1 théorie (6-10/10)", val: 55 },
+          ]
+        }
+      ]
+    },
+    "GB": {
+      name: "Royaume-Uni",
+      flag: "🇬🇧",
+      score: 36,
+      level: "Faible",
+      levelColor: "#2ecc71",
+      context: "Le Royaume-Uni présente l'un des taux les plus bas d'Europe pour les théories complotistes « dures ». La BBC et un écosystème médiatique robuste semblent agir comme facteurs protecteurs, bien que la méfiance post-Brexit s'observe.",
+      surveys: [
+        {
+          source: "Ipsos / Entretiens de Royaumont",
+          year: "2023",
+          topic: "3 théories complotistes testées",
+          data: [
+            { label: "Gouvernement ukrainien néo-nazi", val: 14 },
+            { label: "Grand Remplacement", val: 15 },
+            { label: "Alunissage mis en scène", val: 14 },
+          ]
+        },
+        {
+          source: "YouGov-Cambridge Globalism",
+          year: "2020",
+          topic: "Théories spécifiques",
+          data: [
+            { label: "USA impliqués dans 11-Sept.", val: 12 },
+            { label: "Vaccins : effets cachés", val: 19 },
+            { label: "Monde gouverné en secret", val: 28 },
+            { label: "AIDS créé délibérément", val: 7 },
+          ]
+        },
+        {
+          source: "YouGov-Cambridge Globalism",
+          year: "2022",
+          topic: "Moyenne 12 théories",
+          data: [
+            { label: "Vaccins : effets cachés", val: 13 },
+            { label: "COVID est un mythe", val: 3 },
+          ]
+        }
+      ]
+    },
+    "GR": {
+      name: "Grèce",
+      flag: "🇬🇷",
+      score: 67,
+      level: "Élevé",
+      levelColor: "#e74c3c",
+      context: "La Grèce est le pays européen avec les taux de croyance aux théories complotistes les plus élevés. La crise économique de 2010-2018 et la méfiance structurelle envers les institutions ont fortement favorisé la propagation des théories du complot.",
+      surveys: [
+        {
+          source: "YouGov-Cambridge Globalism",
+          year: "2020",
+          topic: "Théories spécifiques",
+          data: [
+            { label: "Monde gouverné en secret", val: 56 },
+            { label: "Vaccins : effets cachés", val: 39 },
+            { label: "AIDS créé délibérément", val: 24 },
+            { label: "Alunissage truqué", val: 22 },
+            { label: "Changement climatique : canular", val: 22 },
+          ]
+        },
+        {
+          source: "Harvard / HKS Misinformation Review",
+          year: "2024",
+          topic: "Complotisme immigr. & COVID (CHES survey)",
+          data: [
+            { label: "Parmi les + élevés d'Europe", val: 65 },
+          ]
+        }
+      ]
+    },
+    "HU": {
+      name: "Hongrie",
+      flag: "🇭🇺",
+      score: 66,
+      level: "Élevé",
+      levelColor: "#e74c3c",
+      context: "La Hongrie enregistre des niveaux très élevés, corrélés à la rhétorique officielle du gouvernement Orbán contre les « élites mondialistes ». Les théories sur les extra-terrestres, le Grand Remplacement et le contrôle secret du monde y sont particulièrement répandues.",
+      surveys: [
+        {
+          source: "YouGov-Cambridge Globalism",
+          year: "2020",
+          topic: "Théories spécifiques",
+          data: [
+            { label: "Contact aliens secret", val: 36 },
+            { label: "Alunissage truqué", val: 23 },
+            { label: "Changement climatique : canular", val: 22 },
+          ]
+        },
+        {
+          source: "Harvard / HKS Misinformation Review",
+          year: "2024",
+          topic: "Complotisme immigr. & COVID",
+          data: [
+            { label: "Parmi les 4 + élevés d'Europe", val: 68 },
+          ]
+        },
+        {
+          source: "Walter & Drochon / YouGov",
+          year: "2018-2022",
+          topic: "Complotisme général (8 pays EU + USA)",
+          data: [
+            { label: "Adhésion ≥1 théorie", val: 72 },
+          ]
+        }
+      ]
+    },
+    "TR": {
+      name: "Turquie",
+      flag: "🇹🇷",
+      score: 74,
+      level: "Très élevé",
+      levelColor: "#c0392b",
+      context: "La Turquie présente des niveaux parmi les plus élevés des pays testés, notamment sur les complots liés aux attentats et aux vaccins. La polarisation politique et la méfiance envers l'Occident alimentent fortement le complotisme.",
+      surveys: [
+        {
+          source: "YouGov-Cambridge Globalism",
+          year: "2020",
+          topic: "Théories spécifiques",
+          data: [
+            { label: "USA impliqués dans 11-Sept.", val: 55 },
+            { label: "Vaccins : effets cachés", val: 48 },
+            { label: "Monde gouverné en secret", val: 57 },
+            { label: "AIDS créé délibérément", val: 40 },
+            { label: "Alunissage truqué", val: 28 },
+          ]
+        },
+        {
+          source: "Ipsos / Entretiens de Royaumont",
+          year: "2023",
+          topic: "3 théories complotistes testées",
+          data: [
+            { label: "Gouvernement ukrainien néo-nazi", val: 41 },
+            { label: "Grand Remplacement", val: 51 },
+            { label: "Alunissage mis en scène", val: 41 },
+          ]
+        }
+      ]
+    },
+    "ES": {
+      name: "Espagne",
+      flag: "🇪🇸",
+      score: 55,
+      level: "Moyen-élevé",
+      levelColor: "#e67e22",
+      context: "L'Espagne montre des taux élevés sur certaines théories (monde gouverné en secret) mais modérés sur d'autres. Le contexte de crise économique et la polarisation politique Vox/gauche favorisent une certaine perméabilité.",
+      surveys: [
+        {
+          source: "YouGov-Cambridge Globalism",
+          year: "2020",
+          topic: "Théories spécifiques",
+          data: [
+            { label: "USA impliqués dans 11-Sept.", val: 20 },
+            { label: "Monde gouverné en secret", val: 55 },
+            { label: "AIDS créé délibérément", val: 23 },
+            { label: "Alunissage truqué", val: 22 },
+          ]
+        },
+        {
+          source: "Harvard / HKS Misinformation Review",
+          year: "2024",
+          topic: "Théories immigr. & COVID",
+          data: [
+            { label: "Parmi les + faibles d'Europe", val: 42 },
+          ]
+        }
+      ]
+    },
+    "IT": {
+      name: "Italie",
+      flag: "🇮🇹",
+      score: 58,
+      level: "Moyen-élevé",
+      levelColor: "#e67e22",
+      context: "L'Italie présente des niveaux significatifs, notamment sur la théorie du Grand Remplacement et les complots ukrainiens. La montée de Fratelli d'Italia et d'un discours souverainiste crée un terreau favorable aux théories conspirationnistes.",
+      surveys: [
+        {
+          source: "Ipsos / Entretiens de Royaumont",
+          year: "2023",
+          topic: "3 théories complotistes testées",
+          data: [
+            { label: "Gouvernement ukrainien néo-nazi", val: 28 },
+            { label: "Grand Remplacement", val: 24 },
+            { label: "Alunissage mis en scène", val: 28 },
+          ]
+        },
+        {
+          source: "Walter & Drochon / YouGov",
+          year: "2018",
+          topic: "Adhésion générale au complotisme",
+          data: [
+            { label: "Adhésion ≥1 théorie", val: 70 },
+          ]
+        }
+      ]
+    },
+    "PL": {
+      name: "Pologne",
+      flag: "🇵🇱",
+      score: 60,
+      level: "Élevé",
+      levelColor: "#e74c3c",
+      context: "La Pologne affiche des taux élevés, particulièrement sur le Grand Remplacement et les théories conspirationnistes liées à la politique étrangère (Ukraine). Le complotisme y est fortement corrélé aux positions anti-UE.",
+      surveys: [
+        {
+          source: "Ipsos / Entretiens de Royaumont",
+          year: "2023",
+          topic: "3 théories complotistes testées",
+          data: [
+            { label: "Gouvernement ukrainien néo-nazi", val: 27 },
+            { label: "Grand Remplacement", val: 20 },
+            { label: "Alunissage mis en scène", val: 27 },
+          ]
+        },
+        {
+          source: "YouGov-Cambridge Globalism",
+          year: "2020",
+          topic: "Théories spécifiques",
+          data: [
+            { label: "AIDS créé délibérément", val: 21 },
+            { label: "Alunissage truqué", val: 19 },
+          ]
+        },
+        {
+          source: "Harvard / HKS Misinformation Review",
+          year: "2024",
+          topic: "Complotisme COVID (au-dessus moy.)",
+          data: [
+            { label: "Ouvert théories COVID", val: 58 },
+          ]
+        }
+      ]
+    },
+    "SE": {
+      name: "Suède",
+      flag: "🇸🇪",
+      score: 25,
+      level: "Faible",
+      levelColor: "#f1c40f",
+      context: "La Suède présente l'un des taux les plus bas au monde. La confiance élevée dans les institutions publiques et une culture de la vérification des faits (factchecking) caractérisent le pays. C'est l'un des plus bas parmi les démocraties occidentales.",
+      surveys: [
+        {
+          source: "YouGov-Cambridge Globalism",
+          year: "2020",
+          topic: "Théories spécifiques",
+          data: [
+            { label: "Monde gouverné en secret", val: 23 },
+            { label: "Vaccins : effets cachés", val: 17 },
+          ]
+        },
+        {
+          source: "Walter & Drochon / YouGov",
+          year: "2018",
+          topic: "Adhésion générale",
+          data: [
+            { label: "Adhésion ≥1 théorie", val: 52 },
+          ]
+        },
+        {
+          source: "Harvard / HKS Misinformation Review",
+          year: "2024",
+          topic: "Complotisme COVID",
+          data: [
+            { label: "Parmi les + faibles (COVID)", val: 20 },
+          ]
+        }
+      ]
+    },
+    "MX": {
+      name: "Mexique",
+      flag: "🇲🇽",
+      score: 72,
+      level: "Très élevé",
+      levelColor: "#c0392b",
+      context: "Le Mexique affiche des taux très élevés, notamment sur les théories liées aux États-Unis (11-Sept., collusion Trump-Russie) et sur l'existence d'un gouvernement mondial secret. La méfiance envers Washington est structurelle.",
+      surveys: [
+        {
+          source: "YouGov-Cambridge Globalism",
+          year: "2020",
+          topic: "Théories spécifiques",
+          data: [
+            { label: "USA impliqués dans 11-Sept.", val: 49 },
+            { label: "Monde gouverné en secret", val: 59 },
+            { label: "Alunissage truqué", val: 31 },
+            { label: "Aliens : contact secret", val: 44 },
+          ]
+        },
+        {
+          source: "YouGov-Cambridge Globalism",
+          year: "2022",
+          topic: "Complots actuels",
+          data: [
+            { label: "Trump-Russie collusion", val: 58 },
+            { label: "Biden a volé l'élection 2020", val: 20 },
+          ]
+        }
+      ]
+    },
+    "ZA": {
+      name: "Afrique du Sud",
+      flag: "🇿🇦",
+      score: 75,
+      level: "Très élevé",
+      levelColor: "#c0392b",
+      context: "L'Afrique du Sud présente des taux extrêmement élevés sur la plupart des théories testées. La crise de confiance post-apartheid envers les institutions, la méfiance envers les pharmaceutiques et les médias occidentaux sont des facteurs clés.",
+      surveys: [
+        {
+          source: "YouGov-Cambridge Globalism",
+          year: "2020",
+          topic: "Théories spécifiques",
+          data: [
+            { label: "Monde gouverné en secret", val: 68 },
+            { label: "Vaccins : effets cachés", val: 57 },
+            { label: "AIDS créé délibérément", val: 37 },
+          ]
+        },
+        {
+          source: "YouGov-Cambridge Globalism",
+          year: "2022",
+          topic: "Moyenne 12 théories",
+          data: [
+            { label: "Monde gouverné en secret", val: 61 },
+            { label: "Vaccins : effets cachés", val: 59 },
+            { label: "Biden a volé l'élection 2020", val: 33 },
+          ]
+        }
+      ]
+    },
+    "IN": {
+      name: "Inde",
+      flag: "🇮🇳",
+      score: 80,
+      level: "Très élevé",
+      levelColor: "#c0392b",
+      context: "L'Inde présente les taux les plus élevés parmi les 24 pays testés par YouGov-Cambridge. La propagation des fausses nouvelles via WhatsApp et Facebook, combinée à la polarisation religieuse et politique, alimente fortement le complotisme.",
+      surveys: [
+        {
+          source: "YouGov-Cambridge Globalism",
+          year: "2022",
+          topic: "Rang mondial — plus haut taux",
+          data: [
+            { label: "Alunissage truqué", val: 26 },
+            { label: "Biden a volé l'élection 2020", val: 39 },
+            { label: "COVID est un mythe", val: 30 },
+          ]
+        }
+      ]
+    },
+    "BR": {
+      name: "Brésil",
+      flag: "🇧🇷",
+      score: 65,
+      level: "Élevé",
+      levelColor: "#e74c3c",
+      context: "Le Brésil a vu exploser le complotisme sous l'ère Bolsonaro (2019-2022). Les théories anti-vaccins, les fraudes électorales alléguées et la méfiance envers les médias mainstream ont profondément marqué la société.",
+      surveys: [
+        {
+          source: "Ipsos Perils of Perception",
+          year: "2024",
+          topic: "Grand Remplacement et confiance",
+          data: [
+            { label: "Théories complotistes générales", val: 60 },
+          ]
+        }
+      ]
+    },
+    "JP": {
+      name: "Japon",
+      flag: "🇯🇵",
+      score: 18,
+      level: "Très faible",
+      levelColor: "#2ecc71",
+      context: "Le Japon affiche le taux le plus bas parmi tous les pays testés. La culture du consensus, la confiance dans les experts et les institutions publiques expliquent cette faible perméabilité. Beaucoup de répondants choisissent « ne sait pas » plutôt que de croire.",
+      surveys: [
+        {
+          source: "Ipsos / Entretiens de Royaumont",
+          year: "2023",
+          topic: "3 théories complotistes testées",
+          data: [
+            { label: "Gouvernement ukrainien néo-nazi", val: 10 },
+            { label: "Grand Remplacement", val: 11 },
+            { label: "Alunissage mis en scène", val: 10 },
+          ]
+        },
+        {
+          source: "YouGov-Cambridge Globalism",
+          year: "2022",
+          topic: "Théories spécifiques",
+          data: [
+            { label: "COVID est un mythe", val: 4 },
+            { label: "Monde gouverné en secret", val: 19 },
+          ]
+        }
+      ]
+    },
+    "DK": {
+      name: "Danemark",
+      flag: "🇩🇰",
+      score: 22,
+      level: "Faible",
+      levelColor: "#f1c40f",
+      context: "Le Danemark est parmi les pays les plus résistants aux théories du complot en Europe. La confiance dans les institutions danoises est l'une des plus élevées au monde. Seule la théorie Trump-Russie y recueille un fort soutien.",
+      surveys: [
+        {
+          source: "YouGov-Cambridge Globalism",
+          year: "2020",
+          topic: "Théories spécifiques",
+          data: [
+            { label: "Monde gouverné en secret", val: 20 },
+            { label: "Vaccins : effets cachés", val: 14 },
+            { label: "AIDS créé délibérément", val: 5 },
+          ]
+        },
+        {
+          source: "YouGov-Cambridge Globalism",
+          year: "2022",
+          topic: "Complots politiques",
+          data: [
+            { label: "Trump-Russie collusion", val: 39 },
+            { label: "Vaccins : effets cachés", val: 10 },
+          ]
+        }
+      ]
+    },
+    "CZ": {
+      name: "République tchèque",
+      flag: "🇨🇿",
+      score: 68,
+      level: "Élevé",
+      levelColor: "#e74c3c",
+      context: "La République tchèque est l'un des foyers les plus actifs de désinformation en Europe. Les réseaux pro-russes y ont fortement influencé l'opinion, en particulier sur les théories liées à l'Ukraine et aux vaccins. Les médias alternatifs y sont très populaires.",
+      surveys: [
+        {
+          source: "Harvard / HKS Misinformation Review",
+          year: "2024",
+          topic: "Parmi les plus élevés d'Europe",
+          data: [
+            { label: "Complotisme immigration (rang 1)", val: 72 },
+            { label: "Complotisme COVID (rang 1)", val: 69 },
+          ]
+        }
+      ]
+    },
+    "RU": {
+      name: "Russie",
+      flag: "🇷🇺",
+      score: 70,
+      level: "Très élevé",
+      levelColor: "#c0392b",
+      context: "La Russie présente un niveau très élevé, en partie instrumentalisé par les médias d'État (RT, Sputnik) qui diffusent des théories complotistes comme outil géopolitique. La méfiance envers l'Occident est structurelle.",
+      surveys: [
+        {
+          source: "YouGov-Cambridge Globalism",
+          year: "2022",
+          topic: "Complots politiques",
+          data: [
+            { label: "Biden a volé l'élection 2020", val: 37 },
+          ]
+        }
+      ]
+    },
+    "AR": {
+      name: "Argentine",
+      flag: "🇦🇷",
+      score: 55,
+      level: "Moyen-élevé",
+      levelColor: "#e67e22",
+      context: "L'Argentine affiche des niveaux significatifs, exacerbés par la crise économique chronique et la méfiance envers les élites politiques. L'élection de Milei en 2023 s'est faite dans un contexte de forte défiance institutionnelle.",
+      surveys: [
+        {
+          source: "Ipsos / Entretiens de Royaumont",
+          year: "2023",
+          topic: "3 théories complotistes testées",
+          data: [
+            { label: "Gouvernement ukrainien néo-nazi", val: 20 },
+            { label: "Grand Remplacement", val: 18 },
+            { label: "Alunissage mis en scène", val: 20 },
+          ]
+        }
+      ]
+    },
+    "NG": {
+      name: "Nigeria",
+      flag: "🇳🇬",
+      score: 82,
+      level: "Très élevé",
+      levelColor: "#c0392b",
+      context: "Le Nigeria présente des taux parmi les plus élevés au monde, notamment sur l'existence d'un gouvernement mondial secret et la création délibérée du SIDA. La méfiance envers les institutions sanitaires (héritage Tuskegee, polio) est forte.",
+      surveys: [
+        {
+          source: "YouGov-Cambridge Globalism",
+          year: "2020",
+          topic: "Théories spécifiques",
+          data: [
+            { label: "Monde gouverné en secret", val: 78 },
+            { label: "Vaccins : effets cachés", val: 55 },
+            { label: "AIDS créé délibérément", val: 42 },
+          ]
+        },
+        {
+          source: "YouGov-Cambridge Globalism",
+          year: "2022",
+          topic: "Autres théories",
+          data: [
+            { label: "Monde gouverné en secret", val: 69 },
+            { label: "Vaccins : effets cachés", val: 50 },
+          ]
+        }
+      ]
+    },
+    "AU": {
+      name: "Australie",
+      flag: "🇦🇺",
+      score: 38,
+      level: "Moyen-faible",
+      levelColor: "#f39c12",
+      context: "L'Australie présente des niveaux relativement modérés. La pandémie de COVID-19 a cependant entraîné une hausse des théories anti-vaccins et complotistes, notamment dans les milieux ruraux et chez les électeurs du One Nation Party.",
+      surveys: [
+        {
+          source: "Ipsos / Entretiens de Royaumont",
+          year: "2023",
+          topic: "3 théories complotistes testées",
+          data: [
+            { label: "Gouvernement ukrainien néo-nazi", val: 16 },
+            { label: "Grand Remplacement", val: 11 },
+            { label: "Alunissage mis en scène", val: 16 },
+          ]
+        }
+      ]
+    },
+    "CA": {
+      name: "Canada",
+      flag: "🇨🇦",
+      score: 43,
+      level: "Moyen",
+      levelColor: "#f39c12",
+      context: "Le Canada affiche des niveaux modérés mais en hausse. Les convois de camionneurs en 2022 et la montée du Parti populaire du Canada illustrent la perméabilité à certaines théories complotistes, notamment anti-vaccins et anti-élites.",
+      surveys: [
+        {
+          source: "YouGov-Cambridge Globalism",
+          year: "2020",
+          topic: "Théories spécifiques",
+          data: [
+            { label: "Monde gouverné en secret", val: 36 },
+            { label: "Alunissage truqué", val: 13 },
+            { label: "Aliens : contact secret", val: 30 },
+          ]
+        },
+        {
+          source: "YouGov-Cambridge Globalism",
+          year: "2022",
+          topic: "Collusion Trump-Russie",
+          data: [
+            { label: "Trump-Russie collusion", val: 61 },
+          ]
+        }
+      ]
+    }
+  };
+
+  // Mapping ISO2 codes to GeoJSON country names
+  const ISO2_TO_NAME = {
+    "FR": "France", "US": "USA", "DE": "Germany",
+    "GB": "England", "GR": "Greece", "HU": "Hungary",
+    "TR": "Turkey", "ES": "Spain", "IT": "Italy", "PL": "Poland",
+    "SE": "Sweden", "MX": "Mexico", "ZA": "South Africa",
+    "IN": "India", "BR": "Brazil", "JP": "Japan", "DK": "Denmark",
+    "CZ": "Czech Republic", "RU": "Russia", "AR": "Argentina",
+    "NG": "Nigeria", "AU": "Australia", "CA": "Canada"
+  };
+
+  // Score to color
+  function scoreToColor(score) {
+    if (score === null || score === undefined) return '#2a3350';
+    if (score >= 75) return '#c0392b';
+    if (score >= 60) return '#e74c3c';
+    if (score >= 45) return '#e67e22';
+    if (score >= 35) return '#f39c12';
+    if (score >= 20) return '#f1c40f';
+    return '#2ecc71';
+  }
+
+  // Init map
+  const map = L.map('map', {
+    center: [25, 15],
+    zoom: 2.2,
+    minZoom: 1.8,
+    maxZoom: 6,
+    worldCopyJump: false,
+    zoomControl: false
+  });
+
+  L.control.zoom({ position: 'topright' }).addTo(map);
+
+  // Build ISO2 lookup from our data
+  const scoreMap = {};
+  for (const [iso, d] of Object.entries(COUNTRIES)) {
+    const name = ISO2_TO_NAME[iso];
+    if (name) scoreMap[name] = { iso, score: d.score };
+  }
+
+  // Load GeoJSON
+  Promise.resolve(WORLD_GEOJSON)
+    .then(geoData => {
+      L.geoJSON(geoData, {
+        style: feature => {
+          const name = feature.properties.name;
+          const entry = scoreMap[name];
+          const score = entry ? entry.score : null;
+          return {
+            fillColor: scoreToColor(score),
+            fillOpacity: score ? 0.75 : 0.15,
+            color: '#1a2540',
+            weight: 0.8,
+            opacity: 0.6
+          };
+        },
+        onEachFeature: (feature, layer) => {
+          const name = feature.properties.name;
+          const entry = scoreMap[name];
+          if (!entry) return;
+          const data = COUNTRIES[entry.iso];
+
+          layer.on({
+            mouseover: e => {
+              e.target.setStyle({ fillOpacity: 0.95, weight: 2, color: '#fff' });
+              e.target.bringToFront();
+            },
+            mouseout: e => {
+              e.target.setStyle({
+                fillOpacity: 0.75,
+                weight: 0.8,
+                color: '#1a2540'
+              });
+            },
+            click: e => {
+              showCountry(entry.iso);
+              map.fitBounds(e.target.getBounds(), { padding: [40, 40], maxZoom: 5 });
+            }
+          });
+
+          layer.bindTooltip(`
+            <div class="map-popup">
+              <div class="map-popup-flag">${data.flag}</div>
+              <div class="map-popup-name">${data.name}</div>
+              <div class="map-popup-score" style="color:${scoreToColor(data.score)}">${data.score}%</div>
+              <div class="map-popup-desc">${data.level}</div>
+              <div class="map-popup-cta">Cliquer pour les sondages →</div>
+            </div>
+          `, { sticky: true, opacity: 1, className: '' });
+        }
+      }).addTo(map);
+    });
+
+  function showCountry(iso) {
+    const d = COUNTRIES[iso];
+    const panel = document.getElementById('country-panel');
+    const placeholder = document.getElementById('placeholder');
+    placeholder.style.display = 'none';
+    panel.classList.add('active');
+
+    let surveysHTML = d.surveys.map(s => {
+      const rows = s.data.map(r => {
+        const barColor = scoreToColor(r.val);
+        const barWidth = Math.min(100, r.val);
+        return `
+          <div class="data-row">
+            <div class="data-row-label" title="${r.label}">${r.label}</div>
+            <div class="data-row-bar-wrap">
+              <div class="data-row-bar">
+                <div class="data-row-bar-fill" style="width:${barWidth}%;background:${barColor}"></div>
+              </div>
+            </div>
+            <div class="data-row-val">${r.val}%</div>
+          </div>`;
+      }).join('');
+      return `
+        <div class="survey-card">
+          <div class="survey-top">
+            <div class="survey-source">${s.source}</div>
+            <div class="survey-year">${s.year}</div>
+          </div>
+          <div class="survey-topic">${s.topic}</div>
+          <div class="data-rows">${rows}</div>
+        </div>`;
+    }).join('');
+
+    panel.innerHTML = `
+      <div class="country-header">
+        <div class="country-flag">${d.flag}</div>
+        <div class="country-name-block">
+          <div class="country-name">${d.name}</div>
+          <span class="country-level-badge" style="background:${d.levelColor}22;color:${d.levelColor};">${d.level}</span>
+        </div>
+      </div>
+
+      <div class="score-section">
+        <div class="score-label">Indice d'adhésion global estimé</div>
+        <div class="score-main">
+          <div class="score-number" style="color:${scoreToColor(d.score)}">${d.score}</div>
+          <div class="score-unit">%</div>
+        </div>
+        <div class="score-desc">Part de la population adhérant à au moins une théorie complotiste majeure (composite de plusieurs sondages)</div>
+        <div class="gauge-bar">
+          <div class="gauge-fill" style="width:${d.score}%;background:linear-gradient(90deg,${scoreToColor(d.score)},${d.levelColor})"></div>
+        </div>
+      </div>
+
+      <div class="context-box">
+        <p>${d.context}</p>
+      </div>
+
+      <div class="surveys-section">
+        <div class="section-title">Sondages disponibles</div>
+        ${surveysHTML}
+      </div>
+    `;
+  }
+
+  // Theme toggle
+  (function(){
+    const btn = document.querySelector('[data-theme-toggle]');
+    const html = document.documentElement;
+    let theme = 'dark';
+    html.setAttribute('data-theme', theme);
+    if (btn) btn.addEventListener('click', () => {
+      theme = theme === 'dark' ? 'light' : 'dark';
+      html.setAttribute('data-theme', theme);
+      btn.innerHTML = theme === 'dark'
+        ? '<svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M21 12.79A9 9 0 1 1 11.21 3 7 7 0 0 0 21 12.79z"/></svg> Mode clair'
+        : '<svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><circle cx="12" cy="12" r="5"/><path d="M12 1v2M12 21v2M4.22 4.22l1.42 1.42M18.36 18.36l1.42 1.42M1 12h2M21 12h2M4.22 19.78l1.42-1.42M18.36 5.64l1.42-1.42"/></svg> Mode sombre';
+    });
+  })();
+  </script>
+
+  <footer style="text-align:center;padding:0.5rem;font-size:0.65rem;color:#4a5568;background:#0f1117;border-top:1px solid #2a3350;flex-shrink:0;">
+    Sources : IFOP/Fondation Jean-Jaurès/Conspiracy Watch, YouGov-Cambridge Globalism Project, Ipsos Perils of Perception, Harvard HKS Misinformation Review, Walter & Drochon (2022), Change Research (2025) &nbsp;·&nbsp;
+    <a href="https://www.perplexity.ai/computer" target="_blank" rel="noopener noreferrer" style="color:#4a5568;text-decoration:underline;">Created with Perplexity Computer</a>
+  </footer>
+</body>
+</html>
