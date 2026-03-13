@@ -332,6 +332,50 @@
       font-weight: 600;
       color: var(--color-text);
     }
+    .survey-source a {
+      color: var(--color-teal);
+      text-decoration: none;
+      display: inline-flex;
+      align-items: center;
+      gap: 0.25rem;
+      transition: color 180ms ease;
+    }
+    .survey-source a:hover {
+      color: #67e8f9;
+      text-decoration: underline;
+    }
+    .survey-source a svg { flex-shrink: 0; opacity: 0.7; }
+
+    /* Score methodology box */
+    .score-method {
+      margin-top: 0.75rem;
+      padding: 0.6rem 0.85rem;
+      background: rgba(6, 182, 212, 0.07);
+      border: 1px solid rgba(6, 182, 212, 0.18);
+      border-radius: 8px;
+      font-size: 0.72rem;
+      color: var(--color-text-muted);
+      line-height: 1.55;
+    }
+    .score-method strong { color: var(--color-teal); }
+    .score-method-toggle {
+      display: inline-flex;
+      align-items: center;
+      gap: 0.3rem;
+      font-size: 0.7rem;
+      color: var(--color-teal);
+      cursor: pointer;
+      margin-top: 0.5rem;
+      background: none;
+      border: none;
+      padding: 0;
+      font-family: var(--font-body);
+      text-decoration: underline;
+      text-decoration-style: dotted;
+    }
+    .score-method-toggle:hover { color: #67e8f9; }
+    .score-method-detail { display: none; margin-top: 0.5rem; }
+    .score-method-detail.open { display: block; }
     .survey-year {
       font-size: 0.7rem;
       color: var(--color-text-faint);
@@ -552,12 +596,16 @@
       score: 79,
       level: "Très élevé",
       levelColor: "#e74c3c",
+      scoreNote: "79% des Français adhèrent à au moins une théorie complotiste parmi 10 testées.",
+      scoreMeta: "Source principale : <strong>enquête IFOP pour la Fondation Jean-Jaurès et Conspiracy Watch (déc. 2017, n=1 000)</strong>. Ce chiffre de 79% correspond à la proportion de répondants ayant dit \"oui\" ou \"plutôt oui\" à au moins une des 10 affirmations complotistes soumises.",
+      scoreDetail: "<strong>Ce que ce chiffre ne dit pas :</strong> adhérer à une seule théorie sur 10 suffit pour figurer dans ce 79% &mdash; cela inclut des théories relativement banales (ex. implication CIA dans JFK : 54%). Seul 21% adhèrent à 5 théories ou plus. Le choix de la liste (CIA/JFK, vaccins, NOM, Lune, Terre plate) influe fortement sur le résultat final. Une étude au Monde diplomatique (2017) a critiqué cette méthodologie comme susceptible de gonfler les chiffres. À lire en regard de l'Ipsos 2023 (qui trouve 13-16% sur des théories plus extrêmes).",
       context: "La France présente l'un des taux d'adhésion au complotisme les plus élevés d'Europe occidentale. <strong>21% des Français adhèrent à au moins 5 théories sur 10</strong> testées. Les jeunes de moins de 35 ans sont surreprésentés (21% contre 11% pour les plus de 35 ans).",
       surveys: [
         {
           source: "IFOP / Fondation Jean-Jaurès / Conspiracy Watch",
+          url: "https://www.ifop.com/article/enquete-sur-le-complotisme",
           year: "2018",
-          topic: "Adhésion à au moins une théorie complotiste",
+          topic: "Adhésion à au moins une théorie complotiste (1 000 personnes repr. 18 ans et +)",
           data: [
             { label: "≥1 théorie complotiste", val: 79 },
             { label: "Vaccins cachés par État", val: 55 },
@@ -568,9 +616,10 @@
           ]
         },
         {
-          source: "IFOP / Vague 2",
+          source: "IFOP / Fondation Jean-Jaurès — Vague 2",
+          url: "https://www.ifop.com/article/enquete-sur-le-complotisme-vague-2",
           year: "2018",
-          topic: "Adhésion à 5 théories ou plus sur 10 testées",
+          topic: "Adhésion à 5 théories ou plus sur 10 testées (1 506 personnes)",
           data: [
             { label: "≥5 théories (ensemble)", val: 21 },
             { label: "Électeurs Le Pen ≥7 théories", val: 22 },
@@ -579,9 +628,10 @@
           ]
         },
         {
-          source: "Ipsos / Entretiens de Royaumont",
+          source: "Ipsos — Entretiens de Royaumont",
+          url: "https://www.ipsos.com/en-us/perils-perception-prejudice-and-conspiracy-theories",
           year: "2023",
-          topic: "Théories complotistes testées (10 pays)",
+          topic: "3 théories testées dans 10 pays (10 000 personnes, nov. 2023)",
           data: [
             { label: "Gouvernement ukrainien néo-nazi", val: 16 },
             { label: "Grand Remplacement", val: 13 },
@@ -589,9 +639,10 @@
           ]
         },
         {
-          source: "YouGov-Cambridge Globalism",
+          source: "YouGov-Cambridge Globalism Project",
+          url: "https://yougov.com/en-gb/articles/33746-global-where-believe-conspiracy-theories-true",
           year: "2020",
-          topic: "Théories spécifiques (21 pays)",
+          topic: "6 théories spécifiques testées dans 21 pays (22 000+ personnes)",
           data: [
             { label: "USA impliqués dans 11-Sept.", val: 20 },
             { label: "Vaccins : effets cachés", val: 38 },
@@ -608,11 +659,15 @@
       score: 83,
       level: "Très élevé",
       levelColor: "#c0392b",
+      scoreNote: "83% des électeurs américains adhèrent à au moins une théorie complotiste institutionnelle.",
+      scoreMeta: "Source principale : <strong>Change Research (août 2025, n=1 590 électeurs inscrits)</strong>. Ce chiffre correspond aux personnes ayant répondu 'il y a probablement du vrai' à au moins une théorie parmi les 18 testées, dont plusieurs liées à la méfiance institutionnelle (médias, pharma, gouvernement).",
+      scoreDetail: "<strong>Important :</strong> certaines théories incluses (ex. \"les dirigeants américains couvrent des violations des droits humains\") sont en réalité partiellement fondées factuellement, ce qui peut gonfler le score. L'échantillon est limité aux électeurs inscrits. Le PRRI (2023) trouve 23% d'adhésion aux principales thèses QAnon &mdash; une mesure plus stricte. Ces chiffres convergent pour montrer une société marquée par la défiance institutionnelle profonde.",
       context: "Les États-Unis enregistrent des niveaux record de complotisme, renforcés par la méfiance institutionnelle. <strong>75% croient que les médias obéissent à des élites</strong>, et 60% pensent que des agents gouvernementaux ont fomenté le 6 janvier 2021.",
       surveys: [
         {
           source: "Change Research",
-          year: "2025",
+
+          url: "https://changeresearch.com/beyond-the-fringe/",          year: "2025",
           topic: "Complotisme institutionnel (1 590 électeurs inscrits)",
           data: [
             { label: "Médias contrôlés par élites", val: 74 },
@@ -625,7 +680,8 @@
         },
         {
           source: "PRRI (Public Religion Research Inst.)",
-          year: "2023",
+
+          url: "https://www.prri.org/research/qanon-conspiracy-american-politics-october-2020/",          year: "2023",
           topic: "Croyances de type QAnon",
           data: [
             { label: "Élite pédosataniste (QAnon)", val: 23 },
@@ -635,7 +691,8 @@
         },
         {
           source: "YouGov-Cambridge Globalism",
-          year: "2020",
+
+          url: "https://yougov.com/en-gb/articles/33746-global-where-believe-conspiracy-theories-true",          year: "2020",
           topic: "Théories spécifiques",
           data: [
             { label: "USA impliqués dans 11-Sept.", val: 20 },
@@ -656,7 +713,8 @@
       surveys: [
         {
           source: "Ipsos / Entretiens de Royaumont",
-          year: "2023",
+
+          url: "https://www.ipsos.com/en-us/perils-perception-prejudice-and-conspiracy-theories",          year: "2023",
           topic: "3 théories complotistes testées",
           data: [
             { label: "Gouvernement ukrainien néo-nazi", val: 24 },
@@ -666,7 +724,8 @@
         },
         {
           source: "YouGov-Cambridge Globalism",
-          year: "2020",
+
+          url: "https://yougov.com/en-gb/articles/33746-global-where-believe-conspiracy-theories-true",          year: "2020",
           topic: "Théories spécifiques",
           data: [
             { label: "Vaccins : effets cachés", val: 25 },
@@ -676,7 +735,8 @@
         },
         {
           source: "Harvard / HKS Misinformation Review",
-          year: "2024",
+
+          url: "https://misinforeview.hks.harvard.edu/article/the-impact-of-conspiracy-belief-on-democratic-culture-evidence-from-europe/",          year: "2024",
           topic: "Théories immigr. & COVID (10 pays UE)",
           data: [
             { label: "Ouvert à ≥1 théorie (6-10/10)", val: 55 },
@@ -694,7 +754,8 @@
       surveys: [
         {
           source: "Ipsos / Entretiens de Royaumont",
-          year: "2023",
+
+          url: "https://www.ipsos.com/en-us/perils-perception-prejudice-and-conspiracy-theories",          year: "2023",
           topic: "3 théories complotistes testées",
           data: [
             { label: "Gouvernement ukrainien néo-nazi", val: 14 },
@@ -704,7 +765,8 @@
         },
         {
           source: "YouGov-Cambridge Globalism",
-          year: "2020",
+
+          url: "https://yougov.com/en-gb/articles/33746-global-where-believe-conspiracy-theories-true",          year: "2020",
           topic: "Théories spécifiques",
           data: [
             { label: "USA impliqués dans 11-Sept.", val: 12 },
@@ -715,7 +777,8 @@
         },
         {
           source: "YouGov-Cambridge Globalism",
-          year: "2022",
+
+          url: "https://yougov.com/en-gb/articles/33746-global-where-believe-conspiracy-theories-true",          year: "2022",
           topic: "Moyenne 12 théories",
           data: [
             { label: "Vaccins : effets cachés", val: 13 },
@@ -734,7 +797,8 @@
       surveys: [
         {
           source: "YouGov-Cambridge Globalism",
-          year: "2020",
+
+          url: "https://yougov.com/en-gb/articles/33746-global-where-believe-conspiracy-theories-true",          year: "2020",
           topic: "Théories spécifiques",
           data: [
             { label: "Monde gouverné en secret", val: 56 },
@@ -746,7 +810,8 @@
         },
         {
           source: "Harvard / HKS Misinformation Review",
-          year: "2024",
+
+          url: "https://misinforeview.hks.harvard.edu/article/the-impact-of-conspiracy-belief-on-democratic-culture-evidence-from-europe/",          year: "2024",
           topic: "Complotisme immigr. & COVID (CHES survey)",
           data: [
             { label: "Parmi les + élevés d'Europe", val: 65 },
@@ -764,7 +829,8 @@
       surveys: [
         {
           source: "YouGov-Cambridge Globalism",
-          year: "2020",
+
+          url: "https://yougov.com/en-gb/articles/33746-global-where-believe-conspiracy-theories-true",          year: "2020",
           topic: "Théories spécifiques",
           data: [
             { label: "Contact aliens secret", val: 36 },
@@ -774,7 +840,8 @@
         },
         {
           source: "Harvard / HKS Misinformation Review",
-          year: "2024",
+
+          url: "https://misinforeview.hks.harvard.edu/article/the-impact-of-conspiracy-belief-on-democratic-culture-evidence-from-europe/",          year: "2024",
           topic: "Complotisme immigr. & COVID",
           data: [
             { label: "Parmi les 4 + élevés d'Europe", val: 68 },
@@ -782,7 +849,8 @@
         },
         {
           source: "Walter & Drochon / YouGov",
-          year: "2018-2022",
+
+          url: "https://journals.sagepub.com/doi/abs/10.1177/0032321720972616",          year: "2018-2022",
           topic: "Complotisme général (8 pays EU + USA)",
           data: [
             { label: "Adhésion ≥1 théorie", val: 72 },
@@ -800,7 +868,8 @@
       surveys: [
         {
           source: "YouGov-Cambridge Globalism",
-          year: "2020",
+
+          url: "https://yougov.com/en-gb/articles/33746-global-where-believe-conspiracy-theories-true",          year: "2020",
           topic: "Théories spécifiques",
           data: [
             { label: "USA impliqués dans 11-Sept.", val: 55 },
@@ -812,7 +881,8 @@
         },
         {
           source: "Ipsos / Entretiens de Royaumont",
-          year: "2023",
+
+          url: "https://www.ipsos.com/en-us/perils-perception-prejudice-and-conspiracy-theories",          year: "2023",
           topic: "3 théories complotistes testées",
           data: [
             { label: "Gouvernement ukrainien néo-nazi", val: 41 },
@@ -832,7 +902,8 @@
       surveys: [
         {
           source: "YouGov-Cambridge Globalism",
-          year: "2020",
+
+          url: "https://yougov.com/en-gb/articles/33746-global-where-believe-conspiracy-theories-true",          year: "2020",
           topic: "Théories spécifiques",
           data: [
             { label: "USA impliqués dans 11-Sept.", val: 20 },
@@ -843,7 +914,8 @@
         },
         {
           source: "Harvard / HKS Misinformation Review",
-          year: "2024",
+
+          url: "https://misinforeview.hks.harvard.edu/article/the-impact-of-conspiracy-belief-on-democratic-culture-evidence-from-europe/",          year: "2024",
           topic: "Théories immigr. & COVID",
           data: [
             { label: "Parmi les + faibles d'Europe", val: 42 },
@@ -861,7 +933,8 @@
       surveys: [
         {
           source: "Ipsos / Entretiens de Royaumont",
-          year: "2023",
+
+          url: "https://www.ipsos.com/en-us/perils-perception-prejudice-and-conspiracy-theories",          year: "2023",
           topic: "3 théories complotistes testées",
           data: [
             { label: "Gouvernement ukrainien néo-nazi", val: 28 },
@@ -871,7 +944,8 @@
         },
         {
           source: "Walter & Drochon / YouGov",
-          year: "2018",
+
+          url: "https://journals.sagepub.com/doi/abs/10.1177/0032321720972616",          year: "2018",
           topic: "Adhésion générale au complotisme",
           data: [
             { label: "Adhésion ≥1 théorie", val: 70 },
@@ -889,7 +963,8 @@
       surveys: [
         {
           source: "Ipsos / Entretiens de Royaumont",
-          year: "2023",
+
+          url: "https://www.ipsos.com/en-us/perils-perception-prejudice-and-conspiracy-theories",          year: "2023",
           topic: "3 théories complotistes testées",
           data: [
             { label: "Gouvernement ukrainien néo-nazi", val: 27 },
@@ -899,7 +974,8 @@
         },
         {
           source: "YouGov-Cambridge Globalism",
-          year: "2020",
+
+          url: "https://yougov.com/en-gb/articles/33746-global-where-believe-conspiracy-theories-true",          year: "2020",
           topic: "Théories spécifiques",
           data: [
             { label: "AIDS créé délibérément", val: 21 },
@@ -908,7 +984,8 @@
         },
         {
           source: "Harvard / HKS Misinformation Review",
-          year: "2024",
+
+          url: "https://misinforeview.hks.harvard.edu/article/the-impact-of-conspiracy-belief-on-democratic-culture-evidence-from-europe/",          year: "2024",
           topic: "Complotisme COVID (au-dessus moy.)",
           data: [
             { label: "Ouvert théories COVID", val: 58 },
@@ -926,7 +1003,8 @@
       surveys: [
         {
           source: "YouGov-Cambridge Globalism",
-          year: "2020",
+
+          url: "https://yougov.com/en-gb/articles/33746-global-where-believe-conspiracy-theories-true",          year: "2020",
           topic: "Théories spécifiques",
           data: [
             { label: "Monde gouverné en secret", val: 23 },
@@ -935,7 +1013,8 @@
         },
         {
           source: "Walter & Drochon / YouGov",
-          year: "2018",
+
+          url: "https://journals.sagepub.com/doi/abs/10.1177/0032321720972616",          year: "2018",
           topic: "Adhésion générale",
           data: [
             { label: "Adhésion ≥1 théorie", val: 52 },
@@ -943,7 +1022,8 @@
         },
         {
           source: "Harvard / HKS Misinformation Review",
-          year: "2024",
+
+          url: "https://misinforeview.hks.harvard.edu/article/the-impact-of-conspiracy-belief-on-democratic-culture-evidence-from-europe/",          year: "2024",
           topic: "Complotisme COVID",
           data: [
             { label: "Parmi les + faibles (COVID)", val: 20 },
@@ -961,7 +1041,8 @@
       surveys: [
         {
           source: "YouGov-Cambridge Globalism",
-          year: "2020",
+
+          url: "https://yougov.com/en-gb/articles/33746-global-where-believe-conspiracy-theories-true",          year: "2020",
           topic: "Théories spécifiques",
           data: [
             { label: "USA impliqués dans 11-Sept.", val: 49 },
@@ -972,7 +1053,8 @@
         },
         {
           source: "YouGov-Cambridge Globalism",
-          year: "2022",
+
+          url: "https://yougov.com/en-gb/articles/33746-global-where-believe-conspiracy-theories-true",          year: "2022",
           topic: "Complots actuels",
           data: [
             { label: "Trump-Russie collusion", val: 58 },
@@ -991,7 +1073,8 @@
       surveys: [
         {
           source: "YouGov-Cambridge Globalism",
-          year: "2020",
+
+          url: "https://yougov.com/en-gb/articles/33746-global-where-believe-conspiracy-theories-true",          year: "2020",
           topic: "Théories spécifiques",
           data: [
             { label: "Monde gouverné en secret", val: 68 },
@@ -1001,7 +1084,8 @@
         },
         {
           source: "YouGov-Cambridge Globalism",
-          year: "2022",
+
+          url: "https://yougov.com/en-gb/articles/33746-global-where-believe-conspiracy-theories-true",          year: "2022",
           topic: "Moyenne 12 théories",
           data: [
             { label: "Monde gouverné en secret", val: 61 },
@@ -1021,7 +1105,8 @@
       surveys: [
         {
           source: "YouGov-Cambridge Globalism",
-          year: "2022",
+
+          url: "https://yougov.com/en-gb/articles/33746-global-where-believe-conspiracy-theories-true",          year: "2022",
           topic: "Rang mondial — plus haut taux",
           data: [
             { label: "Alunissage truqué", val: 26 },
@@ -1041,7 +1126,8 @@
       surveys: [
         {
           source: "Ipsos Perils of Perception",
-          year: "2024",
+
+          url: "https://www.ipsos.com/en-us/perils-perception-prejudice-and-conspiracy-theories",          year: "2024",
           topic: "Grand Remplacement et confiance",
           data: [
             { label: "Théories complotistes générales", val: 60 },
@@ -1059,7 +1145,8 @@
       surveys: [
         {
           source: "Ipsos / Entretiens de Royaumont",
-          year: "2023",
+
+          url: "https://www.ipsos.com/en-us/perils-perception-prejudice-and-conspiracy-theories",          year: "2023",
           topic: "3 théories complotistes testées",
           data: [
             { label: "Gouvernement ukrainien néo-nazi", val: 10 },
@@ -1069,7 +1156,8 @@
         },
         {
           source: "YouGov-Cambridge Globalism",
-          year: "2022",
+
+          url: "https://yougov.com/en-gb/articles/33746-global-where-believe-conspiracy-theories-true",          year: "2022",
           topic: "Théories spécifiques",
           data: [
             { label: "COVID est un mythe", val: 4 },
@@ -1088,7 +1176,8 @@
       surveys: [
         {
           source: "YouGov-Cambridge Globalism",
-          year: "2020",
+
+          url: "https://yougov.com/en-gb/articles/33746-global-where-believe-conspiracy-theories-true",          year: "2020",
           topic: "Théories spécifiques",
           data: [
             { label: "Monde gouverné en secret", val: 20 },
@@ -1098,7 +1187,8 @@
         },
         {
           source: "YouGov-Cambridge Globalism",
-          year: "2022",
+
+          url: "https://yougov.com/en-gb/articles/33746-global-where-believe-conspiracy-theories-true",          year: "2022",
           topic: "Complots politiques",
           data: [
             { label: "Trump-Russie collusion", val: 39 },
@@ -1117,7 +1207,8 @@
       surveys: [
         {
           source: "Harvard / HKS Misinformation Review",
-          year: "2024",
+
+          url: "https://misinforeview.hks.harvard.edu/article/the-impact-of-conspiracy-belief-on-democratic-culture-evidence-from-europe/",          year: "2024",
           topic: "Parmi les plus élevés d'Europe",
           data: [
             { label: "Complotisme immigration (rang 1)", val: 72 },
@@ -1136,7 +1227,8 @@
       surveys: [
         {
           source: "YouGov-Cambridge Globalism",
-          year: "2022",
+
+          url: "https://yougov.com/en-gb/articles/33746-global-where-believe-conspiracy-theories-true",          year: "2022",
           topic: "Complots politiques",
           data: [
             { label: "Biden a volé l'élection 2020", val: 37 },
@@ -1154,7 +1246,8 @@
       surveys: [
         {
           source: "Ipsos / Entretiens de Royaumont",
-          year: "2023",
+
+          url: "https://www.ipsos.com/en-us/perils-perception-prejudice-and-conspiracy-theories",          year: "2023",
           topic: "3 théories complotistes testées",
           data: [
             { label: "Gouvernement ukrainien néo-nazi", val: 20 },
@@ -1174,7 +1267,8 @@
       surveys: [
         {
           source: "YouGov-Cambridge Globalism",
-          year: "2020",
+
+          url: "https://yougov.com/en-gb/articles/33746-global-where-believe-conspiracy-theories-true",          year: "2020",
           topic: "Théories spécifiques",
           data: [
             { label: "Monde gouverné en secret", val: 78 },
@@ -1184,7 +1278,8 @@
         },
         {
           source: "YouGov-Cambridge Globalism",
-          year: "2022",
+
+          url: "https://yougov.com/en-gb/articles/33746-global-where-believe-conspiracy-theories-true",          year: "2022",
           topic: "Autres théories",
           data: [
             { label: "Monde gouverné en secret", val: 69 },
@@ -1203,7 +1298,8 @@
       surveys: [
         {
           source: "Ipsos / Entretiens de Royaumont",
-          year: "2023",
+
+          url: "https://www.ipsos.com/en-us/perils-perception-prejudice-and-conspiracy-theories",          year: "2023",
           topic: "3 théories complotistes testées",
           data: [
             { label: "Gouvernement ukrainien néo-nazi", val: 16 },
@@ -1223,7 +1319,8 @@
       surveys: [
         {
           source: "YouGov-Cambridge Globalism",
-          year: "2020",
+
+          url: "https://yougov.com/en-gb/articles/33746-global-where-believe-conspiracy-theories-true",          year: "2020",
           topic: "Théories spécifiques",
           data: [
             { label: "Monde gouverné en secret", val: 36 },
@@ -1233,7 +1330,8 @@
         },
         {
           source: "YouGov-Cambridge Globalism",
-          year: "2022",
+
+          url: "https://yougov.com/en-gb/articles/33746-global-where-believe-conspiracy-theories-true",          year: "2022",
           topic: "Collusion Trump-Russie",
           data: [
             { label: "Trump-Russie collusion", val: 61 },
@@ -1359,10 +1457,13 @@
             <div class="data-row-val">${r.val}%</div>
           </div>`;
       }).join('');
+      const sourceHTML = s.url
+        ? `<a href="${s.url}" target="_blank" rel="noopener noreferrer">${s.source}<svg width="10" height="10" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><path d="M18 13v6a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2V8a2 2 0 0 1 2-2h6"/><polyline points="15 3 21 3 21 9"/><line x1="10" y1="14" x2="21" y2="3"/></svg></a>`
+        : s.source;
       return `
         <div class="survey-card">
           <div class="survey-top">
-            <div class="survey-source">${s.source}</div>
+            <div class="survey-source">${sourceHTML}</div>
             <div class="survey-year">${s.year}</div>
           </div>
           <div class="survey-topic">${s.topic}</div>
@@ -1380,14 +1481,20 @@
       </div>
 
       <div class="score-section">
-        <div class="score-label">Indice d'adhésion global estimé</div>
+        <div class="score-label">Indice d'adhésion estimé</div>
         <div class="score-main">
           <div class="score-number" style="color:${scoreToColor(d.score)}">${d.score}</div>
           <div class="score-unit">%</div>
         </div>
-        <div class="score-desc">Part de la population adhérant à au moins une théorie complotiste majeure (composite de plusieurs sondages)</div>
+        <div class="score-desc">${d.scoreNote || 'Estimation composite : voir détail méthodologique ci-dessous.'}</div>
         <div class="gauge-bar">
           <div class="gauge-fill" style="width:${d.score}%;background:linear-gradient(90deg,${scoreToColor(d.score)},${d.levelColor})"></div>
+        </div>
+        <div class="score-method">
+          <strong>Comment lire ce chiffre ?</strong><br>
+          ${d.scoreMeta || 'Ce score est une estimation agrégée basée sur la valeur la plus représentative parmi les sondages disponibles. Il correspond en général au pourcentage de personnes qui adhèrent à <em>au moins une</em> théorie complotiste testée. Ce n\'est pas un indice officiel : il doit être lu comme un ordre de grandeur comparatif entre pays.'}
+          <button class="score-method-toggle" onclick="this.nextElementSibling.classList.toggle('open'); this.textContent = this.nextElementSibling.classList.contains('open') ? '▲ Moins de détails' : '▼ Voir le détail méthodologique';">▼ Voir le détail méthodologique</button>
+          <div class="score-method-detail">${d.scoreDetail || 'Les sondages cités ci-dessous varient dans leur méthodologie : certains testent une liste fermée de théories (IFOP), d\'autres mesurent une disposition générale au scepticisme conspirateur (Walter & Drochon), d\'autres encore testent des théories spécifiques (YouGov, Ipsos). Les chiffres ne sont donc pas strictement comparables entre eux, mais convergent pour donner un ordre de grandeur fiable.'}</div>
         </div>
       </div>
 
