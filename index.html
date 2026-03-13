@@ -1095,16 +1095,28 @@
     if (name) scoreMap[name] = { iso, ns: d.nutriscore };
   }
 
+  let geoLayer = null;
+
+  function getBorderColor() {
+    return document.documentElement.getAttribute('data-theme') === 'light' ? '#6b7f9e' : '#3a4a6a';
+  }
+
+  function refreshMapBorders() {
+    if (!geoLayer) return;
+    const col = getBorderColor();
+    geoLayer.setStyle({ color: col, weight: 0.8, opacity: 0.9 });
+  }
+
   Promise.resolve(WORLD_GEOJSON).then(geo => {
-    L.geoJSON(geo, {
+    geoLayer = L.geoJSON(geo, {
       style: f => {
         const e = scoreMap[f.properties.name];
         return {
           fillColor: e ? nsToFill(e.ns) : '#1c2338',
           fillOpacity: e ? 0.7 : 0.1,
-          color: '#0d1120',
-          weight: 0.7,
-          opacity: 0.5
+          color: document.documentElement.getAttribute('data-theme') === 'light' ? '#6b7f9e' : '#3a4a6a',
+          weight: 0.8,
+          opacity: 0.9
         };
       },
       onEachFeature: (f, layer) => {
@@ -1114,8 +1126,11 @@
         const nc = NS_CONFIG[e.ns];
 
         layer.on({
-          mouseover: ev => { ev.target.setStyle({ fillOpacity: 0.9, weight: 1.8, color: '#ffffff' }); ev.target.bringToFront(); },
-          mouseout: ev => { ev.target.setStyle({ fillOpacity: 0.7, weight: 0.7, color: '#0d1120' }); },
+          mouseover: ev => { ev.target.setStyle({ fillOpacity: 0.9, weight: 2.2, color: '#ffffff' }); ev.target.bringToFront(); },
+          mouseout: ev => {
+            const isDark = document.documentElement.getAttribute('data-theme') !== 'light';
+            ev.target.setStyle({ fillOpacity: 0.7, weight: 0.8, color: isDark ? '#3a4a6a' : '#6b7f9e' });
+          },
           click: ev => { showCountry(e.iso); map.fitBounds(ev.target.getBounds(), { padding:[40,40], maxZoom:5 }); }
         });
 
@@ -1131,7 +1146,7 @@
       }
     }).addTo(map);
 
-    // Badges
+    // Badges with hover tooltip
     for (const [iso, d] of Object.entries(COUNTRIES)) {
       const c = CENTROIDS[iso];
       if (!c) continue;
@@ -1139,11 +1154,20 @@
       const cBadge = d.nutriscore === 'C' ? ' c-badge' : '';
       const icon = L.divIcon({
         className: '',
-        html: `<div class="ns-map-badge${cBadge}" style="background:${nc.color};color:${nc.textColor}" title="${d.name} — ${nc.level}" onclick="window._cs('${iso}')">${d.nutriscore}</div>`,
+        html: `<div class="ns-map-badge${cBadge}" style="background:${nc.color};color:${nc.textColor}">${d.nutriscore}</div>`,
         iconSize: [30,30], iconAnchor: [15,15]
       });
-      L.marker(c, { icon, interactive: true, zIndexOffset: 1000 })
-        .addTo(map).on('click', () => showCountry(iso));
+      const marker = L.marker(c, { icon, interactive: true, zIndexOffset: 1000 }).addTo(map);
+      marker.on('click', () => showCountry(iso));
+      marker.bindTooltip(`
+        <div class="cs-tooltip">
+          <div class="cs-tooltip-flag">${d.flag}</div>
+          <div class="cs-tooltip-name">${d.name}</div>
+          <div class="cs-tooltip-ns">${tooltipNSRow(d.nutriscore)}</div>
+          <div class="cs-tooltip-level">${nc.level}</div>
+          <div class="cs-tooltip-cta">Cliquer pour les sondages →</div>
+        </div>
+      `, { sticky: false, opacity: 1, className: '', direction: 'top', offset: [0, -18] });
     }
   });
 
@@ -1224,6 +1248,7 @@
     if (btn) btn.addEventListener('click', () => {
       t = t === 'dark' ? 'light' : 'dark';
       html.setAttribute('data-theme', t);
+      refreshMapBorders();
       btn.innerHTML = t === 'dark'
         ? `<svg width="13" height="13" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M21 12.79A9 9 0 1 1 11.21 3 7 7 0 0 0 21 12.79z"/></svg> Mode clair`
         : `<svg width="13" height="13" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><circle cx="12" cy="12" r="5"/><path d="M12 1v2M12 21v2M4.22 4.22l1.42 1.42M18.36 18.36l1.42 1.42M1 12h2M21 12h2M4.22 19.78l1.42-1.42M18.36 5.64l1.42-1.42"/></svg> Mode sombre`;
