@@ -743,32 +743,6 @@
       line-height: 1.6;
       color: var(--text);
     }
-    .cp-highlight-grid {
-      display: grid;
-      grid-template-columns: repeat(3, minmax(0, 1fr));
-      gap: 0.45rem;
-      margin-bottom: 0.9rem;
-    }
-    .cp-highlight {
-      background: var(--surface-2);
-      border: 1px solid var(--border-subtle);
-      border-radius: 12px;
-      padding: 0.65rem 0.7rem;
-    }
-    .cp-highlight-value {
-      font-family: var(--font-display);
-      font-size: 1rem;
-      font-weight: 700;
-      letter-spacing: -0.03em;
-      color: var(--text);
-    }
-    .cp-highlight-label {
-      font-size: 0.63rem;
-      color: var(--text-muted);
-      margin-top: 0.18rem;
-      line-height: 1.4;
-    }
-
     /* ── Nutri-Score block ── */
     .ns-block {
       background: var(--surface-2);
@@ -1135,7 +1109,6 @@
       }
       .map-intro-title { font-size: 1.2rem; max-width: none; }
       .map-intro-body { font-size: 0.74rem; max-width: none; }
-      .cp-highlight-grid { grid-template-columns: 1fr; }
       .cp-meta-row { gap: 0.35rem; }
       header { padding: 0 1rem; }
       .header-meta, .stat-chip, .header-divider { display: none; }
@@ -2187,21 +2160,10 @@
 
     const nc = NS_CONFIG[d.nutriscore];
     const validSurveyRows = d.surveys.flatMap(s => s.data.filter(r => typeof r.val === 'number'));
-    const topMetrics = d.surveys
-      .flatMap(s => s.data.map(r => ({ label: r.label, val: r.val })))
-      .filter(r => typeof r.val === 'number')
-      .sort((a, b) => b.val - a.val)
-      .slice(0, 3);
     const latestYear = d.surveys
       .map(s => parseInt(String(s.year), 10))
       .filter(Number.isFinite)
       .sort((a, b) => b - a)[0];
-    const highlightCards = topMetrics.map(r => `
-      <div class="cp-highlight">
-        <div class="cp-highlight-value">${r.val}%</div>
-        <div class="cp-highlight-label">${r.label}</div>
-      </div>
-    `).join('');
 
     const surveyCards = d.surveys.map(s => {
       const rows = s.data.map(r => {
@@ -2261,9 +2223,6 @@
           <div class="method-detail">${d.scoreDetail}</div>
         </div>
       </div>
-
-      <div class="section-label">Trois chiffres clés</div>
-      <div class="cp-highlight-grid">${highlightCards}</div>
 
       <div class="context-box"><p>${d.scoreMeta}</p></div>
 
