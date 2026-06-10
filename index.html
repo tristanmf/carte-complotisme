@@ -729,6 +729,12 @@
       font-size: 0.66rem;
       font-weight: 500;
     }
+    .cp-meta-chip--stale {
+      background: rgba(194, 97, 12, 0.14);
+      border-color: rgba(194, 97, 12, 0.45);
+      color: #c2610c;
+      font-weight: 700;
+    }
     .cp-summary-title {
       font-size: 0.62rem;
       font-weight: 700;
@@ -945,6 +951,14 @@
       width: 30px;
       text-align: right;
       flex-shrink: 0;
+    }
+    .data-row-qual-tag {
+      font-size: 0.6rem;
+      font-weight: 600;
+      color: var(--text-muted);
+      font-style: italic;
+      flex-shrink: 0;
+      white-space: nowrap;
     }
 
     /* ══════════════════════════════════════════
@@ -1381,11 +1395,11 @@
       context: "La France présente l'un des taux d'adhésion au complotisme les plus élevés d'Europe occidentale. <strong>21% des Français adhèrent à au moins 5 théories sur 10</strong> testées (IFOP 2018). Les jeunes de moins de 35 ans sont surreprésentés. L'IFOP/Reboot 2022 mesure 35% avec une définition plus stricte.",
       surveys: [
         { source: "Ipsos — Perils of Perception 2024", url: "https://www.ipsos.com/sites/default/files/ct/news/documents/2024-11/ipsos-the-perils-of-perception-2024.pdf", year: "2024", topic: "2 théories politiques — 30 pays (sept.–oct. 2024)", data: [{ label: "« Grand remplacement » orchestré par les élites", val: 36 }, { label: "Élections non fiables / truquées", val: 34 }] },
-        { source: "IFOP / Fondation Jean-Jaurès / Conspiracy Watch", url: "https://www.ifop.com/article/enquete-sur-le-complotisme", year: "2018", topic: "Adhésion à au moins une théorie complotiste (1 000 personnes repr. 18 ans et +)", data: [{ label: "≥1 théorie complotiste", val: 79 }, { label: "Vaccins cachés par État", val: 55 }, { label: "CIA & assassinat JFK", val: 54 }, { label: "Nouvel Ordre Mondial", val: 24 }, { label: "Américains jamais sur Lune", val: 16 }, { label: "Terre plate", val: 9 }] },
-        { source: "IFOP / Fondation Reboot", url: "https://www.ifop.com/wp-content/uploads/2022/03/infographie_ifop_reboot_24.03.2022.pdf", year: "2022", topic: "Définition stricte : 'croire' au complotisme (2 007 personnes repr. 18 ans et +)", data: [{ label: "Se déclarent 'croyants complotistes'", val: 35 }, { label: "Méfiance médias grand public", val: 58 }, { label: "Élites dissimulent vérités", val: 42 }] },
-        { source: "IFOP / Fondation Jean-Jaurès — Vague 2", url: "https://www.ifop.com/article/enquete-sur-le-complotisme-vague-2", year: "2018", topic: "Adhésion à 5 théories ou plus sur 10 testées (1 506 personnes)", data: [{ label: "≥5 théories (ensemble)", val: 21 }, { label: "Électeurs Le Pen ≥7 théories", val: 22 }, { label: "Électeurs Mélenchon ≥7", val: 16 }, { label: "Électeurs Macron ≥7", val: 8 }] },
         { source: "Ipsos — Entretiens de Royaumont", url: "https://www.ipsos.com/en-us/perils-perception-prejudice-and-conspiracy-theories", year: "2023", topic: "3 théories testées dans 10 pays (10 000 personnes, nov. 2023)", data: [{ label: "Gouvernement ukrainien néo-nazi", val: 16 }, { label: "Grand Remplacement", val: 13 }, { label: "Alunissage mis en scène", val: 16 }] },
-        { source: "YouGov-Cambridge Globalism Project", url: "https://yougov.com/en-gb/articles/33746-global-where-believe-conspiracy-theories-true", year: "2020", topic: "6 théories spécifiques testées dans 21 pays (22 000+ personnes)", data: [{ label: "USA impliqués dans 11-Sept.", val: 20 }, { label: "Vaccins : effets cachés", val: 38 }, { label: "Monde gouverné en secret", val: 32 }, { label: "Alunissage truqué", val: 16 }, { label: "Contact aliens secret", val: 18 }] }
+        { source: "IFOP / Fondation Reboot", url: "https://www.ifop.com/wp-content/uploads/2022/03/infographie_ifop_reboot_24.03.2022.pdf", year: "2022", topic: "Définition stricte : 'croire' au complotisme (2 007 personnes repr. 18 ans et +)", data: [{ label: "Se déclarent 'croyants complotistes'", val: 35 }, { label: "Méfiance médias grand public", val: 58 }, { label: "Élites dissimulent vérités", val: 42 }] },
+        { source: "YouGov-Cambridge Globalism Project", url: "https://yougov.com/en-gb/articles/33746-global-where-believe-conspiracy-theories-true", year: "2020", topic: "6 théories spécifiques testées dans 21 pays (22 000+ personnes)", data: [{ label: "USA impliqués dans 11-Sept.", val: 20 }, { label: "Vaccins : effets cachés", val: 38 }, { label: "Monde gouverné en secret", val: 32 }, { label: "Alunissage truqué", val: 16 }, { label: "Contact aliens secret", val: 18 }] },
+        { source: "IFOP / Fondation Jean-Jaurès / Conspiracy Watch", url: "https://www.ifop.com/article/enquete-sur-le-complotisme", year: "2018", topic: "Adhésion à au moins une théorie complotiste (1 000 personnes repr. 18 ans et +)", data: [{ label: "≥1 théorie complotiste", val: 79 }, { label: "Vaccins cachés par État", val: 55 }, { label: "CIA & assassinat JFK", val: 54 }, { label: "Nouvel Ordre Mondial", val: 24 }, { label: "Américains jamais sur Lune", val: 16 }, { label: "Terre plate", val: 9 }] },
+        { source: "IFOP / Fondation Jean-Jaurès — Vague 2", url: "https://www.ifop.com/article/enquete-sur-le-complotisme-vague-2", year: "2018", topic: "Adhésion à 5 théories ou plus sur 10 testées (1 506 personnes)", data: [{ label: "≥5 théories (ensemble)", val: 21 }, { label: "Électeurs Le Pen ≥7 théories", val: 22 }, { label: "Électeurs Mélenchon ≥7", val: 16 }, { label: "Électeurs Macron ≥7", val: 8 }] },
       ]
     },
     "US": {
@@ -1394,10 +1408,10 @@
       scoreDetail: "<strong>Pourquoi E ?</strong> Les États-Unis cumulent : des niveaux record sur les théories institutionnelles (74% pensent que les médias obéissent à des élites), des croyances QAnon enracinées (PRRI 2023), et une polarisation politique extrême.",
       context: "Les États-Unis enregistrent des niveaux record de complotisme, renforcés par la méfiance institutionnelle. <strong>75% croient que les médias obéissent à des élites</strong>, et 60% pensent que des agents gouvernementaux ont fomenté le 6 janvier 2021.",
       surveys: [
-        { source: "Ipsos — Perils of Perception 2024", url: "https://www.ipsos.com/sites/default/files/ct/news/documents/2024-11/ipsos-the-perils-of-perception-2024.pdf", year: "2024", topic: "2 théories politiques — 30 pays (sept.–oct. 2024)", data: [{ label: "« Grand remplacement » orchestré par les élites", val: 27 }, { label: "Élections non fiables / truquées", val: 30 }] },
         { source: "Change Research", url: "https://changeresearch.com/beyond-the-fringe/", year: "2025", topic: "Complotisme institutionnel (1 590 électeurs inscrits)", data: [{ label: "Médias contrôlés par élites", val: 74 }, { label: "Epstein assassiné pour taire", val: 75 }, { label: "Pharma cache des remèdes", val: 72 }, { label: "COVID créé en labo", val: 56 }, { label: "Fraude électorale 2020", val: 42 }, { label: "Alunissage truqué", val: 22 }] },
+        { source: "Ipsos — Perils of Perception 2024", url: "https://www.ipsos.com/sites/default/files/ct/news/documents/2024-11/ipsos-the-perils-of-perception-2024.pdf", year: "2024", topic: "2 théories politiques — 30 pays (sept.–oct. 2024)", data: [{ label: "« Grand remplacement » orchestré par les élites", val: 27 }, { label: "Élections non fiables / truquées", val: 30 }] },
         { source: "PRRI (Public Religion Research Inst.)", url: "https://www.prri.org/research/qanon-conspiracy-american-politics-october-2020/", year: "2023", topic: "Croyances de type QAnon", data: [{ label: "Élite pédosataniste (QAnon)", val: 23 }, { label: "Tempête imminente (QAnon)", val: 27 }, { label: "Biden élu illégitimement", val: 38 }] },
-        { source: "YouGov-Cambridge Globalism", url: "https://yougov.com/en-gb/articles/33746-global-where-believe-conspiracy-theories-true", year: "2020", topic: "Théories spécifiques", data: [{ label: "USA impliqués dans 11-Sept.", val: 20 }, { label: "Vaccins : effets cachés", val: 33 }, { label: "Monde gouverné en secret", val: 37 }, { label: "Alunissage truqué", val: 13 }] }
+        { source: "YouGov-Cambridge Globalism", url: "https://yougov.com/en-gb/articles/33746-global-where-believe-conspiracy-theories-true", year: "2020", topic: "Théories spécifiques", data: [{ label: "USA impliqués dans 11-Sept.", val: 20 }, { label: "Vaccins : effets cachés", val: 33 }, { label: "Monde gouverné en secret", val: 37 }, { label: "Alunissage truqué", val: 13 }] },
       ]
     },
     "DE": {
@@ -1407,9 +1421,9 @@
       context: "L'Allemagne présente un niveau modéré d'adhésion complotiste. La méfiance envers les vaccins et les théories sur les élites restent significatives, notamment dans les Länder de l'Est et parmi les électeurs AfD.",
       surveys: [
         { source: "Ipsos — Perils of Perception 2024", url: "https://www.ipsos.com/sites/default/files/ct/news/documents/2024-11/ipsos-the-perils-of-perception-2024.pdf", year: "2024", topic: "2 théories politiques — 30 pays (sept.–oct. 2024)", data: [{ label: "« Grand remplacement » orchestré par les élites", val: 22 }, { label: "Élections non fiables / truquées", val: 17 }] },
+        { source: "Harvard / HKS Misinformation Review", url: "https://misinforeview.hks.harvard.edu/article/the-impact-of-conspiracy-belief-on-democratic-culture-evidence-from-europe/", year: "2024", topic: "Théories immigr. & COVID (10 pays UE, automne 2022, n=20 449)", data: [{ label: "Ouvert à ≥1 théorie (6-10/10)", val: 55 }] },
         { source: "Ipsos / Entretiens de Royaumont", url: "https://www.ipsos.com/en-us/perils-perception-prejudice-and-conspiracy-theories", year: "2023", topic: "3 théories complotistes testées", data: [{ label: "Gouvernement ukrainien néo-nazi", val: 24 }, { label: "Grand Remplacement", val: 15 }, { label: "Alunissage mis en scène", val: 24 }] },
         { source: "YouGov-Cambridge Globalism", url: "https://yougov.com/en-gb/articles/33746-global-where-believe-conspiracy-theories-true", year: "2020", topic: "Théories spécifiques", data: [{ label: "Vaccins : effets cachés", val: 25 }, { label: "Monde gouverné en secret", val: 30 }, { label: "Contact aliens secret", val: 13 }] },
-        { source: "Harvard / HKS Misinformation Review", url: "https://misinforeview.hks.harvard.edu/article/the-impact-of-conspiracy-belief-on-democratic-culture-evidence-from-europe/", year: "2024", topic: "Théories immigr. & COVID (10 pays UE, automne 2022, n=20 449)", data: [{ label: "Ouvert à ≥1 théorie (6-10/10)", val: 55 }] }
       ]
     },
     "GB": {
@@ -1418,11 +1432,11 @@
       scoreDetail: "<strong>Pourquoi B ?</strong> Le Royaume-Uni est systématiquement dans le bas du classement européen. Les institutions (BBC, NHS) bénéficient encore d'une relative confiance malgré le Brexit.",
       context: "Le Royaume-Uni présente l'un des taux les plus bas d'Europe pour les théories complotistes « dures ». La BBC et un écosystème médiatique robuste semblent agir comme facteurs protecteurs, bien que la méfiance post-Brexit s'observe.",
       surveys: [
-        { source: "Ipsos — Perils of Perception 2024", url: "https://www.ipsos.com/sites/default/files/ct/news/documents/2024-11/ipsos-the-perils-of-perception-2024.pdf", year: "2024", topic: "2 théories politiques — 30 pays (sept.–oct. 2024)", data: [{ label: "« Grand remplacement » orchestré par les élites", val: 15 }, { label: "Élections non fiables / truquées", val: 13 }] },
         { source: "Ipsos State of Democracy", url: "https://www.ipsos.com/en/the-state-of-democracy-2025", year: "2025", topic: "Confiance institutionnelle & complotisme (9 pays, 2025)", data: [{ label: "Méfiance envers institutions", val: 38 }, { label: "Démocratie fonctionne bien", val: 42 }] },
+        { source: "Ipsos — Perils of Perception 2024", url: "https://www.ipsos.com/sites/default/files/ct/news/documents/2024-11/ipsos-the-perils-of-perception-2024.pdf", year: "2024", topic: "2 théories politiques — 30 pays (sept.–oct. 2024)", data: [{ label: "« Grand remplacement » orchestré par les élites", val: 15 }, { label: "Élections non fiables / truquées", val: 13 }] },
         { source: "Ipsos / Entretiens de Royaumont", url: "https://www.ipsos.com/en-us/perils-perception-prejudice-and-conspiracy-theories", year: "2023", topic: "3 théories complotistes testées", data: [{ label: "Gouvernement ukrainien néo-nazi", val: 14 }, { label: "Grand Remplacement", val: 15 }, { label: "Alunissage mis en scène", val: 14 }] },
+        { source: "YouGov-Cambridge Globalism", url: "https://yougov.com/en-gb/articles/33746-global-where-believe-conspiracy-theories-true", year: "2022", topic: "Moyenne 12 théories", data: [{ label: "Vaccins : effets cachés", val: 13 }, { label: "COVID est un mythe", val: 3 }] },
         { source: "YouGov-Cambridge Globalism", url: "https://yougov.com/en-gb/articles/33746-global-where-believe-conspiracy-theories-true", year: "2020", topic: "Théories spécifiques", data: [{ label: "USA impliqués dans 11-Sept.", val: 12 }, { label: "Vaccins : effets cachés", val: 19 }, { label: "Monde gouverné en secret", val: 28 }, { label: "AIDS créé délibérément", val: 7 }] },
-        { source: "YouGov-Cambridge Globalism", url: "https://yougov.com/en-gb/articles/33746-global-where-believe-conspiracy-theories-true", year: "2022", topic: "Moyenne 12 théories", data: [{ label: "Vaccins : effets cachés", val: 13 }, { label: "COVID est un mythe", val: 3 }] }
       ]
     },
     "GR": {
@@ -1431,8 +1445,8 @@
       scoreDetail: "<strong>Pourquoi D ?</strong> La Grèce est le pays européen avec les taux d'adhésion les plus élevés parmi les démocraties occidentales. La crise économique de 2010–2018 a profondément érodé la confiance institutionnelle.",
       context: "La Grèce est le pays européen avec les taux de croyance aux théories complotistes les plus élevés. La crise économique de 2010-2018 et la méfiance structurelle envers les institutions ont fortement favorisé la propagation des théories du complot.",
       surveys: [
+        { source: "Harvard / HKS Misinformation Review", url: "https://misinforeview.hks.harvard.edu/article/the-impact-of-conspiracy-belief-on-democratic-culture-evidence-from-europe/", year: "2024", topic: "Complotisme immigr. & COVID (CHES survey, automne 2022)", data: [{ label: "Parmi les + élevés d'Europe", val: 65 }] },
         { source: "YouGov-Cambridge Globalism", url: "https://yougov.com/en-gb/articles/33746-global-where-believe-conspiracy-theories-true", year: "2020", topic: "Théories spécifiques", data: [{ label: "Monde gouverné en secret", val: 56 }, { label: "Vaccins : effets cachés", val: 39 }, { label: "AIDS créé délibérément", val: 24 }, { label: "Alunissage truqué", val: 22 }, { label: "Changement climatique : canular", val: 22 }] },
-        { source: "Harvard / HKS Misinformation Review", url: "https://misinforeview.hks.harvard.edu/article/the-impact-of-conspiracy-belief-on-democratic-culture-evidence-from-europe/", year: "2024", topic: "Complotisme immigr. & COVID (CHES survey, automne 2022)", data: [{ label: "Parmi les + élevés d'Europe", val: 65 }] }
       ]
     },
     "HU": {
@@ -1442,9 +1456,9 @@
       context: "La Hongrie enregistre des niveaux très élevés, corrélés à la rhétorique officielle du gouvernement Orbán contre les « élites mondialistes ». Les théories sur les extra-terrestres, le Grand Remplacement et le contrôle secret du monde y sont particulièrement répandues.",
       surveys: [
         { source: "Ipsos — Perils of Perception 2024", url: "https://www.ipsos.com/sites/default/files/ct/news/documents/2024-11/ipsos-the-perils-of-perception-2024.pdf", year: "2024", topic: "2 théories politiques — 30 pays (sept.–oct. 2024)", data: [{ label: "« Grand remplacement » orchestré par les élites", val: 42 }, { label: "Élections non fiables / truquées", val: 52 }] },
-        { source: "YouGov-Cambridge Globalism", url: "https://yougov.com/en-gb/articles/33746-global-where-believe-conspiracy-theories-true", year: "2020", topic: "Théories spécifiques", data: [{ label: "Contact aliens secret", val: 36 }, { label: "Alunissage truqué", val: 23 }, { label: "Changement climatique : canular", val: 22 }] },
         { source: "Harvard / HKS Misinformation Review", url: "https://misinforeview.hks.harvard.edu/article/the-impact-of-conspiracy-belief-on-democratic-culture-evidence-from-europe/", year: "2024", topic: "Complotisme immigr. & COVID (automne 2022, n=20 449)", data: [{ label: "Parmi les 4 + élevés d'Europe", val: 68 }] },
-        { source: "Walter & Drochon / YouGov", url: "https://journals.sagepub.com/doi/abs/10.1177/0032321720972616", year: "2018-2022", topic: "Complotisme général (8 pays EU + USA)", data: [{ label: "Adhésion ≥1 théorie", val: 72 }] }
+        { source: "YouGov-Cambridge Globalism", url: "https://yougov.com/en-gb/articles/33746-global-where-believe-conspiracy-theories-true", year: "2020", topic: "Théories spécifiques", data: [{ label: "Contact aliens secret", val: 36 }, { label: "Alunissage truqué", val: 23 }, { label: "Changement climatique : canular", val: 22 }] },
+        { source: "Walter & Drochon / YouGov", url: "https://journals.sagepub.com/doi/abs/10.1177/0032321720972616", year: "2018-2022", topic: "Complotisme général (8 pays EU + USA)", data: [{ label: "Adhésion ≥1 théorie", val: 72 }] },
       ]
     },
     "TR": {
@@ -1454,8 +1468,8 @@
       context: "La Turquie présente des niveaux parmi les plus élevés des pays testés, notamment sur les complots liés aux attentats et aux vaccins. La polarisation politique et la méfiance envers l'Occident alimentent fortement le complotisme.",
       surveys: [
         { source: "Ipsos — Perils of Perception 2024", url: "https://www.ipsos.com/sites/default/files/ct/news/documents/2024-11/ipsos-the-perils-of-perception-2024.pdf", year: "2024", topic: "2 théories politiques — 30 pays (sept.–oct. 2024), échant. + urbain", data: [{ label: "« Grand remplacement » orchestré par les élites", val: 40 }, { label: "Élections non fiables / truquées", val: 45 }] },
+        { source: "Ipsos / Entretiens de Royaumont", url: "https://www.ipsos.com/en-us/perils-perception-prejudice-and-conspiracy-theories", year: "2023", topic: "3 théories complotistes testées", data: [{ label: "Gouvernement ukrainien néo-nazi", val: 41 }, { label: "Grand Remplacement", val: 51 }, { label: "Alunissage mis en scène", val: 41 }] },
         { source: "YouGov-Cambridge Globalism", url: "https://yougov.com/en-gb/articles/33746-global-where-believe-conspiracy-theories-true", year: "2020", topic: "Théories spécifiques", data: [{ label: "USA impliqués dans 11-Sept.", val: 55 }, { label: "Vaccins : effets cachés", val: 48 }, { label: "Monde gouverné en secret", val: 57 }, { label: "AIDS créé délibérément", val: 40 }, { label: "Alunissage truqué", val: 28 }] },
-        { source: "Ipsos / Entretiens de Royaumont", url: "https://www.ipsos.com/en-us/perils-perception-prejudice-and-conspiracy-theories", year: "2023", topic: "3 théories complotistes testées", data: [{ label: "Gouvernement ukrainien néo-nazi", val: 41 }, { label: "Grand Remplacement", val: 51 }, { label: "Alunissage mis en scène", val: 41 }] }
       ]
     },
     "ES": {
@@ -1464,10 +1478,10 @@
       scoreDetail: "<strong>Pourquoi C ?</strong> L'Espagne présente un profil hétérogène : forte adhésion aux théories de gouvernance secrète (55%), mais faible sur les théories les plus extrêmes. Harvard HKS la place dans les pays à niveau « plus faible » d'Europe.",
       context: "L'Espagne montre des taux élevés sur certaines théories (monde gouverné en secret) mais modérés sur d'autres. Le contexte de crise économique et la polarisation politique Vox/gauche favorisent une certaine perméabilité.",
       surveys: [
-        { source: "Ipsos — Perils of Perception 2024", url: "https://www.ipsos.com/sites/default/files/ct/news/documents/2024-11/ipsos-the-perils-of-perception-2024.pdf", year: "2024", topic: "2 théories politiques — 30 pays (sept.–oct. 2024)", data: [{ label: "« Grand remplacement » orchestré par les élites", val: 23 }, { label: "Élections non fiables / truquées", val: 24 }] },
         { source: "Ipsos State of Democracy", url: "https://www.ipsos.com/en/the-state-of-democracy-2025", year: "2025", topic: "Confiance institutionnelle & complotisme (9 pays)", data: [{ label: "Méfiance envers institutions", val: 45 }] },
+        { source: "Ipsos — Perils of Perception 2024", url: "https://www.ipsos.com/sites/default/files/ct/news/documents/2024-11/ipsos-the-perils-of-perception-2024.pdf", year: "2024", topic: "2 théories politiques — 30 pays (sept.–oct. 2024)", data: [{ label: "« Grand remplacement » orchestré par les élites", val: 23 }, { label: "Élections non fiables / truquées", val: 24 }] },
+        { source: "Harvard / HKS Misinformation Review", url: "https://misinforeview.hks.harvard.edu/article/the-impact-of-conspiracy-belief-on-democratic-culture-evidence-from-europe/", year: "2024", topic: "Théories immigr. & COVID", data: [{ label: "Parmi les + faibles d'Europe", val: 42 }] },
         { source: "YouGov-Cambridge Globalism", url: "https://yougov.com/en-gb/articles/33746-global-where-believe-conspiracy-theories-true", year: "2020", topic: "Théories spécifiques", data: [{ label: "USA impliqués dans 11-Sept.", val: 20 }, { label: "Monde gouverné en secret", val: 55 }, { label: "AIDS créé délibérément", val: 23 }, { label: "Alunissage truqué", val: 22 }] },
-        { source: "Harvard / HKS Misinformation Review", url: "https://misinforeview.hks.harvard.edu/article/the-impact-of-conspiracy-belief-on-democratic-culture-evidence-from-europe/", year: "2024", topic: "Théories immigr. & COVID", data: [{ label: "Parmi les + faibles d'Europe", val: 42 }] }
       ]
     },
     "IT": {
@@ -1476,10 +1490,10 @@
       scoreDetail: "<strong>Pourquoi C ?</strong> L'Italie présente un profil intermédiaire. Les chiffres varient beaucoup selon la méthodologie : 70% (définition très large) vs 24–28% sur théories spécifiques. Le consensus des sources récentes pointe vers un niveau modéré.",
       context: "L'Italie présente des niveaux significatifs, notamment sur la théorie du Grand Remplacement et les complots ukrainiens. La montée de Fratelli d'Italia et d'un discours souverainiste crée un terreau favorable.",
       surveys: [
-        { source: "Ipsos — Perils of Perception 2024", url: "https://www.ipsos.com/sites/default/files/ct/news/documents/2024-11/ipsos-the-perils-of-perception-2024.pdf", year: "2024", topic: "2 théories politiques — 30 pays (sept.–oct. 2024)", data: [{ label: "« Grand remplacement » orchestré par les élites", val: 22 }, { label: "Élections non fiables / truquées", val: 19 }] },
         { source: "Ipsos State of Democracy", url: "https://www.ipsos.com/en/the-state-of-democracy-2025", year: "2025", topic: "Confiance institutionnelle & complotisme (9 pays)", data: [{ label: "Méfiance envers institutions", val: 52 }, { label: "Satisfaction démocratique", val: 35 }] },
+        { source: "Ipsos — Perils of Perception 2024", url: "https://www.ipsos.com/sites/default/files/ct/news/documents/2024-11/ipsos-the-perils-of-perception-2024.pdf", year: "2024", topic: "2 théories politiques — 30 pays (sept.–oct. 2024)", data: [{ label: "« Grand remplacement » orchestré par les élites", val: 22 }, { label: "Élections non fiables / truquées", val: 19 }] },
         { source: "Ipsos / Entretiens de Royaumont", url: "https://www.ipsos.com/en-us/perils-perception-prejudice-and-conspiracy-theories", year: "2023", topic: "3 théories complotistes testées", data: [{ label: "Gouvernement ukrainien néo-nazi", val: 28 }, { label: "Grand Remplacement", val: 24 }, { label: "Alunissage mis en scène", val: 28 }] },
-        { source: "Walter & Drochon / YouGov", url: "https://journals.sagepub.com/doi/abs/10.1177/0032321720972616", year: "2018", topic: "Adhésion générale au complotisme", data: [{ label: "Adhésion ≥1 théorie", val: 70 }] }
+        { source: "Walter & Drochon / YouGov", url: "https://journals.sagepub.com/doi/abs/10.1177/0032321720972616", year: "2018", topic: "Adhésion générale au complotisme", data: [{ label: "Adhésion ≥1 théorie", val: 70 }] },
       ]
     },
     "PL": {
@@ -1488,11 +1502,11 @@
       scoreDetail: "<strong>Pourquoi D ?</strong> La Pologne a connu une forte montée du complotisme liée aux crises politiques (PiS vs UE, réfugiés) et aux tensions avec la Russie. Le REDACT 2025 signale une évolution vers des théories plus radicales.",
       context: "La Pologne affiche des taux élevés, particulièrement sur le Grand Remplacement et les théories conspirationnistes liées à la politique étrangère (Ukraine). Le complotisme y est fortement corrélé aux positions anti-UE.",
       surveys: [
-        { source: "Ipsos — Perils of Perception 2024", url: "https://www.ipsos.com/sites/default/files/ct/news/documents/2024-11/ipsos-the-perils-of-perception-2024.pdf", year: "2024", topic: "2 théories politiques — 30 pays (sept.–oct. 2024)", data: [{ label: "« Grand remplacement » orchestré par les élites", val: 19 }, { label: "Élections non fiables / truquées", val: 16 }] },
         { source: "REDACT Project — Univ. Manchester", url: "https://www.manchester.ac.uk/about/news/how-conspiracy-theories-go-mainstream-across-europe/", year: "2025", topic: "Complotisme grand public en Europe (UK, Allemagne, Balkans, Baltes, Slovaquie, Pologne)", data: [{ label: "Complotisme mainstream (Pologne)", val: 62 }, { label: "Confiance médias alternatifs", val: 54 }] },
         { source: "Ipsos State of Democracy", url: "https://www.ipsos.com/en/the-state-of-democracy-2025", year: "2025", topic: "Confiance institutionnelle & complotisme (9 pays)", data: [{ label: "Méfiance envers institutions", val: 55 }] },
+        { source: "Ipsos — Perils of Perception 2024", url: "https://www.ipsos.com/sites/default/files/ct/news/documents/2024-11/ipsos-the-perils-of-perception-2024.pdf", year: "2024", topic: "2 théories politiques — 30 pays (sept.–oct. 2024)", data: [{ label: "« Grand remplacement » orchestré par les élites", val: 19 }, { label: "Élections non fiables / truquées", val: 16 }] },
+        { source: "Harvard / HKS Misinformation Review", url: "https://misinforeview.hks.harvard.edu/article/the-impact-of-conspiracy-belief-on-democratic-culture-evidence-from-europe/", year: "2024", topic: "Complotisme COVID (au-dessus moy.)", data: [{ label: "Ouvert théories COVID", val: 58 }] },
         { source: "Ipsos / Entretiens de Royaumont", url: "https://www.ipsos.com/en-us/perils-perception-prejudice-and-conspiracy-theories", year: "2023", topic: "3 théories complotistes testées", data: [{ label: "Gouvernement ukrainien néo-nazi", val: 27 }, { label: "Grand Remplacement", val: 20 }, { label: "Alunissage mis en scène", val: 27 }] },
-        { source: "Harvard / HKS Misinformation Review", url: "https://misinforeview.hks.harvard.edu/article/the-impact-of-conspiracy-belief-on-democratic-culture-evidence-from-europe/", year: "2024", topic: "Complotisme COVID (au-dessus moy.)", data: [{ label: "Ouvert théories COVID", val: 58 }] }
       ]
     },
     "SE": {
@@ -1501,10 +1515,10 @@
       scoreDetail: "<strong>Pourquoi A ?</strong> La Suède affiche systématiquement les chiffres les plus bas d'Europe sur toutes les théories testées. La confiance institutionnelle est l'une des plus élevées au monde.",
       context: "La Suède présente l'un des taux les plus bas au monde. La confiance élevée dans les institutions publiques et une culture du factchecking caractérisent le pays.",
       surveys: [
-        { source: "Ipsos — Perils of Perception 2024", url: "https://www.ipsos.com/sites/default/files/ct/news/documents/2024-11/ipsos-the-perils-of-perception-2024.pdf", year: "2024", topic: "2 théories politiques — 30 pays (sept.–oct. 2024)", data: [{ label: "« Grand remplacement » orchestré par les élites", val: 9 }, { label: "Élections non fiables / truquées", val: 9 }] },
         { source: "Ipsos State of Democracy", url: "https://www.ipsos.com/en/the-state-of-democracy-2025", year: "2025", topic: "Confiance institutionnelle & complotisme (9 pays)", data: [{ label: "Confiance institutions publiques", val: 62 }, { label: "Méfiance institutionnelle (faible)", val: 22 }] },
+        { source: "Ipsos — Perils of Perception 2024", url: "https://www.ipsos.com/sites/default/files/ct/news/documents/2024-11/ipsos-the-perils-of-perception-2024.pdf", year: "2024", topic: "2 théories politiques — 30 pays (sept.–oct. 2024)", data: [{ label: "« Grand remplacement » orchestré par les élites", val: 9 }, { label: "Élections non fiables / truquées", val: 9 }] },
+        { source: "Harvard / HKS Misinformation Review", url: "https://misinforeview.hks.harvard.edu/article/the-impact-of-conspiracy-belief-on-democratic-culture-evidence-from-europe/", year: "2024", topic: "Complotisme COVID", data: [{ label: "Parmi les + faibles (COVID)", val: 20 }] },
         { source: "YouGov-Cambridge Globalism", url: "https://yougov.com/en-gb/articles/33746-global-where-believe-conspiracy-theories-true", year: "2020", topic: "Théories spécifiques", data: [{ label: "Monde gouverné en secret", val: 23 }, { label: "Vaccins : effets cachés", val: 17 }] },
-        { source: "Harvard / HKS Misinformation Review", url: "https://misinforeview.hks.harvard.edu/article/the-impact-of-conspiracy-belief-on-democratic-culture-evidence-from-europe/", year: "2024", topic: "Complotisme COVID", data: [{ label: "Parmi les + faibles (COVID)", val: 20 }] }
       ]
     },
     "MX": {
@@ -1514,8 +1528,8 @@
       context: "Le Mexique affiche des taux très élevés, notamment sur les théories liées aux États-Unis (11-Sept., collusion Trump-Russie) et sur l'existence d'un gouvernement mondial secret. La méfiance envers Washington est structurelle.",
       surveys: [
         { source: "Ipsos — Perils of Perception 2024", url: "https://www.ipsos.com/sites/default/files/ct/news/documents/2024-11/ipsos-the-perils-of-perception-2024.pdf", year: "2024", topic: "2 théories politiques — 30 pays (sept.–oct. 2024), échant. + urbain", data: [{ label: "« Grand remplacement » orchestré par les élites", val: 36 }, { label: "Élections non fiables / truquées", val: 39 }] },
+        { source: "YouGov-Cambridge Globalism", url: "https://yougov.com/en-gb/articles/33746-global-where-believe-conspiracy-theories-true", year: "2022", topic: "Complots actuels", data: [{ label: "Trump-Russie collusion", val: 58 }, { label: "Biden a volé l'élection 2020", val: 20 }] },
         { source: "YouGov-Cambridge Globalism", url: "https://yougov.com/en-gb/articles/33746-global-where-believe-conspiracy-theories-true", year: "2020", topic: "Théories spécifiques", data: [{ label: "USA impliqués dans 11-Sept.", val: 49 }, { label: "Monde gouverné en secret", val: 59 }, { label: "Alunissage truqué", val: 31 }, { label: "Aliens : contact secret", val: 44 }] },
-        { source: "YouGov-Cambridge Globalism", url: "https://yougov.com/en-gb/articles/33746-global-where-believe-conspiracy-theories-true", year: "2022", topic: "Complots actuels", data: [{ label: "Trump-Russie collusion", val: 58 }, { label: "Biden a volé l'élection 2020", val: 20 }] }
       ]
     },
     "ZA": {
@@ -1525,8 +1539,8 @@
       context: "L'Afrique du Sud présente des taux extrêmement élevés sur la plupart des théories testées. La crise de confiance post-apartheid envers les institutions, la méfiance envers les pharmaceutiques et les médias occidentaux sont des facteurs clés.",
       surveys: [
         { source: "Ipsos — Perils of Perception 2024", url: "https://www.ipsos.com/sites/default/files/ct/news/documents/2024-11/ipsos-the-perils-of-perception-2024.pdf", year: "2024", topic: "2 théories politiques — 30 pays (sept.–oct. 2024), échant. + urbain", data: [{ label: "« Grand remplacement » orchestré par les élites", val: 28 }, { label: "Élections non fiables / truquées", val: 30 }] },
+        { source: "YouGov-Cambridge Globalism", url: "https://yougov.com/en-gb/articles/33746-global-where-believe-conspiracy-theories-true", year: "2022", topic: "Moyenne 12 théories", data: [{ label: "Monde gouverné en secret", val: 61 }, { label: "Vaccins : effets cachés", val: 59 }, { label: "Biden a volé l'élection 2020", val: 33 }] },
         { source: "YouGov-Cambridge Globalism", url: "https://yougov.com/en-gb/articles/33746-global-where-believe-conspiracy-theories-true", year: "2020", topic: "Théories spécifiques", data: [{ label: "Monde gouverné en secret", val: 68 }, { label: "Vaccins : effets cachés", val: 57 }, { label: "AIDS créé délibérément", val: 37 }] },
-        { source: "YouGov-Cambridge Globalism", url: "https://yougov.com/en-gb/articles/33746-global-where-believe-conspiracy-theories-true", year: "2022", topic: "Moyenne 12 théories", data: [{ label: "Monde gouverné en secret", val: 61 }, { label: "Vaccins : effets cachés", val: 59 }, { label: "Biden a volé l'élection 2020", val: 33 }] }
       ]
     },
     "IN": {
@@ -1536,7 +1550,7 @@
       context: "L'Inde présente les taux les plus élevés parmi les 24 pays testés par YouGov-Cambridge. La propagation des fausses nouvelles via WhatsApp et Facebook, combinée à la polarisation religieuse et politique, alimente fortement le complotisme.",
       surveys: [
         { source: "Ipsos — Perils of Perception 2024", url: "https://www.ipsos.com/sites/default/files/ct/news/documents/2024-11/ipsos-the-perils-of-perception-2024.pdf", year: "2024", topic: "2 théories politiques — 30 pays (sept.–oct. 2024), échant. + urbain", data: [{ label: "« Grand remplacement » orchestré par les élites", val: 18 }, { label: "Élections non fiables / truquées", val: 16 }] },
-        { source: "YouGov-Cambridge Globalism", url: "https://yougov.com/en-gb/articles/33746-global-where-believe-conspiracy-theories-true", year: "2022", topic: "Rang mondial — plus haut taux", data: [{ label: "Alunissage truqué", val: 26 }, { label: "Biden a volé l'élection 2020", val: 39 }, { label: "COVID est un mythe", val: 30 }] }
+        { source: "YouGov-Cambridge Globalism", url: "https://yougov.com/en-gb/articles/33746-global-where-believe-conspiracy-theories-true", year: "2022", topic: "Rang mondial — plus haut taux", data: [{ label: "Alunissage truqué", val: 26 }, { label: "Biden a volé l'élection 2020", val: 39 }, { label: "COVID est un mythe", val: 30 }] },
       ]
     },
     "BR": {
@@ -1546,7 +1560,7 @@
       context: "Le Brésil a vu exploser le complotisme sous l'ère Bolsonaro (2019-2022). Les théories anti-vaccins, les fraudes électorales alléguées et la méfiance envers les médias mainstream ont profondément marqué la société.",
       surveys: [
         { source: "Ipsos — Perils of Perception 2024", url: "https://www.ipsos.com/sites/default/files/ct/news/documents/2024-11/ipsos-the-perils-of-perception-2024.pdf", year: "2024", topic: "2 théories politiques — 30 pays (sept.–oct. 2024), échant. + urbain", data: [{ label: "« Grand remplacement » orchestré par les élites", val: 25 }, { label: "Élections non fiables / truquées", val: 27 }] },
-        { source: "Ipsos Perils of Perception", url: "https://www.ipsos.com/en-us/perils-perception-prejudice-and-conspiracy-theories", year: "2024", topic: "Grand Remplacement et confiance", data: [{ label: "Théories complotistes générales", val: 60 }] }
+        { source: "Ipsos Perils of Perception", url: "https://www.ipsos.com/en-us/perils-perception-prejudice-and-conspiracy-theories", year: "2024", topic: "Grand Remplacement et confiance", data: [{ label: "Théories complotistes générales", val: 60 }] },
       ]
     },
     "JP": {
@@ -1557,7 +1571,7 @@
       surveys: [
         { source: "Ipsos — Perils of Perception 2024", url: "https://www.ipsos.com/sites/default/files/ct/news/documents/2024-11/ipsos-the-perils-of-perception-2024.pdf", year: "2024", topic: "2 théories politiques — 30 pays (sept.–oct. 2024)", data: [{ label: "« Grand remplacement » orchestré par les élites", val: 19 }, { label: "Élections non fiables / truquées", val: 16 }] },
         { source: "Ipsos / Entretiens de Royaumont", url: "https://www.ipsos.com/en-us/perils-perception-prejudice-and-conspiracy-theories", year: "2023", topic: "3 théories complotistes testées", data: [{ label: "Gouvernement ukrainien néo-nazi", val: 10 }, { label: "Grand Remplacement", val: 11 }, { label: "Alunissage mis en scène", val: 10 }] },
-        { source: "YouGov-Cambridge Globalism", url: "https://yougov.com/en-gb/articles/33746-global-where-believe-conspiracy-theories-true", year: "2022", topic: "Théories spécifiques", data: [{ label: "COVID est un mythe", val: 4 }, { label: "Monde gouverné en secret", val: 19 }] }
+        { source: "YouGov-Cambridge Globalism", url: "https://yougov.com/en-gb/articles/33746-global-where-believe-conspiracy-theories-true", year: "2022", topic: "Théories spécifiques", data: [{ label: "COVID est un mythe", val: 4 }, { label: "Monde gouverné en secret", val: 19 }] },
       ]
     },
     "DK": {
@@ -1566,8 +1580,8 @@
       scoreDetail: "<strong>Pourquoi A ?</strong> Le Danemark est parmi les pays les plus résistants aux théories du complot. La confiance dans les institutions danoises est l'une des plus élevées au monde.",
       context: "Le Danemark est parmi les pays les plus résistants aux théories du complot en Europe. La confiance dans les institutions danoises est l'une des plus élevées au monde.",
       surveys: [
+        { source: "YouGov-Cambridge Globalism", url: "https://yougov.com/en-gb/articles/33746-global-where-believe-conspiracy-theories-true", year: "2022", topic: "Complots politiques", data: [{ label: "Trump-Russie collusion", val: 39 }, { label: "Vaccins : effets cachés", val: 10 }] },
         { source: "YouGov-Cambridge Globalism", url: "https://yougov.com/en-gb/articles/33746-global-where-believe-conspiracy-theories-true", year: "2020", topic: "Théories spécifiques", data: [{ label: "Monde gouverné en secret", val: 20 }, { label: "Vaccins : effets cachés", val: 14 }, { label: "AIDS créé délibérément", val: 5 }] },
-        { source: "YouGov-Cambridge Globalism", url: "https://yougov.com/en-gb/articles/33746-global-where-believe-conspiracy-theories-true", year: "2022", topic: "Complots politiques", data: [{ label: "Trump-Russie collusion", val: 39 }, { label: "Vaccins : effets cachés", val: 10 }] }
       ]
     },
     "CZ": {
@@ -1576,8 +1590,8 @@
       scoreDetail: "<strong>Pourquoi D et non E ?</strong> La Rép. tchèque est la pire d'Europe selon Harvard HKS. Cependant, la population est globalement démocratique et pro-UE — contrairement à la Turquie ou à des pays hors Europe.",
       context: "La République tchèque est l'un des foyers les plus actifs de désinformation en Europe. Les réseaux pro-russes y ont fortement influencé l'opinion, en particulier sur les théories liées à l'Ukraine et aux vaccins.",
       surveys: [
+        { source: "REDACT Project — Univ. Manchester", url: "https://www.manchester.ac.uk/about/news/how-conspiracy-theories-go-mainstream-across-europe/", year: "2025", topic: "Complotisme grand public en Europe", data: [{ label: "Médias alternatifs complotistes", val: 58 }] },
         { source: "Harvard / HKS Misinformation Review", url: "https://misinforeview.hks.harvard.edu/article/the-impact-of-conspiracy-belief-on-democratic-culture-evidence-from-europe/", year: "2024", topic: "Parmi les plus élevés d'Europe (automne 2022, n=20 449)", data: [{ label: "Complotisme immigration (rang 1)", val: 72 }, { label: "Complotisme COVID (rang 1)", val: 69 }] },
-        { source: "REDACT Project — Univ. Manchester", url: "https://www.manchester.ac.uk/about/news/how-conspiracy-theories-go-mainstream-across-europe/", year: "2025", topic: "Complotisme grand public en Europe", data: [{ label: "Médias alternatifs complotistes", val: 58 }] }
       ]
     },
     "RU": {
@@ -1586,7 +1600,7 @@
       scoreDetail: "<strong>Pourquoi E ?</strong> En l'absence de sondages indépendants fiables, le grade E repose sur : propagande d'État massive, instrumentalisation officielle du complotisme géopolitique, et les quelques mesures disponibles.",
       context: "La Russie présente un niveau très élevé, en partie instrumentalisé par les médias d'État (RT, Sputnik) qui diffusent des théories complotistes comme outil géopolitique. La méfiance envers l'Occident est structurelle.",
       surveys: [
-        { source: "YouGov-Cambridge Globalism", url: "https://yougov.com/en-gb/articles/33746-global-where-believe-conspiracy-theories-true", year: "2022", topic: "Complots politiques", data: [{ label: "Biden a volé l'élection 2020", val: 37 }] }
+        { source: "YouGov-Cambridge Globalism", url: "https://yougov.com/en-gb/articles/33746-global-where-believe-conspiracy-theories-true", year: "2022", topic: "Complots politiques", data: [{ label: "Biden a volé l'élection 2020", val: 37 }] },
       ]
     },
     "AR": {
@@ -1596,7 +1610,7 @@
       context: "L'Argentine affiche des niveaux significatifs, exacerbés par la crise économique chronique et la méfiance envers les élites politiques. L'élection de Milei en 2023 s'est faite dans un contexte de forte défiance institutionnelle.",
       surveys: [
         { source: "Ipsos — Perils of Perception 2024", url: "https://www.ipsos.com/sites/default/files/ct/news/documents/2024-11/ipsos-the-perils-of-perception-2024.pdf", year: "2024", topic: "2 théories politiques — 30 pays (sept.–oct. 2024)", data: [{ label: "« Grand remplacement » orchestré par les élites", val: 29 }, { label: "Élections non fiables / truquées", val: 31 }] },
-        { source: "Ipsos / Entretiens de Royaumont", url: "https://www.ipsos.com/en-us/perils-perception-prejudice-and-conspiracy-theories", year: "2023", topic: "3 théories complotistes testées", data: [{ label: "Gouvernement ukrainien néo-nazi", val: 20 }, { label: "Grand Remplacement", val: 18 }, { label: "Alunissage mis en scène", val: 20 }] }
+        { source: "Ipsos / Entretiens de Royaumont", url: "https://www.ipsos.com/en-us/perils-perception-prejudice-and-conspiracy-theories", year: "2023", topic: "3 théories complotistes testées", data: [{ label: "Gouvernement ukrainien néo-nazi", val: 20 }, { label: "Grand Remplacement", val: 18 }, { label: "Alunissage mis en scène", val: 20 }] },
       ]
     },
     "NG": {
@@ -1605,8 +1619,8 @@
       scoreDetail: "<strong>Pourquoi E ?</strong> Le Nigeria présente des taux parmi les plus élevés au monde. La méfiance historique envers les institutions sanitaires (essais Pfizer non consentis, programme anti-polio controversé) est structurelle.",
       context: "Le Nigeria présente des taux parmi les plus élevés au monde, notamment sur l'existence d'un gouvernement mondial secret et la création délibérée du SIDA. La méfiance envers les institutions sanitaires est forte.",
       surveys: [
+        { source: "YouGov-Cambridge Globalism", url: "https://yougov.com/en-gb/articles/33746-global-where-believe-conspiracy-theories-true", year: "2022", topic: "Autres théories", data: [{ label: "Monde gouverné en secret", val: 69 }, { label: "Vaccins : effets cachés", val: 50 }] },
         { source: "YouGov-Cambridge Globalism", url: "https://yougov.com/en-gb/articles/33746-global-where-believe-conspiracy-theories-true", year: "2020", topic: "Théories spécifiques", data: [{ label: "Monde gouverné en secret", val: 78 }, { label: "Vaccins : effets cachés", val: 55 }, { label: "AIDS créé délibérément", val: 42 }] },
-        { source: "YouGov-Cambridge Globalism", url: "https://yougov.com/en-gb/articles/33746-global-where-believe-conspiracy-theories-true", year: "2022", topic: "Autres théories", data: [{ label: "Monde gouverné en secret", val: 69 }, { label: "Vaccins : effets cachés", val: 50 }] }
       ]
     },
     "AU": {
@@ -1616,7 +1630,7 @@
       context: "L'Australie présente des niveaux relativement modérés. La pandémie de COVID-19 a entraîné une hausse des théories anti-vaccins, notamment dans les milieux ruraux et chez les électeurs du One Nation Party.",
       surveys: [
         { source: "Ipsos — Perils of Perception 2024", url: "https://www.ipsos.com/sites/default/files/ct/news/documents/2024-11/ipsos-the-perils-of-perception-2024.pdf", year: "2024", topic: "2 théories politiques — 30 pays (sept.–oct. 2024)", data: [{ label: "« Grand remplacement » orchestré par les élites", val: 16 }, { label: "Élections non fiables / truquées", val: 14 }] },
-        { source: "Ipsos / Entretiens de Royaumont", url: "https://www.ipsos.com/en-us/perils-perception-prejudice-and-conspiracy-theories", year: "2023", topic: "3 théories complotistes testées", data: [{ label: "Gouvernement ukrainien néo-nazi", val: 16 }, { label: "Grand Remplacement", val: 11 }, { label: "Alunissage mis en scène", val: 16 }] }
+        { source: "Ipsos / Entretiens de Royaumont", url: "https://www.ipsos.com/en-us/perils-perception-prejudice-and-conspiracy-theories", year: "2023", topic: "3 théories complotistes testées", data: [{ label: "Gouvernement ukrainien néo-nazi", val: 16 }, { label: "Grand Remplacement", val: 11 }, { label: "Alunissage mis en scène", val: 16 }] },
       ]
     },
     "CA": {
@@ -1626,8 +1640,8 @@
       context: "Le Canada affiche des niveaux modérés mais en hausse. Les convois de camionneurs en 2022 et la montée du Parti populaire du Canada illustrent la perméabilité à certaines théories complotistes.",
       surveys: [
         { source: "Ipsos — Perils of Perception 2024", url: "https://www.ipsos.com/sites/default/files/ct/news/documents/2024-11/ipsos-the-perils-of-perception-2024.pdf", year: "2024", topic: "2 théories politiques — 30 pays (sept.–oct. 2024)", data: [{ label: "« Grand remplacement » orchestré par les élites", val: 22 }, { label: "Élections non fiables / truquées", val: 18 }] },
+        { source: "YouGov-Cambridge Globalism", url: "https://yougov.com/en-gb/articles/33746-global-where-believe-conspiracy-theories-true", year: "2022", topic: "Collusion Trump-Russie", data: [{ label: "Trump-Russie collusion", val: 61 }] },
         { source: "YouGov-Cambridge Globalism", url: "https://yougov.com/en-gb/articles/33746-global-where-believe-conspiracy-theories-true", year: "2020", topic: "Théories spécifiques", data: [{ label: "Monde gouverné en secret", val: 36 }, { label: "Alunissage truqué", val: 13 }, { label: "Aliens : contact secret", val: 30 }] },
-        { source: "YouGov-Cambridge Globalism", url: "https://yougov.com/en-gb/articles/33746-global-where-believe-conspiracy-theories-true", year: "2022", topic: "Collusion Trump-Russie", data: [{ label: "Trump-Russie collusion", val: 61 }] }
       ]
     },
     "TH": {
@@ -1637,7 +1651,7 @@
       context: "La Thaïlande affiche les taux les plus élevés de tout le dataset YouGov-Cambridge 2021. La méfiance institutionnelle envers le gouvernement militaire, la forte présence des réseaux sociaux non régulés et la diffusion de fausses nouvelles via LINE et Facebook constituent le terreau principal.",
       surveys: [
         { source: "Ipsos — Perils of Perception 2024", url: "https://www.ipsos.com/sites/default/files/ct/news/documents/2024-11/ipsos-the-perils-of-perception-2024.pdf", year: "2024", topic: "2 théories politiques — 30 pays (sept.–oct. 2024), échant. + urbain", data: [{ label: "« Grand remplacement » orchestré par les élites", val: 39 }, { label: "Élections non fiables / truquées", val: 42 }] },
-        { source: "YouGov-Cambridge Globalism Project", url: "https://yougov.com/en-gb/articles/40876-what-conspiracy-theories-did-people-around-world-b", year: "2021", topic: "12 théories complotistes — 24 pays (n=1 043 pour la Thaïlande)", data: [{ label: "Monde gouverné en secret", val: 72 }, { label: "Vaccins : effets cachés", val: 54 }, { label: "USA impliqués dans le 11-Sept.", val: 32 }, { label: "AIDS créé délibérément", val: 26 }, { label: "Alunissage truqué", val: 32 }] }
+        { source: "YouGov-Cambridge Globalism Project", url: "https://yougov.com/en-gb/articles/40876-what-conspiracy-theories-did-people-around-world-b", year: "2021", topic: "12 théories complotistes — 24 pays (n=1 043 pour la Thaïlande)", data: [{ label: "Monde gouverné en secret", val: 72 }, { label: "Vaccins : effets cachés", val: 54 }, { label: "USA impliqués dans le 11-Sept.", val: 32 }, { label: "AIDS créé délibérément", val: 26 }, { label: "Alunissage truqué", val: 32 }] },
       ]
     },
     "KE": {
@@ -1646,7 +1660,7 @@
       scoreDetail: "<strong>Pourquoi E ?</strong> Le Kenya affiche des taux parmi les plus élevés au monde sur l'ensemble des théories testées. La méfiance historique envers les institutions sanitaires — notamment après des controverses sur des programmes de vaccination dans les années 1990-2000 — et la forte utilisation de WhatsApp comme vecteur de désinformation sont des facteurs structurels.",
       context: "Le Kenya présente des taux très élevés sur toutes les théories testées. La méfiance envers les institutions sanitaires est ancrée historiquement. WhatsApp est le principal vecteur de propagation des théories complotistes, en particulier en milieu rural et semi-urbain.",
       surveys: [
-        { source: "YouGov-Cambridge Globalism Project", url: "https://yougov.com/en-gb/articles/40876-what-conspiracy-theories-did-people-around-world-b", year: "2021", topic: "12 théories complotistes — 24 pays (n≈1 000 pour le Kenya)", data: [{ label: "Monde gouverné en secret", val: 72 }, { label: "Vaccins : effets cachés", val: 54 }, { label: "AIDS créé délibérément", val: 50 }, { label: "USA impliqués dans le 11-Sept.", val: 23 }, { label: "Alunissage truqué", val: 32 }] }
+        { source: "YouGov-Cambridge Globalism Project", url: "https://yougov.com/en-gb/articles/40876-what-conspiracy-theories-did-people-around-world-b", year: "2021", topic: "12 théories complotistes — 24 pays (n≈1 000 pour le Kenya)", data: [{ label: "Monde gouverné en secret", val: 72 }, { label: "Vaccins : effets cachés", val: 54 }, { label: "AIDS créé délibérément", val: 50 }, { label: "USA impliqués dans le 11-Sept.", val: 23 }, { label: "Alunissage truqué", val: 32 }] },
       ]
     },
     "ID": {
@@ -1656,8 +1670,8 @@
       context: "L'Indonésie présente un profil très élevé, porté par la méfiance envers les autorités sanitaires et la diffusion massive de fausses informations via WhatsApp et Instagram. L'Ipsos 2024 classe l'Indonésie comme le pays avec les distorsions de perception les plus fortes parmi 30 pays.",
       surveys: [
         { source: "Ipsos — Perils of Perception 2024", url: "https://www.ipsos.com/sites/default/files/ct/news/documents/2024-11/ipsos-the-perils-of-perception-2024.pdf", year: "2024", topic: "2 théories politiques — 30 pays (sept.–oct. 2024), échant. + urbain", data: [{ label: "« Grand remplacement » orchestré par les élites", val: 26 }, { label: "Élections non fiables / truquées", val: 29 }] },
+        { source: "Ipsos Perils of Perception", url: "https://www.ipsos.com/sites/default/files/ct/news/documents/2024-11/ipsos-the-perils-of-perception-2024.pdf", year: "2024", topic: "Distorsions de perception — 30 pays", data: [{ label: "Rang #1 mondial (distorsions)", val: 88 }] },
         { source: "YouGov-Cambridge Globalism Project", url: "https://yougov.com/en-gb/articles/40876-what-conspiracy-theories-did-people-around-world-b", year: "2021", topic: "12 théories complotistes — 24 pays (n=1 001)", data: [{ label: "Monde gouverné en secret", val: 69 }, { label: "Vaccins : effets cachés", val: 45 }, { label: "AIDS créé délibérément", val: 22 }, { label: "Alunissage truqué", val: 32 }] },
-        { source: "Ipsos Perils of Perception", url: "https://www.ipsos.com/sites/default/files/ct/news/documents/2024-11/ipsos-the-perils-of-perception-2024.pdf", year: "2024", topic: "Distorsions de perception — 30 pays", data: [{ label: "Rang #1 mondial (distorsions)", val: 88 }] }
       ]
     },
     "TG": {
@@ -1666,7 +1680,7 @@
       scoreDetail: "<strong>Pourquoi E ?</strong> Le Togo illustre une montée fulgurante du complotisme en deux ans (+36 points). La méfiance envers le gouvernement est le moteur principal, avec un odds ratio de 2,90 pour l'hésitation vaccinale. Ce profil de dégradation rapide justifie pleinement un grade E.",
       context: "Le Togo présente l'une des progressions les plus alarmantes au monde : les croyances complotistes ont plus que doublé entre 2020 et 2022. Ce phénomène est directement lié à la perception d'opacité du gouvernement dans la gestion sanitaire. L'Afrobaromètre confirme une érosion rapide de la confiance institutionnelle dans toute l'Afrique de l'Ouest.",
       surveys: [
-        { source: "PLOS Global Public Health (Enquête nationale téléphonique)", url: "https://journals.plos.org/globalpublichealth/article?id=10.1371%2Fjournal.pgph.0002375", year: "2020–2022", topic: "Enquête longitudinale nationale — croyances complotistes et hésitation vaccinale (N=1 430 + 212)", data: [{ label: "Croyances complotistes (déc. 2020)", val: 29 }, { label: "Croyances complotistes (janv. 2022)", val: 65 }, { label: "Hésitation vaccinale (2022)", val: 58 }] }
+        { source: "PLOS Global Public Health (Enquête nationale téléphonique)", url: "https://journals.plos.org/globalpublichealth/article?id=10.1371%2Fjournal.pgph.0002375", year: "2020–2022", topic: "Enquête longitudinale nationale — croyances complotistes et hésitation vaccinale (N=1 430 + 212)", data: [{ label: "Croyances complotistes (déc. 2020)", val: 29 }, { label: "Croyances complotistes (janv. 2022)", val: 65 }, { label: "Hésitation vaccinale (2022)", val: 58 }] },
       ]
     },
     "SA": {
@@ -1675,7 +1689,7 @@
       scoreDetail: "<strong>Pourquoi D ?</strong> L'Arabie Saoudite affiche des chiffres significatifs sur les théories liées aux États-Unis et à la politique internationale, reflet d'une méfiance structurelle envers l'hégémonie américaine. Les chiffres globaux restent cependant en dessous du seuil E.",
       context: "L'Arabie Saoudite affiche des taux élevés notamment sur les théories liées aux États-Unis. La méfiance envers l'hégémonie américaine — historiquement ancrée dans la région du Golfe — est le principal moteur. Le contrôle strict des médias et l'absence d'espace public libre rend toute mesure compréhensive difficile.",
       surveys: [
-        { source: "YouGov-Cambridge Globalism Project", url: "https://yougov.com/en-gb/articles/33746-global-where-believe-conspiracy-theories-true", year: "2020", topic: "Théories spécifiques — 21 pays (n=828 pour l'Arabie Saoudite)", data: [{ label: "USA impliqués dans le 11-Sept.", val: 38 }, { label: "Alunissage truqué", val: 28 }, { label: "Monde gouverné en secret", val: 25 }, { label: "Vaccins : effets cachés", val: 21 }] }
+        { source: "YouGov-Cambridge Globalism Project", url: "https://yougov.com/en-gb/articles/33746-global-where-believe-conspiracy-theories-true", year: "2020", topic: "Théories spécifiques — 21 pays (n=828 pour l'Arabie Saoudite)", data: [{ label: "USA impliqués dans le 11-Sept.", val: 38 }, { label: "Alunissage truqué", val: 28 }, { label: "Monde gouverné en secret", val: 25 }, { label: "Vaccins : effets cachés", val: 21 }] },
       ]
     },
     "GT": {
@@ -1684,7 +1698,7 @@
       scoreDetail: "<strong>Pourquoi D ?</strong> Le Guatemala présente le taux de vaccination COVID le plus bas d'Amérique Latine (17%), fortement corrélé à des croyances complotistes élevées sur la sécurité des vaccins. L'étude de 13 pays confirme un profil nettement au-dessus de la moyenne régionale.",
       context: "Le Guatemala affiche l'un des profils les plus préoccupants d'Amérique Latine. La combinaison d'un faible niveau d'éducation moyen, d'une méfiance profonde envers les institutions de santé et d'une forte dépendance aux réseaux sociaux comme source d'information alimente les croyances complotistes.",
       surveys: [
-        { source: "Frontiers in Psychology — Caycho-Rodríguez et al.", url: "https://www.frontiersin.org/journals/psychology/articles/10.3389/fpsyg.2022.855713/full", year: "2022", topic: "Croyances complotistes sur les vaccins COVID — 13 pays Amérique Latine (n=420 pour le Guatemala)", data: [{ label: "Croyances complotistes vaccins", val: 45 }, { label: "Taux de vaccination COVID (réf.)", val: 17 }] }
+        { source: "Frontiers in Psychology — Caycho-Rodríguez et al.", url: "https://www.frontiersin.org/journals/psychology/articles/10.3389/fpsyg.2022.855713/full", year: "2022", topic: "Croyances complotistes sur les vaccins COVID — 13 pays Amérique Latine (n=420 pour le Guatemala)", data: [{ label: "Croyances complotistes vaccins", val: 45 }, { label: "Taux de vaccination COVID (réf.)", val: 17 }] },
       ]
     },
     "CL": {
@@ -1694,7 +1708,7 @@
       context: "Le Chili se distingue en Amérique Latine par une plus forte confiance dans les institutions de santé. Avec 77% de taux de vaccination COVID en 2021 (2e plus élevé d'Amérique Latine après l'Uruguay), le pays illustre comment la confiance institutionnelle freine la diffusion du complotisme.",
       surveys: [
         { source: "Ipsos — Perils of Perception 2024", url: "https://www.ipsos.com/sites/default/files/ct/news/documents/2024-11/ipsos-the-perils-of-perception-2024.pdf", year: "2024", topic: "2 théories politiques — 30 pays (sept.–oct. 2024), échant. + urbain", data: [{ label: "« Grand remplacement » orchestré par les élites", val: 15 }, { label: "Élections non fiables / truquées", val: 12 }] },
-        { source: "Frontiers in Psychology — Caycho-Rodríguez et al.", url: "https://www.frontiersin.org/journals/psychology/articles/10.3389/fpsyg.2022.855713/full", year: "2022", topic: "Croyances complotistes sur les vaccins COVID — 13 pays Amérique Latine (n=453 pour le Chili)", data: [{ label: "Croyances complotistes vaccins", val: 24 }, { label: "Taux de vaccination COVID (réf.)", val: 77 }] }
+        { source: "Frontiers in Psychology — Caycho-Rodríguez et al.", url: "https://www.frontiersin.org/journals/psychology/articles/10.3389/fpsyg.2022.855713/full", year: "2022", topic: "Croyances complotistes sur les vaccins COVID — 13 pays Amérique Latine (n=453 pour le Chili)", data: [{ label: "Croyances complotistes vaccins", val: 24 }, { label: "Taux de vaccination COVID (réf.)", val: 77 }] },
       ]
     },
     "EG": {
@@ -1703,7 +1717,7 @@
       scoreDetail: "<strong>Pourquoi D ?</strong> L'Égypte affiche des chiffres significatifs sur les théories générales et sanitaires, tirés du dataset YouGov-Cambridge 2020. Des données plus récentes (Multi-Research Journal 2023) indiquent que 62% de la population a été exposée à des théories complotistes sur l'origine du COVID — mais ce chiffre mesure l'exposition, pas la croyance. Le grade D reflète une perméabilité élevée sans atteindre les extrêmes du Nigeria ou de la Turquie.",
       context: "L'Égypte se situe dans un niveau élevé, nourri par la méfiance envers l'hégémonie occidentale et les institutions internationales. Le contrôle strict des médias par l'État crée paradoxalement un terrain fertile pour les théories alternatives circulant sur les réseaux sociaux.",
       surveys: [
-        { source: "YouGov-Cambridge Globalism Project", url: "https://yougov.com/en-gb/articles/33746-global-where-believe-conspiracy-theories-true", year: "2020", topic: "Théories spécifiques — 21 pays (n=1 537 pour l'Égypte)", data: [{ label: "Monde gouverné en secret", val: 55 }, { label: "Vaccins : effets cachés", val: 45 }, { label: "USA impliqués dans le 11-Sept.", val: 27 }] }
+        { source: "YouGov-Cambridge Globalism Project", url: "https://yougov.com/en-gb/articles/33746-global-where-believe-conspiracy-theories-true", year: "2020", topic: "Théories spécifiques — 21 pays (n=1 537 pour l'Égypte)", data: [{ label: "Monde gouverné en secret", val: 55 }, { label: "Vaccins : effets cachés", val: 45 }, { label: "USA impliqués dans le 11-Sept.", val: 27 }] },
       ]
     },
 
@@ -1714,7 +1728,7 @@
       scoreDetail: "<strong>Pourquoi E ?</strong> La Bulgarie affiche les chiffres les plus élevés d'Europe sur les deux métriques ESS disponibles, se plaçant au niveau du Nigéria ou de la Russie sur certaines questions. L'effondrement de confiance institutionnelle post-communiste, la forte influence des médias pro-russes et les inégalités persistantes alimentent une défiance systémique profonde.",
       context: "La Bulgarie présente le niveau de croyance complotiste le plus élevé d'Union européenne selon l'ESS Round 10. Le contexte post-soviétique, la faible confiance dans les institutions et l'exposition aux narratifs russes expliquent ces scores extrêmes.",
       surveys: [
-        { source: "European Social Survey Round 10 — Scientific Reports / PMC", url: "https://pmc.ncbi.nlm.nih.gov/articles/PMC10593806/", year: "2022", topic: "Croyances complotistes COVID — 26 pays européens (n=55 555)", data: [{ label: "COVID : complot délibéré", val: 55 }, { label: "Groupe secret contrôle la politique mondiale", val: 57 }] }
+        { source: "European Social Survey Round 10 — Scientific Reports / PMC", url: "https://pmc.ncbi.nlm.nih.gov/articles/PMC10593806/", year: "2022", topic: "Croyances complotistes COVID — 26 pays européens (n=55 555)", data: [{ label: "COVID : complot délibéré", val: 55 }, { label: "Groupe secret contrôle la politique mondiale", val: 57 }] },
       ]
     },
     "MK": {
@@ -1723,7 +1737,7 @@
       scoreDetail: "<strong>Pourquoi E ?</strong> La Macédoine du Nord se place au deuxième rang européen selon l'ESS, juste après la Bulgarie. Des scores supérieurs à 50% sur deux métriques distinctes justifient pleinement le grade E, comparable aux pays africains ou turcs.",
       context: "La Macédoine du Nord présente un terreau fertile pour les théories complotistes : polarisation politique intense, exposition aux narratifs pro-russes, instabilité institutionnelle et forte méfiance envers les élites locales et internationales.",
       surveys: [
-        { source: "European Social Survey Round 10 — Scientific Reports / PMC", url: "https://pmc.ncbi.nlm.nih.gov/articles/PMC10593806/", year: "2022", topic: "Croyances complotistes COVID — 26 pays européens", data: [{ label: "COVID : complot délibéré", val: 54 }, { label: "Groupe secret contrôle la politique mondiale", val: 60 }] }
+        { source: "European Social Survey Round 10 — Scientific Reports / PMC", url: "https://pmc.ncbi.nlm.nih.gov/articles/PMC10593806/", year: "2022", topic: "Croyances complotistes COVID — 26 pays européens", data: [{ label: "COVID : complot délibéré", val: 54 }, { label: "Groupe secret contrôle la politique mondiale", val: 60 }] },
       ]
     },
     "RS": {
@@ -1732,7 +1746,7 @@
       scoreDetail: "<strong>Pourquoi D ?</strong> La Serbie affiche un score ESS significativement élevé (38,5%), au-dessus de la majorité des pays d'Europe centrale et occidentale. La proximité culturelle avec la Russie et la méfiance envers l'UE alimentent ce niveau.",
       context: "La Serbie présente une forte susceptibilité aux narratifs complotistes pro-russes. L'ambivalence géopolitique et la méfiance historique envers les institutions occidentales créent un environnement propice à la propagation des théories alternatives.",
       surveys: [
-        { source: "European Social Survey Round 10 — Scientific Reports / PMC", url: "https://pmc.ncbi.nlm.nih.gov/articles/PMC10593806/", year: "2022", topic: "Croyances complotistes COVID — 26 pays européens", data: [{ label: "COVID : complot délibéré", val: 39 }] }
+        { source: "European Social Survey Round 10 — Scientific Reports / PMC", url: "https://pmc.ncbi.nlm.nih.gov/articles/PMC10593806/", year: "2022", topic: "Croyances complotistes COVID — 26 pays européens", data: [{ label: "COVID : complot délibéré", val: 39 }] },
       ]
     },
     "HR": {
@@ -1741,7 +1755,7 @@
       scoreDetail: "<strong>Pourquoi D ?</strong> La Croatie présente un score ESS de 39% (COVID) et 51% sur les conspirations générales selon PAS Journals. Cet écart entre les deux métriques est typique d'un pays à croyances complotistes générales élevées mais COVID-spécifiques modérées. Le grade D reflète la convergence.",
       context: "La Croatie, malgré son intégration à l'UE, présente des niveaux de croyance complotiste notables, hérités du contexte balkanique et de la méfiance envers les institutions post-yougoslaves.",
       surveys: [
-        { source: "European Social Survey Round 10 — Scientific Reports / PMC", url: "https://pmc.ncbi.nlm.nih.gov/articles/PMC10593806/", year: "2022", topic: "Croyances complotistes COVID — 26 pays européens", data: [{ label: "COVID : complot délibéré", val: 39 }, { label: "Groupe secret contrôle la politique mondiale", val: 51 }] }
+        { source: "European Social Survey Round 10 — Scientific Reports / PMC", url: "https://pmc.ncbi.nlm.nih.gov/articles/PMC10593806/", year: "2022", topic: "Croyances complotistes COVID — 26 pays européens", data: [{ label: "COVID : complot délibéré", val: 39 }, { label: "Groupe secret contrôle la politique mondiale", val: 51 }] },
       ]
     },
     "SK": {
@@ -1751,7 +1765,7 @@
       context: "La Slovaquie est identifiée comme particulièrement vulnérable à la désinformation en Europe centrale selon le GLOBSEC. La proximité culturelle avec la Russie, les narratifs anti-OTAN et anti-vaccins très actifs, ainsi que la faible confiance médiatique (27% selon Reuters Institute) expliquent ces scores.",
       surveys: [
         { source: "European Social Survey Round 10 — Scientific Reports / PMC", url: "https://pmc.ncbi.nlm.nih.gov/articles/PMC10593806/", year: "2022", topic: "Croyances complotistes COVID — 26 pays européens", data: [{ label: "COVID : complot délibéré", val: 37 }] },
-        { source: "GLOBSEC Trends 2022 — EU DisinfoLab", url: "https://www.disinfo.eu/wp-content/uploads/2023/09/20230919_SK_DisinfoFS.pdf", year: "2022", topic: "Classement complotisme pays Europe centrale et orientale", data: [{ label: "1er rang : pays le plus exposé aux théories complotistes en CEE", val: 72 }] }
+        { source: "GLOBSEC Trends 2022 — EU DisinfoLab", url: "https://www.disinfo.eu/wp-content/uploads/2023/09/20230919_SK_DisinfoFS.pdf", year: "2022", topic: "Classement complotisme pays Europe centrale et orientale", data: [{ label: "1er rang : pays le plus exposé aux théories complotistes en CEE", val: 72 }] },
       ]
     },
     "SI": {
@@ -1760,7 +1774,7 @@
       scoreDetail: "<strong>Pourquoi D ?</strong> La Slovénie affiche un score ESS de 35%, au-dessus de la moyenne d'Europe occidentale. Son positionnement balkanique et le contexte politique polarisé des années 2020-22 expliquent ce niveau.",
       context: "La Slovénie présente des niveaux de complotisme supérieurs à ses voisins autrichiens et italiens, reflet d'une polarisation politique marquée et d'une méfiance accrue envers les institutions internationales dans le contexte post-COVID.",
       surveys: [
-        { source: "European Social Survey Round 10 — Scientific Reports / PMC", url: "https://pmc.ncbi.nlm.nih.gov/articles/PMC10593806/", year: "2022", topic: "Croyances complotistes COVID — 26 pays européens", data: [{ label: "COVID : complot délibéré", val: 35 }] }
+        { source: "European Social Survey Round 10 — Scientific Reports / PMC", url: "https://pmc.ncbi.nlm.nih.gov/articles/PMC10593806/", year: "2022", topic: "Croyances complotistes COVID — 26 pays européens", data: [{ label: "COVID : complot délibéré", val: 35 }] },
       ]
     },
     "PT": {
@@ -1769,7 +1783,7 @@
       scoreDetail: "<strong>Pourquoi D ?</strong> Le Portugal affiche 31,6% sur l'ESS, ce qui le place au seuil supérieur du grade D. Bien qu'il soit parmi les moins complotistes d'Europe du Sud, ce chiffre reste nettement supérieur aux pays nordiques ou au Benelux.",
       context: "Le Portugal présente un niveau modéré-élevé de croyances complotistes, influencé par la méfiance envers les institutions financières (héritage de la crise de 2008-2013) et la sensibilité aux narratifs sanitaires alternatifs.",
       surveys: [
-        { source: "European Social Survey Round 10 — Scientific Reports / PMC", url: "https://pmc.ncbi.nlm.nih.gov/articles/PMC10593806/", year: "2022", topic: "Croyances complotistes COVID — 26 pays européens", data: [{ label: "COVID : complot délibéré", val: 32 }] }
+        { source: "European Social Survey Round 10 — Scientific Reports / PMC", url: "https://pmc.ncbi.nlm.nih.gov/articles/PMC10593806/", year: "2022", topic: "Croyances complotistes COVID — 26 pays européens", data: [{ label: "COVID : complot délibéré", val: 32 }] },
       ]
     },
     "LT": {
@@ -1778,7 +1792,7 @@
       scoreDetail: "<strong>Pourquoi C ?</strong> La Lituanie se positionne dans la fourchette médiane européenne avec 28,6%, au-dessus des pays nordiques mais en-dessous des pays balkaniques. Son intégration à l'OTAN et à l'UE combinée à une forte résistance aux narratifs pro-russes limite la propagation des théories complotistes.",
       context: "La Lituanie, malgré son histoire soviétique, affiche une résistance notable au complotisme grâce à sa forte orientation euro-atlantique et à la méfiance bien établie envers la Russie.",
       surveys: [
-        { source: "European Social Survey Round 10 — Scientific Reports / PMC", url: "https://pmc.ncbi.nlm.nih.gov/articles/PMC10593806/", year: "2022", topic: "Croyances complotistes COVID — 26 pays européens", data: [{ label: "COVID : complot délibéré", val: 29 }] }
+        { source: "European Social Survey Round 10 — Scientific Reports / PMC", url: "https://pmc.ncbi.nlm.nih.gov/articles/PMC10593806/", year: "2022", topic: "Croyances complotistes COVID — 26 pays européens", data: [{ label: "COVID : complot délibéré", val: 29 }] },
       ]
     },
     "EE": {
@@ -1787,7 +1801,7 @@
       scoreDetail: "<strong>Pourquoi C ?</strong> L'Estonie, pays le plus numérisé d'Europe, affiche un score ESS de 27,3%. Sa forte e-gouvernance et sa résistance aux narratifs russes la maintiennent dans une fourchette modérée malgré son passé soviétique.",
       context: "L'Estonie est un cas particulier : pays post-soviétique qui a su développer une forte résilience institutionnelle et numérique. Sa cybersécurité avancée et sa défiance envers la Russie lui confèrent une relative résistance à la désinformation.",
       surveys: [
-        { source: "European Social Survey Round 10 — Scientific Reports / PMC", url: "https://pmc.ncbi.nlm.nih.gov/articles/PMC10593806/", year: "2022", topic: "Croyances complotistes COVID — 26 pays européens", data: [{ label: "COVID : complot délibéré", val: 27 }] }
+        { source: "European Social Survey Round 10 — Scientific Reports / PMC", url: "https://pmc.ncbi.nlm.nih.gov/articles/PMC10593806/", year: "2022", topic: "Croyances complotistes COVID — 26 pays européens", data: [{ label: "COVID : complot délibéré", val: 27 }] },
       ]
     },
     "LV": {
@@ -1796,7 +1810,7 @@
       scoreDetail: "<strong>Pourquoi C ?</strong> La Lettonie se situe dans la fourchette modérée avec 26,8% sur l'ESS. Sa minorité russophone (environ 25% de la population) est un facteur de vulnérabilité aux narratifs pro-russes, mais l'intégration euro-atlantique contrebalance ce risque.",
       context: "La Lettonie présente une dualité : sa communauté russophone est plus exposée aux narratifs de désinformation russes, tandis que la majorité lettophone résiste mieux. Le résultat d'ensemble reste modéré.",
       surveys: [
-        { source: "European Social Survey Round 10 — Scientific Reports / PMC", url: "https://pmc.ncbi.nlm.nih.gov/articles/PMC10593806/", year: "2022", topic: "Croyances complotistes COVID — 26 pays européens", data: [{ label: "COVID : complot délibéré", val: 27 }] }
+        { source: "European Social Survey Round 10 — Scientific Reports / PMC", url: "https://pmc.ncbi.nlm.nih.gov/articles/PMC10593806/", year: "2022", topic: "Croyances complotistes COVID — 26 pays européens", data: [{ label: "COVID : complot délibéré", val: 27 }] },
       ]
     },
     "IE": {
@@ -1806,7 +1820,7 @@
       context: "L'Irlande se situe dans la moyenne modérée européenne. Malgré un mouvement anti-vaccine notable et des tensions autour de l'immigration, elle maintient une confiance institutionnelle globalement plus solide que ses homologues continentaux.",
       surveys: [
         { source: "Ipsos — Perils of Perception 2024", url: "https://www.ipsos.com/sites/default/files/ct/news/documents/2024-11/ipsos-the-perils-of-perception-2024.pdf", year: "2024", topic: "2 théories politiques — 30 pays (sept.–oct. 2024)", data: [{ label: "« Grand remplacement » orchestré par les élites", val: 21 }, { label: "Élections non fiables / truquées", val: 16 }] },
-        { source: "European Social Survey Round 10 — Scientific Reports / PMC", url: "https://pmc.ncbi.nlm.nih.gov/articles/PMC10593806/", year: "2022", topic: "Croyances complotistes COVID — 26 pays européens", data: [{ label: "COVID : complot délibéré", val: 26 }] }
+        { source: "European Social Survey Round 10 — Scientific Reports / PMC", url: "https://pmc.ncbi.nlm.nih.gov/articles/PMC10593806/", year: "2022", topic: "Croyances complotistes COVID — 26 pays européens", data: [{ label: "COVID : complot délibéré", val: 26 }] },
       ]
     },
     "IL": {
@@ -1815,7 +1829,7 @@
       scoreDetail: "<strong>Pourquoi B ?</strong> Israël affiche 19,3% sur l'ESS, un score relativement bas au regard de son contexte géopolitique tendu. Sa forte culture scientifique et son système de santé reconnu ont contribué à une résistance notable aux théories complotistes sanitaires.",
       context: "Israël présente un niveau de croyance complotiste modérément faible malgré un environnement régional très polarisé. La confiance dans le système médical, parmi les plus performants au monde, et une culture de débat critique semblent protéger contre les théories les plus extrêmes.",
       surveys: [
-        { source: "European Social Survey Round 10 — Scientific Reports / PMC", url: "https://pmc.ncbi.nlm.nih.gov/articles/PMC10593806/", year: "2022", topic: "Croyances complotistes COVID — 26 pays européens et Israël", data: [{ label: "COVID : complot délibéré", val: 19 }] }
+        { source: "European Social Survey Round 10 — Scientific Reports / PMC", url: "https://pmc.ncbi.nlm.nih.gov/articles/PMC10593806/", year: "2022", topic: "Croyances complotistes COVID — 26 pays européens et Israël", data: [{ label: "COVID : complot délibéré", val: 19 }] },
       ]
     },
     "CH": {
@@ -1824,7 +1838,7 @@
       scoreDetail: "<strong>Pourquoi B ?</strong> La Suisse affiche 17,3% sur l'ESS, nettement au-dessous de ses voisins France (26%), Italie (25%) et Allemagne (16,8%). Sa stabilité institutionnelle historique, sa démocratie directe et son multilinguisme lui confèrent une résilience notable.",
       context: "La Suisse figure parmi les pays européens les moins perméables au complotisme. Sa tradition de démocratie directe et de consensus politique, combinée à une forte confiance dans les institutions fédérales, explique ce résultat.",
       surveys: [
-        { source: "European Social Survey Round 10 — Scientific Reports / PMC", url: "https://pmc.ncbi.nlm.nih.gov/articles/PMC10593806/", year: "2022", topic: "Croyances complotistes COVID — 26 pays européens", data: [{ label: "COVID : complot délibéré", val: 17 }] }
+        { source: "European Social Survey Round 10 — Scientific Reports / PMC", url: "https://pmc.ncbi.nlm.nih.gov/articles/PMC10593806/", year: "2022", topic: "Croyances complotistes COVID — 26 pays européens", data: [{ label: "COVID : complot délibéré", val: 17 }] },
       ]
     },
     "AT": {
@@ -1833,7 +1847,7 @@
       scoreDetail: "<strong>Pourquoi B ?</strong> L'Autriche affiche 16,8% sur l'ESS, le score le plus bas de l'étude avec les pays nordiques. Bien que le FPÖ (parti d'extrême-droite) ait promu des narratifs complotistes, la population dans son ensemble résiste.",
       context: "L'Autriche présente un niveau faible de croyances complotistes malgré la montée du FPÖ. La forte confiance institutionnelle et le système médiatique structuré semblent contrebalancer les discours politiques d'extrême-droite.",
       surveys: [
-        { source: "European Social Survey Round 10 — Scientific Reports / PMC", url: "https://pmc.ncbi.nlm.nih.gov/articles/PMC10593806/", year: "2022", topic: "Croyances complotistes COVID — 26 pays européens", data: [{ label: "COVID : complot délibéré", val: 17 }] }
+        { source: "European Social Survey Round 10 — Scientific Reports / PMC", url: "https://pmc.ncbi.nlm.nih.gov/articles/PMC10593806/", year: "2022", topic: "Croyances complotistes COVID — 26 pays européens", data: [{ label: "COVID : complot délibéré", val: 17 }] },
       ]
     },
     "BE": {
@@ -1843,7 +1857,7 @@
       context: "La Belgique affiche un niveau faible selon les standards européens. Ses communautés néerlandophone et francophone présentent quelques différences, mais les chiffres ESS restent dans la fourchette B. Sa position au cœur des institutions européennes l'expose à des narratifs anti-UE, sans que cela se traduise en croyances complotistes généralisées.",
       surveys: [
         { source: "European Social Survey Round 10 — Scientific Reports / PMC", url: "https://pmc.ncbi.nlm.nih.gov/articles/PMC10593806/", year: "2022", topic: "Croyances complotistes COVID — 26 pays européens", data: [{ label: "COVID : complot délibéré", val: 18 }] },
-        { source: "Le Vif — Enquête complotisme en Belgique", url: "https://www.levif.be/belgique/pourquoi-les-belges-croient-autant-aux-theories-du-complot/", year: "2021", topic: "Croyances complotistes générales en Belgique", data: [{ label: "Croit à au moins une théorie complotiste", val: 35 }, { label: "COVID non accidentel", val: 22 }] }
+        { source: "Le Vif — Enquête complotisme en Belgique", url: "https://www.levif.be/belgique/pourquoi-les-belges-croient-autant-aux-theories-du-complot/", year: "2021", topic: "Croyances complotistes générales en Belgique", data: [{ label: "Croit à au moins une théorie complotiste", val: 35 }, { label: "COVID non accidentel", val: 22 }] },
       ]
     },
     "FI": {
@@ -1852,8 +1866,8 @@
       scoreDetail: "<strong>Pourquoi A ?</strong> La Finlande combine le 3e score le plus bas en Europe sur l'ESS et la meilleure performance mondiale pour distinguer le vrai du faux (66,4%, OECD). Sa culture d'éducation aux médias très développée, son système scolaire de référence mondiale et sa confiance institutionnelle élevée en font le pays européen le plus résilient au complotisme.",
       context: "La Finlande est régulièrement citée comme modèle mondial de résistance à la désinformation. Son programme national d'éducation aux médias intègre dès le primaire la vérification des faits. Le pays a une expérience historique directe de la propagande soviétique, ce qui a renforcé ses mécanismes de défense collective.",
       surveys: [
+        { source: "OECD Truth Quest — LatAm Journalism Review", url: "https://latamjournalismreview.org/articles/brazil-and-colombia-rank-lowest-in-identifying-false-content-online-fact-checkers-arent-surprised/", year: "2024", topic: "Capacité à identifier les fausses informations en ligne — 21 pays", data: [{ label: "Taux d'identification correct du faux", val: 66 }] },
         { source: "European Social Survey Round 10 — Scientific Reports / PMC", url: "https://pmc.ncbi.nlm.nih.gov/articles/PMC10593806/", year: "2022", topic: "Croyances complotistes COVID — 26 pays européens", data: [{ label: "COVID : complot délibéré", val: 12 }] },
-        { source: "OECD Truth Quest — LatAm Journalism Review", url: "https://latamjournalismreview.org/articles/brazil-and-colombia-rank-lowest-in-identifying-false-content-online-fact-checkers-arent-surprised/", year: "2024", topic: "Capacité à identifier les fausses informations en ligne — 21 pays", data: [{ label: "Taux d'identification correct du faux", val: 66 }] }
       ]
     },
     "NL": {
@@ -1863,7 +1877,7 @@
       context: "Les Pays-Bas affichent une résilience notable au complotisme. Malgré l'essor de partis populistes (PVV), la croyance aux théories du complot reste marginale dans la population générale.",
       surveys: [
         { source: "Ipsos — Perils of Perception 2024", url: "https://www.ipsos.com/sites/default/files/ct/news/documents/2024-11/ipsos-the-perils-of-perception-2024.pdf", year: "2024", topic: "2 théories politiques — 30 pays (sept.–oct. 2024)", data: [{ label: "« Grand remplacement » orchestré par les élites", val: 15 }, { label: "Élections non fiables / truquées", val: 11 }] },
-        { source: "European Social Survey Round 10 — Scientific Reports / PMC", url: "https://pmc.ncbi.nlm.nih.gov/articles/PMC10593806/", year: "2022", topic: "Croyances complotistes COVID — 26 pays européens", data: [{ label: "COVID : complot délibéré", val: 11 }] }
+        { source: "European Social Survey Round 10 — Scientific Reports / PMC", url: "https://pmc.ncbi.nlm.nih.gov/articles/PMC10593806/", year: "2022", topic: "Croyances complotistes COVID — 26 pays européens", data: [{ label: "COVID : complot délibéré", val: 11 }] },
       ]
     },
     "NO": {
@@ -1872,7 +1886,7 @@
       scoreDetail: "<strong>Pourquoi A ?</strong> La Norvège combine un score ESS très bas (10,3%) et une excellente performance OECD sur la littératie informationnelle (62,8%). Confiance institutionnelle parmi les plus hautes au monde, État-providence fort, et forte tradition de liberté de presse.",
       context: "La Norvège figure parmi les pays les plus résilients au complotisme, aux côtés de la Finlande, du Danemark et de la Suède. L'État-providence scandinave, la forte confiance inter-individuelle et l'éducation aux médias expliquent ces scores exceptionnels.",
       surveys: [
-        { source: "European Social Survey Round 10 — Scientific Reports / PMC", url: "https://pmc.ncbi.nlm.nih.gov/articles/PMC10593806/", year: "2022", topic: "Croyances complotistes COVID — 26 pays européens", data: [{ label: "COVID : complot délibéré", val: 10 }] }
+        { source: "European Social Survey Round 10 — Scientific Reports / PMC", url: "https://pmc.ncbi.nlm.nih.gov/articles/PMC10593806/", year: "2022", topic: "Croyances complotistes COVID — 26 pays européens", data: [{ label: "COVID : complot délibéré", val: 10 }] },
       ]
     },
     "IS": {
@@ -1881,7 +1895,7 @@
       scoreDetail: "<strong>Pourquoi A ?</strong> L'Islande affiche le score ESS le plus bas de tous les pays européens mesurés (9,9%). Pays le plus égalitaire au monde, forte confiance institutionnelle, culture scientifique solide et faible polarisation politique.",
       context: "L'Islande présente le niveau le plus faible de croyances complotistes d'Europe. Sa taille (370 000 habitants), sa cohésion sociale exceptionnelle et sa confiance parmi les plus élevées au monde en font un cas à part.",
       surveys: [
-        { source: "European Social Survey Round 10 — Scientific Reports / PMC", url: "https://pmc.ncbi.nlm.nih.gov/articles/PMC10593806/", year: "2022", topic: "Croyances complotistes COVID — 26 pays européens", data: [{ label: "COVID : complot délibéré", val: 10 }] }
+        { source: "European Social Survey Round 10 — Scientific Reports / PMC", url: "https://pmc.ncbi.nlm.nih.gov/articles/PMC10593806/", year: "2022", topic: "Croyances complotistes COVID — 26 pays européens", data: [{ label: "COVID : complot délibéré", val: 10 }] },
       ]
     },
 
@@ -1892,7 +1906,7 @@
       scoreDetail: "<strong>Pourquoi D ?</strong> Avec 68% sur la croyance en organisations secrètes (contre 47% en Hongrie selon la même source), l'Ukraine affiche des scores très élevés sur les conspirations génériques. Cependant, ces narratifs pro-russes ont aussi été activement propagés par la Russie, ce qui biaise partiellement la mesure. Le grade D reflète une vulnérabilité réelle tout en tenant compte du contexte de guerre informationnelle.",
       context: "L'Ukraine est le terrain d'une guerre informationnelle intense depuis 2014. Les narratifs russes (Soros, bioweapons, élites occultes occidentales) ont trouvé une audience significative, notamment dans l'est et le sud du pays. La guerre de 2022 a complexifié le paysage.",
       surveys: [
-        { source: "LSE Arena / CSS Survey — Rapport anti-Ouest Ukraine", url: "https://www.lse.ac.uk/iga/assets/documents/arena/2021/Conspiratorial-propaganda-anti-West-narratives-Ukraine-report-light.pdf", year: "2021", topic: "Croyances complotistes et narratifs pro-russes en Ukraine", data: [{ label: "Organisations secrètes influencent les décisions politiques", val: 68 }, { label: "Ukraine sous gouvernance occulte occidentale", val: 40 }, { label: "Soros/FMI veulent exploiter l'Ukraine", val: 39 }] }
+        { source: "LSE Arena / CSS Survey — Rapport anti-Ouest Ukraine", url: "https://www.lse.ac.uk/iga/assets/documents/arena/2021/Conspiratorial-propaganda-anti-West-narratives-Ukraine-report-light.pdf", year: "2021", topic: "Croyances complotistes et narratifs pro-russes en Ukraine", data: [{ label: "Organisations secrètes influencent les décisions politiques", val: 68 }, { label: "Ukraine sous gouvernance occulte occidentale", val: 40 }, { label: "Soros/FMI veulent exploiter l'Ukraine", val: 39 }] },
       ]
     },
     "RO": {
@@ -1901,7 +1915,7 @@
       scoreDetail: "<strong>Pourquoi D ?</strong> Les données INSCOP 2024 montrent que quasi la moitié des Roumains adhère pleinement à des croyances de base associées au complotisme (information cachée, dissimulation politique). Le contexte politique récent (Călin Georgescu, discours anti-UE/OTAN financés par des bots TikTok) révèle une population vulnérable aux narratifs conspirationnistes.",
       context: "La Roumanie présente une forte nostalgie autoritaire (66,2% pensent que Ceaușescu était un bon dirigeant, 2025) et une susceptibilité élevée aux théories complotistes, exploitées par des acteurs politiques d'extrême-droite soutenus par des campagnes d'influence étrangères.",
       surveys: [
-        { source: "INSCOP Research pour News.ro", url: "https://www.romania-insider.com/romanians-fake-news-survey-july-2024", year: "2024", topic: "Croyances conspiratrices et fake news en Roumanie", data: [{ label: "Accord max : 'infos importantes cachées au public'", val: 49 }, { label: "Accord max : 'politiciens cachent les vraies raisons'", val: 48 }] }
+        { source: "INSCOP Research pour News.ro", url: "https://www.romania-insider.com/romanians-fake-news-survey-july-2024", year: "2024", topic: "Croyances conspiratrices et fake news en Roumanie", data: [{ label: "Accord max : 'infos importantes cachées au public'", val: 49 }, { label: "Accord max : 'politiciens cachent les vraies raisons'", val: 48 }] },
       ]
     },
     "GE": {
@@ -1911,7 +1925,7 @@
       context: "La Géorgie présente une dualité politique : aspirations pro-européennes coexistant avec des niveaux élevés de scepticisme institutionnel. Le narratif du « Global War Party » — un groupe occulte occidental qui chercherait à ouvrir un « second front » contre la Russie en Géorgie — est devenu central dans le discours du parti au pouvoir et alimente l'adhésion complotiste (CRRC 2024).",
       surveys: [
         { source: "CRRC-Georgia / NED — Conspiracy Theories & Anti-Western Attitudes", url: "https://crrc.ge/wp-content/uploads/2025/11/ned-report-25.02-final.pdf", year: "2024", topic: "Croyances complotistes — sondage national (n=1 457, publ. nov. 2025)", data: [{ label: "Virus/maladies propagés intentionnellement", val: 37 }, { label: "Le « Global War Party » existe", val: 34 }, { label: "Occident impose la « propagande LGBT »", val: 34 }, { label: "Un petit groupe secret contrôle la politique mondiale", val: 27 }, { label: "Technologies de contrôle mental utilisées en secret", val: 18 }] },
-        { source: "PONARS Eurasia — Conspiracy Theories in Georgia & Kazakhstan", url: "https://www.ponarseurasia.org/who-cares-about-conspiracy-theories-evidence-from-a-new-survey-in-georgia-and-kazakhstan/", year: "2017", topic: "Croyances complotistes génériques — Géorgie et Kazakhstan (n=1 000 chaque)", data: [{ label: "Groupes secrets contrôlent les événements mondiaux", val: 57 }, { label: "Gouvernement impliqué dans meurtres de citoyens", val: 52 }] }
+        { source: "PONARS Eurasia — Conspiracy Theories in Georgia & Kazakhstan", url: "https://www.ponarseurasia.org/who-cares-about-conspiracy-theories-evidence-from-a-new-survey-in-georgia-and-kazakhstan/", year: "2017", topic: "Croyances complotistes génériques — Géorgie et Kazakhstan (n=1 000 chaque)", data: [{ label: "Groupes secrets contrôlent les événements mondiaux", val: 57 }, { label: "Gouvernement impliqué dans meurtres de citoyens", val: 52 }] },
       ]
     },
     "KZ": {
@@ -1920,7 +1934,7 @@
       scoreDetail: "<strong>Pourquoi D ?</strong> Le Kazakhstan affiche 50% sur 'groupes secrets' et domine sur les théories géopolitiques pro-russes (9/11, fascistes en Ukraine). L'exposition aux médias russes et l'alignement géopolitique historique avec Moscou expliquent ce profil particulier.",
       context: "Le Kazakhstan présente un profil complotiste influencé par la proximité culturelle et médiatique avec la Russie. Les théories anti-occidentales trouvent un terreau fertile dans un pays à régime autoritaire où la propagande d'État a longtemps été la norme.",
       surveys: [
-        { source: "PONARS Eurasia — Conspiracy Theories in Georgia & Kazakhstan", url: "https://www.ponarseurasia.org/who-cares-about-conspiracy-theories-evidence-from-a-new-survey-in-georgia-and-kazakhstan/", year: "2017", topic: "Croyances complotistes génériques — Géorgie et Kazakhstan (n=1 000 chaque)", data: [{ label: "Groupes secrets contrôlent les événements mondiaux", val: 50 }, { label: "11-Sept. : complot américain", val: 45 }] }
+        { source: "PONARS Eurasia — Conspiracy Theories in Georgia & Kazakhstan", url: "https://www.ponarseurasia.org/who-cares-about-conspiracy-theories-evidence-from-a-new-survey-in-georgia-and-kazakhstan/", year: "2017", topic: "Croyances complotistes génériques — Géorgie et Kazakhstan (n=1 000 chaque)", data: [{ label: "Groupes secrets contrôlent les événements mondiaux", val: 50 }, { label: "11-Sept. : complot américain", val: 45 }] },
       ]
     },
 
@@ -1932,7 +1946,7 @@
       context: "Les Philippines présentent l'un des environnements informationnels les plus dégradés d'Asie. L'héritage Duterte de désinformation politique organisée, l'omniprésence de Facebook comme source d'information principale, et la polarisation extrême entre pro-Marcos et opposition créent un terreau exceptionnel pour les théories complotistes.",
       surveys: [
         { source: "Nature Scientific Reports — COVID Misinformation 8 Asian Countries", url: "https://www.nature.com/articles/s41598-023-42614-z", year: "2023", topic: "Perception de précision des désinformations COVID et taux de partage — 8 pays d'Asie", data: [{ label: "1er rang : perception précision désinformation (le plus élevé)", val: 68 }, { label: "1er rang : taux de partage désinformation (le plus élevé)", val: 62 }] },
-        { source: "Pulse Asia — Fake News Survey", url: "https://pulseasia.ph", year: "2022", topic: "Perception des fake news comme problème grave aux Philippines", data: [{ label: "Fake news perçues comme problème grave", val: 86 }] }
+        { source: "Pulse Asia — Fake News Survey", url: "https://pulseasia.ph", year: "2022", topic: "Perception des fake news comme problème grave aux Philippines", data: [{ label: "Fake news perçues comme problème grave", val: 86 }] },
       ]
     },
     "VN": {
@@ -1941,7 +1955,7 @@
       scoreDetail: "<strong>Pourquoi C ?</strong> Le Viêt Nam présente une situation paradoxale : régime autoritaire qui contrôle l'information d'État, mais relative résistance aux théories complotistes non officielles. La désinformation qui circule tend à suivre les narratifs d'État plutôt que des théories autonomes. Le grade C reflète un niveau modéré d'ensemble.",
       context: "Le Viêt Nam présente un environnement informationnel contrôlé par l'État, ce qui limite paradoxalement certaines formes de désinformation spontanée. Cependant, les plateformes sociales (Facebook très utilisé) ont permis le développement de théories complotistes anticorruption et anti-élites.",
       surveys: [
-        { source: "Nature Scientific Reports — COVID Misinformation 8 Asian Countries", url: "https://www.nature.com/articles/s41598-023-42614-z", year: "2023", topic: "Perception de précision des désinformations COVID et taux de partage — 8 pays d'Asie", data: [{ label: "Niveau modéré-élevé (3e-4e rang sur 8)", val: 42 }] }
+        { source: "Nature Scientific Reports — COVID Misinformation 8 Asian Countries", url: "https://www.nature.com/articles/s41598-023-42614-z", year: "2023", topic: "Perception de précision des désinformations COVID et taux de partage — 8 pays d'Asie", data: [{ label: "Niveau modéré-élevé (3e-4e rang sur 8)", val: 42 }] },
       ]
     },
     "MY": {
@@ -1973,7 +1987,7 @@
       context: "Le Pakistan présente l'un des environnements les plus propices aux théories complotistes au monde. La culture du complot politique (coup d'État, ingérence américaine, rôle de l'ISI) est profondément enracinée dans le discours public. La polarisation PTI/PML-N et l'usage massif des réseaux sociaux amplifient ces narratifs.",
       surveys: [
         { source: "USIP Special Report — Misinformation & Conspiracy Theories in Pakistan", url: "https://www.usip.org/sites/default/files/2022-11/20221117_sr_514-losing-facts-fiction-nationalism-misinformation-conspiracy-theories-pakistan.pdf", year: "2022", topic: "Croyances en la désinformation et aux théories complotistes — enquête nationale représentative", data: [{ label: "Niveau très élevé (score composite CMQ)", val: 62 }] },
-        { source: "CMQ Survey Pakistan — Cureus Journal", url: "https://pmc.ncbi.nlm.nih.gov/articles/PMC9841921/", year: "2021", topic: "Conspiracy Mentality Questionnaire — Pakistan", data: [{ label: "Organisations secrètes influencent les décisions politiques", val: 42 }, { label: "Politiciens cachent les vraies motivations", val: 41 }] }
+        { source: "CMQ Survey Pakistan — Cureus Journal", url: "https://pmc.ncbi.nlm.nih.gov/articles/PMC9841921/", year: "2021", topic: "Conspiracy Mentality Questionnaire — Pakistan", data: [{ label: "Organisations secrètes influencent les décisions politiques", val: 42 }, { label: "Politiciens cachent les vraies motivations", val: 41 }] },
       ]
     },
 
@@ -1985,7 +1999,7 @@
       context: "Le Pérou combine instabilité politique chronique (6 présidents en 5 ans), méfiance envers les institutions, inégalités profondes et exposition aux théories complotistes sanitaires. L'essor des évangélistes et pentecôtistes, souvent vecteurs de théories anti-vaccins, amplifie le phénomène.",
       surveys: [
         { source: "Ipsos — Perils of Perception 2024", url: "https://www.ipsos.com/sites/default/files/ct/news/documents/2024-11/ipsos-the-perils-of-perception-2024.pdf", year: "2024", topic: "2 théories politiques — 30 pays (sept.–oct. 2024), échant. + urbain", data: [{ label: "« Grand remplacement » orchestré par les élites", val: 42 }, { label: "Élections non fiables / truquées", val: 50 }] },
-        { source: "PMC — Conspiracy Beliefs COVID Vaccines Latin America", url: "https://pmc.ncbi.nlm.nih.gov/articles/PMC9449951/", year: "2022", topic: "Croyances complotistes sur les vaccins COVID — 4 pays d'Amérique du Sud", data: [{ label: "Plus haut score complotisme vaccins (4 pays)", val: 41 }] }
+        { source: "PMC — Conspiracy Beliefs COVID Vaccines Latin America", url: "https://pmc.ncbi.nlm.nih.gov/articles/PMC9449951/", year: "2022", topic: "Croyances complotistes sur les vaccins COVID — 4 pays d'Amérique du Sud", data: [{ label: "Plus haut score complotisme vaccins (4 pays)", val: 41 }] },
       ]
     },
     "CO": {
@@ -1995,7 +2009,7 @@
       context: "La Colombie présente un environnement informationnel fortement pollué, héritage de décennies de guerre civile, de propagande des FARC et des narcotrafiquants. Les théories complotistes y trouvent un terreau fertile dans la méfiance profonde envers toute forme d'autorité institutionnelle.",
       surveys: [
         { source: "Ipsos — Perils of Perception 2024", url: "https://www.ipsos.com/sites/default/files/ct/news/documents/2024-11/ipsos-the-perils-of-perception-2024.pdf", year: "2024", topic: "2 théories politiques — 30 pays (sept.–oct. 2024), échant. + urbain", data: [{ label: "« Grand remplacement » orchestré par les élites", val: 37 }, { label: "Élections non fiables / truquées", val: 41 }] },
-        { source: "OECD Truth Quest — LatAm Journalism Review", url: "https://latamjournalismreview.org/articles/brazil-and-colombia-rank-lowest-in-identifying-false-content-online-fact-checkers-arent-surprised/", year: "2024", topic: "Capacité à identifier les fausses informations en ligne — 21 pays", data: [{ label: "Taux d'identification correct du faux (avant-dernier mondial)", val: 57 }] }
+        { source: "OECD Truth Quest — LatAm Journalism Review", url: "https://latamjournalismreview.org/articles/brazil-and-colombia-rank-lowest-in-identifying-false-content-online-fact-checkers-arent-surprised/", year: "2024", topic: "Capacité à identifier les fausses informations en ligne — 21 pays", data: [{ label: "Taux d'identification correct du faux (avant-dernier mondial)", val: 57 }] },
       ]
     },
     "NZ": {
@@ -2016,7 +2030,7 @@
       context: "La Corée du Sud présente un niveau modérément faible de croyances complotistes. Malgré des fake news très actives en période électorale et une forte polarisation politique, la confiance dans les institutions sanitaires et scientifiques reste robuste.",
       surveys: [
         { source: "Ipsos — Perils of Perception 2024", url: "https://www.ipsos.com/sites/default/files/ct/news/documents/2024-11/ipsos-the-perils-of-perception-2024.pdf", year: "2024", topic: "2 théories politiques — 30 pays (sept.–oct. 2024)", data: [{ label: "« Grand remplacement » orchestré par les élites", val: 23 }, { label: "Élections non fiables / truquées", val: 21 }] },
-        { source: "PMC / Int'l Journal of Environmental Research and Public Health", url: "https://pmc.ncbi.nlm.nih.gov/articles/PMC8624959/", year: "2021", topic: "Croyances complotistes COVID en Corée du Sud (n=1 525)", data: [{ label: "Croyances complotistes COVID mesurées", val: 28 }] }
+        { source: "PMC / Int'l Journal of Environmental Research and Public Health", url: "https://pmc.ncbi.nlm.nih.gov/articles/PMC8624959/", year: "2021", topic: "Croyances complotistes COVID en Corée du Sud (n=1 525)", data: [{ label: "Croyances complotistes COVID mesurées", val: 28 }] },
       ]
     },
 
@@ -2028,7 +2042,7 @@
       context: "La Chine présente un profil complotiste inversé : l'État censure les théories menaçant le pouvoir (Tiananmen, Xinjiang, origines COVID) mais fabrique et diffuse des contre-narratifs conspirationnistes anti-occidentaux via les médias d'État. Les sondages sous-estiment probablement la réalité en raison de l'autocensure des répondants.",
       surveys: [
         { source: "PLOS Global Public Health — Étude US/Chine comparée", url: "https://journals.plos.org/globalpublichealth/article?id=10.1371/journal.pgph.0005939", year: "2023", topic: "Fausses croyances COVID — comparaison US (n=454) vs Chine (n=456)", data: [{ label: "Fausses croyances COVID (items endossés)", val: 21 }, { label: "'Virus fabriqué par l'homme'", val: 21 }, { label: "'Armée US a apporté le COVID en Chine'", val: 24 }] },
-        { source: "PMC — Pandemic Nationalism & COVID conspiracy beliefs in China", url: "https://pmc.ncbi.nlm.nih.gov/articles/PMC9904989/", year: "2023", topic: "Médias d'État et croyances complotistes nationalistes (n=745)", data: [{ label: "Corrélation médias d'État / complotisme anti-US", val: 38 }] }
+        { source: "PMC — Pandemic Nationalism & COVID conspiracy beliefs in China", url: "https://pmc.ncbi.nlm.nih.gov/articles/PMC9904989/", year: "2023", topic: "Médias d'État et croyances complotistes nationalistes (n=745)", data: [{ label: "Corrélation médias d'État / complotisme anti-US", val: 38 }] },
       ]
     },
 
@@ -2039,8 +2053,8 @@
       scoreDetail: "<strong>Pourquoi D ?</strong> La seule donnée quantitative disponible (53% sur l'origine de Daech) date de 2016 et porte sur une théorie géopolitique spécifique. Le contexte politique actuel — avec un président qui gouverne explicitement par le complotisme (Grand Remplacement, 'complot contre la démocratie') — suggère que le niveau réel est élevé. Grade D conservateur en l'absence de sondage général récent.",
       context: "La Tunisie post-révolution a vu fleurir les théories du complot sur les réseaux sociaux. Le président Kaïs Saïed utilise le conspirationnisme comme mode de gouvernance depuis 2021, amplifiant des théories sur le Grand Remplacement, les complots économiques étrangers et les 'traîtres' intérieurs. Données limitées à 2016.",
       surveys: [
+        { source: "Fondation Jean-Jaurès — Complotisme et gouvernance Saïed", url: "https://www.jean-jaures.org/publication/tunisie-le-complotisme-cle-de-voute-de-la-gouvernance-de-kais-saied/", year: "2023", topic: "Analyse du rôle du complotisme dans la gouvernance tunisienne", data: [{ label: "Complotisme institutionnalisé (analyse qualitative)", val: null }] },
         { source: "Sigma Conseil / Konrad Adenauer Stiftung — Maghreb & Égypte", url: "https://www.lecourrierdelatlas.com/tunisie-sondage-que-pensent-les-tunisiens-de-la-laicite-et-des-theories-de-la-conspiration-4987/", year: "2016", topic: "Théories du complot au Maghreb — Tunisie (n=1 000)", data: [{ label: "'Les USA sont derrière la création de Daech'", val: 53 }] },
-        { source: "Fondation Jean-Jaurès — Complotisme et gouvernance Saïed", url: "https://www.jean-jaures.org/publication/tunisie-le-complotisme-cle-de-voute-de-la-gouvernance-de-kais-saied/", year: "2023", topic: "Analyse du rôle du complotisme dans la gouvernance tunisienne", data: [{ label: "Complotisme institutionnalisé (analyse qualitative)", val: null }] }
       ]
     },
     "MA": {
@@ -2050,8 +2064,8 @@
       context: "Le Maroc présente relativement moins de défiance anti-occidentale que ses voisins algérien et tunisien selon les données disponibles. Les relations diplomatiques avec les USA (reconnaissance du Sahara occidental en 2020) et une monarchie stable expliquent partiellement ce différentiel. Données très limitées.",
       surveys: [
         { source: "Stockemer & Bordeleau — HKS Misinformation Review", url: "https://misinforeview.hks.harvard.edu/article/understanding-climate-change-conspiracy-beliefs-a-comparative-outlook/", year: "2023", topic: "« Le changement climatique est un canular » — 8 pays (déc. 2022–jan. 2023)", data: [{ label: "Le changement climatique est un canular", val: 14 }] },
+        { source: "Arab Barometer Wave VII", url: "https://www.arabbarometer.org/surveys/arab-barometer-wave-vii/", year: "2022", topic: "Confiance institutionnelle et attitudes géopolitiques — 12 pays MENA", data: [{ label: "Favorabilité envers les États-Unis", val: 69 }] },
         { source: "Sigma Conseil / Konrad Adenauer Stiftung — Maghreb & Égypte", url: "https://www.lecourrierdelatlas.com/tunisie-sondage-que-pensent-les-tunisiens-de-la-laicite-et-des-theories-de-la-conspiration-4987/", year: "2016", topic: "Théories du complot au Maghreb — Maroc", data: [{ label: "'Les USA sont derrière le terrorisme dans la région'", val: 37 }] },
-        { source: "Arab Barometer Wave VII", url: "https://www.arabbarometer.org/surveys/arab-barometer-wave-vii/", year: "2022", topic: "Confiance institutionnelle et attitudes géopolitiques — 12 pays MENA", data: [{ label: "Favorabilité envers les États-Unis", val: 69 }] }
       ]
     },
     "DZ": {
@@ -2060,9 +2074,9 @@
       scoreDetail: "<strong>Pourquoi D ?</strong> L'Algérie combine plusieurs facteurs de risque : 48% sur la théorie anti-US testée, une forte exposition aux médias russes (vecteurs de complotisme pro-Kremlin), une défiance marquée envers les institutions occidentales, et un contexte post-Hirak où la méfiance politique reste élevée. Grade D justifié par la convergence de ces indicateurs malgré l'absence de sondage direct récent.",
       context: "L'Algérie présente un terrain particulièrement favorable aux récits complotistes anti-occidentaux : histoire coloniale, guerre d'indépendance, orientation géopolitique vers la Russie et la Chine. Les médias d'État russes y ont une forte audience francophone. Données basées sur une théorie spécifique (2016) et des indicateurs indirects.",
       surveys: [
-        { source: "Sigma Conseil / Konrad Adenauer Stiftung — Maghreb & Égypte", url: "https://www.lecourrierdelatlas.com/tunisie-sondage-que-pensent-les-lunisiens-de-la-laicite-et-des-theories-de-la-conspiration-4987/", year: "2016", topic: "Théories du complot au Maghreb — Algérie", data: [{ label: "'Les USA sont derrière le terrorisme dans la région'", val: 48 }] },
         { source: "Arab Barometer Wave VII", url: "https://www.arabbarometer.org/surveys/arab-barometer-wave-vii/", year: "2022", topic: "Confiance institutionnelle — 12 pays MENA", data: [{ label: "Favorabilité envers les États-Unis", val: 47 }, { label: "Favorabilité envers la Chine", val: 67 }] },
-        { source: "IRSEM — Pénétration des médias russes en Afrique francophone", url: "https://www.irsem.fr/storage/file_manager_files/2025/03/rp-irsem-no66-2019.pdf", year: "2019", topic: "Influence informationnelle russe au Maghreb et en Afrique sub-saharienne", data: [{ label: "Nouveaux abonnés RT Facebook (campagne)", val: 30 }] }
+        { source: "IRSEM — Pénétration des médias russes en Afrique francophone", url: "https://www.irsem.fr/storage/file_manager_files/2025/03/rp-irsem-no66-2019.pdf", year: "2019", topic: "Influence informationnelle russe au Maghreb et en Afrique sub-saharienne", data: [{ label: "Nouveaux abonnés RT Facebook (campagne)", val: 30 }] },
+        { source: "Sigma Conseil / Konrad Adenauer Stiftung — Maghreb & Égypte", url: "https://www.lecourrierdelatlas.com/tunisie-sondage-que-pensent-les-lunisiens-de-la-laicite-et-des-theories-de-la-conspiration-4987/", year: "2016", topic: "Théories du complot au Maghreb — Algérie", data: [{ label: "'Les USA sont derrière le terrorisme dans la région'", val: 48 }] },
       ]
     },
 
@@ -2073,8 +2087,8 @@
       scoreDetail: "<strong>Pourquoi D et non E ?</strong> Les données disponibles portent principalement sur des théories à dimension scientifique (COVID, vaccins, big pharma) plutôt que sur un spectre large de complotisme politique. Bien que les chiffres soient parmi les plus élevés d'Europe pour ces théories spécifiques, un grade E nécessiterait des données sur les théories institutionnelles et politiques comparables à celles mesurées dans les pays grade E (Turquie, Nigéria, Pakistan). Les indicateurs disponibles justifient clairement un D.",
       context: "Chypre affiche l'un des niveaux de méfiance envers la science les plus élevés d'Europe. Selon le Spécial Eurobaromètre 2021, <strong>74% des Chypriotes pensent que les gouvernements produisent des virus pour contrôler la population</strong> — 2e rang UE. 71% ne font plus confiance aux scientifiques (1er rang UE). Ces chiffres reflètent une défiance institutionnelle profonde amplifiée par les crises financières et politiques qu'a traversées l'île.",
       surveys: [
+        { source: "Flash Eurobaromètre 522 — Démocratie & Désinformation", url: "https://www.ipsos.com/sites/default/files/ct/news/documents/2023-12/Democracy_fl_522_report_en.pdf", year: "2023", topic: "Exposition à la désinformation et confiance — 27 pays UE", data: [{ label: "Exposition à la désinformation politique en ligne (parmi les 5 pays les plus élevés)", val: 42 }] },
         { source: "Spécial Eurobaromètre 516 — Sciences & Technologies (Commission européenne)", url: "https://europa.eu/eurobarometer/surveys/detail/2237", year: "2021", topic: "Attitudes envers la science et théories complotistes — 27 pays UE", data: [{ label: "Virus produits en labo par des gouvernements pour contrôler la population", val: 74 }, { label: "Ne peut plus faire confiance aux scientifiques (1er rang UE)", val: 71 }, { label: "Big pharma cache un remède contre le cancer", val: 63 }] },
-        { source: "Flash Eurobaromètre 522 — Démocratie & Désinformation", url: "https://www.ipsos.com/sites/default/files/ct/news/documents/2023-12/Democracy_fl_522_report_en.pdf", year: "2023", topic: "Exposition à la désinformation et confiance — 27 pays UE", data: [{ label: "Exposition à la désinformation politique en ligne (parmi les 5 pays les plus élevés)", val: 42 }] }
       ]
     },
     "MT": {
@@ -2083,8 +2097,8 @@
       scoreDetail: "<strong>Pourquoi C et non D ?</strong> Les chiffres de Malte (36% et 41%) sont significatifs mais nettement inférieurs à ceux des pays grade D (Chypre : 74%, 63% ; Bulgarie : 75%). Malte se situe dans la fourchette intermédiaire des pays UE, avec des niveaux d'exposition élevés à la désinformation mais une adhésion aux théories plus modérée. Grade C reflète ce positionnement central.",
       context: "Malte présente un profil informationnel préoccupant malgré un niveau global modéré. <strong>75% des Maltais déclarent avoir été exposés à de la désinformation politique en ligne</strong> — 3e rang en Europe (Eurobaromètre 2023). L'adhésion aux théories complotistes médicales est supérieure à la moyenne européenne, notamment sur les vaccins et l'industrie pharmaceutique.",
       surveys: [
+        { source: "Flash Eurobaromètre 522 — Démocratie & Désinformation", url: "https://www.ipsos.com/sites/default/files/ct/news/documents/2023-12/Democracy_fl_522_report_en.pdf", year: "2023", topic: "Exposition à la désinformation politique en ligne — 27 pays UE", data: [{ label: "Exposés à la désinformation politique en ligne (3e rang UE)", val: 75 }] },
         { source: "Spécial Eurobaromètre 516 — Sciences & Technologies (Commission européenne)", url: "https://europa.eu/eurobarometer/surveys/detail/2237", year: "2021", topic: "Attitudes envers la science et théories complotistes — 27 pays UE", data: [{ label: "Virus produits en labo par des gouvernements", val: 36 }, { label: "Big pharma cache un remède contre le cancer", val: 41 }, { label: "Antibiotiques efficaces contre virus ET bactéries (erreur scientifique)", val: 38 }] },
-        { source: "Flash Eurobaromètre 522 — Démocratie & Désinformation", url: "https://www.ipsos.com/sites/default/files/ct/news/documents/2023-12/Democracy_fl_522_report_en.pdf", year: "2023", topic: "Exposition à la désinformation politique en ligne — 27 pays UE", data: [{ label: "Exposés à la désinformation politique en ligne (3e rang UE)", val: 75 }] }
       ]
     },
     "LU": {
@@ -2093,8 +2107,8 @@
       scoreDetail: "<strong>Pourquoi B ?</strong> En l'absence de sondage national direct sur les théories complotistes au Luxembourg, le grade B repose sur des indicateurs indirects solides : très haute littératie scientifique (top 3 UE), confiance institutionnelle élevée (petite démocratie stable, État providence fort) et exposition à la désinformation modérée. Le profil socio-démographique du Luxembourg (forte éducation, revenu élevé, multilinguisme) est proche des pays scandinaves, généralement en B.",
       context: "Le Luxembourg est l'un des pays de l'Union européenne les plus résilients aux théories complotistes selon les indicateurs disponibles. Sa haute littératie scientifique (<strong>top 3 UE</strong> selon l'Eurobaromètre 2021) et sa forte confiance institutionnelle le positionnent parmi les pays les moins vulnérables. <strong>Données directes limitées</strong> — grade établi par indicateurs proxy.",
       surveys: [
+        { source: "EDMO BELUX — Paysage de la désinformation au Luxembourg", url: "https://belux.edmo.eu/the-disinformation-landscape-in-luxembourg/", year: "2023", topic: "Analyse du paysage infodémique — Luxembourg", data: [{ label: "Exposition perçue à la désinformation (niveau modéré)", val: 45 }] },
         { source: "Spécial Eurobaromètre 516 — Sciences & Technologies (Commission européenne)", url: "https://europa.eu/eurobarometer/surveys/detail/2237", year: "2021", topic: "Littératie scientifique et attitudes — 27 pays UE", data: [{ label: "≥8 réponses correctes sur questions scientifiques (top 3 UE)", val: 44 }, { label: "Confiance dans les scientifiques (niveau élevé)", val: 78 }] },
-        { source: "EDMO BELUX — Paysage de la désinformation au Luxembourg", url: "https://belux.edmo.eu/the-disinformation-landscape-in-luxembourg/", year: "2023", topic: "Analyse du paysage infodémique — Luxembourg", data: [{ label: "Exposition perçue à la désinformation (niveau modéré)", val: 45 }] }
       ]
     }
   };
@@ -2331,6 +2345,12 @@
 
     const surveyCards = d.surveys.map(s => {
       const rows = s.data.map(r => {
+        if (typeof r.val !== 'number') {
+          return `<div class="data-row">
+            <div class="data-row-label" title="${r.label}">${r.label}</div>
+            <div class="data-row-qual-tag">Analyse qualitative</div>
+          </div>`;
+        }
         const pct = Math.min(100, r.val);
         const col = r.val >= 55 ? '#c0392b' : r.val >= 35 ? '#c2610c' : r.val >= 20 ? '#ca8a04' : '#4d9e38';
         return `<div class="data-row">
@@ -2369,7 +2389,7 @@
       <div class="cp-meta-row">
         <span class="cp-meta-chip">${d.surveys.length} source${d.surveys.length > 1 ? 's' : ''}</span>
         <span class="cp-meta-chip">${validSurveyRows.length} donnée${validSurveyRows.length > 1 ? 's' : ''} comparables</span>
-        <span class="cp-meta-chip">Dernière vague ${latestYear || 'N/D'}</span>
+        <span class="cp-meta-chip${latestYear && latestYear < 2022 ? ' cp-meta-chip--stale' : ''}">${latestYear && latestYear < 2022 ? '⚠ ' : ''}Dernière vague ${latestYear || 'N/D'}</span>
       </div>
 
       <div class="ns-block">
