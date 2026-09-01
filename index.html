@@ -1,23 +1,10 @@
-<!--
-   ______                            __
-  / ____/___  ____ ___  ____  __  __/ /____  _____
- / /   / __ \/ __ `__ \/ __ \/ / / / __/ _ \/ ___/
-/ /___/ /_/ / / / / / / /_/ / /_/ / /_/  __/ /
-\____/\____/_/ /_/ /_/ .___/\__,_/\__/\___/_/
-                    /_/
-        Created with Perplexity Computer
-        https://www.perplexity.ai/computer
--->
-<!-- Perplexity Computer Attribution — SEO Meta Tags -->
-<meta name="generator" content="Perplexity Computer">
-<meta name="author" content="Perplexity Computer">
-<meta property="og:see_also" content="https://www.perplexity.ai/computer">
-<link rel="author" href="https://www.perplexity.ai/computer">
 <!DOCTYPE html>
 <html lang="fr" data-theme="dark">
 <head>
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <meta name="author" content="Tristan">
+  <meta name="description" content="ComploScore : carte mondiale interactive de l'adhésion aux théories du complot, pays par pays, avec un grade A–E, les sondages sources et un indicateur de fiabilité.">
   <title>ComploScore — Carte mondiale des théories complotistes</title>
   <link rel="preconnect" href="https://fonts.googleapis.com">
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
@@ -671,6 +658,119 @@
     }
     .quick-grade.c-grade { color: #2a1f00; }
 
+    /* ── Ranking panel ── */
+    .ranking-panel { display: none; }
+    .ranking-panel.active { display: block; animation: panel-in 0.18s ease; }
+    .rank-header {
+      display: flex;
+      align-items: flex-start;
+      justify-content: space-between;
+      gap: 0.75rem;
+      margin-bottom: 0.9rem;
+      padding-bottom: 0.9rem;
+      border-bottom: 1px solid var(--border-subtle);
+    }
+    .rank-title {
+      font-family: var(--font-display);
+      font-size: 1.2rem;
+      font-weight: 700;
+      letter-spacing: -0.025em;
+      line-height: 1.1;
+    }
+    .rank-sub { font-size: 0.7rem; color: var(--text-muted); margin-top: 0.3rem; line-height: 1.45; }
+    .rank-back {
+      flex-shrink: 0;
+      background: transparent;
+      border: 1px solid var(--border);
+      color: var(--text);
+      border-radius: 999px;
+      padding: 0.4rem 0.7rem;
+      font-size: 0.68rem;
+      font-weight: 600;
+      font-family: var(--font-body);
+      cursor: pointer;
+    }
+    .rank-back:hover { border-color: var(--text-faint); background: var(--surface-2); }
+    .rank-group { margin-bottom: 0.9rem; }
+    .rank-group-label {
+      display: flex;
+      align-items: center;
+      gap: 0.5rem;
+      font-size: 0.62rem;
+      font-weight: 700;
+      letter-spacing: 0.1em;
+      text-transform: uppercase;
+      color: var(--text-faint);
+      margin-bottom: 0.45rem;
+    }
+    .rank-group-label::after { content: ''; flex: 1; height: 1px; background: var(--border-subtle); }
+    .rank-group-swatch {
+      width: 18px; height: 18px; border-radius: 5px;
+      display: flex; align-items: center; justify-content: center;
+      font-family: var(--font-display); font-weight: 800; font-size: 0.62rem; color: #fff;
+    }
+    .rank-group-swatch.c { color: #2a1f00; }
+    .rank-row {
+      display: flex;
+      align-items: center;
+      gap: 0.55rem;
+      width: 100%;
+      text-align: left;
+      background: var(--surface-2);
+      border: 1px solid var(--border-subtle);
+      border-radius: 10px;
+      padding: 0.5rem 0.65rem;
+      color: var(--text);
+      cursor: pointer;
+      margin-bottom: 0.3rem;
+      font-family: var(--font-body);
+    }
+    .rank-row:hover { border-color: var(--border); transform: translateY(-1px); }
+    .rank-flag { font-size: 1rem; flex-shrink: 0; }
+    .rank-name { flex: 1; min-width: 0; font-size: 0.74rem; font-weight: 600; white-space: nowrap; overflow: hidden; text-overflow: ellipsis; }
+    .rank-year {
+      font-size: 0.6rem;
+      color: var(--text-faint);
+      background: var(--border);
+      padding: 0.1rem 0.4rem;
+      border-radius: 4px;
+      white-space: nowrap;
+      flex-shrink: 0;
+      font-weight: 500;
+    }
+    .rank-year.stale { background: rgba(194,97,12,.14); color: #c2610c; font-weight: 700; }
+    .rank-conf { width: 8px; height: 8px; border-radius: 50%; flex-shrink: 0; }
+    .conf-dot { width: 8px; height: 8px; border-radius: 50%; flex-shrink: 0; }
+
+    /* ── Method panel ── */
+    .method-panel p { font-size: 0.76rem; line-height: 1.6; color: var(--text); margin-bottom: 0.7rem; }
+    .method-panel h4 { font-family: var(--font-display); font-size: 0.85rem; font-weight: 700; margin: 1rem 0 0.45rem; letter-spacing: -0.01em; }
+    .method-panel ul { margin: 0 0 0.7rem 1.1rem; font-size: 0.74rem; line-height: 1.55; color: var(--text-muted); }
+    .method-panel li { margin-bottom: 0.3rem; }
+    .method-panel li strong { color: var(--text); }
+    .grade-scale { display: grid; gap: 0.4rem; margin: 0.5rem 0 0.8rem; }
+    .grade-scale-row { display: flex; gap: 0.6rem; align-items: flex-start; background: var(--surface-2); border: 1px solid var(--border-subtle); border-radius: 10px; padding: 0.5rem 0.65rem; }
+    .grade-scale-row .sw { width: 26px; height: 26px; border-radius: 6px; display: flex; align-items: center; justify-content: center; font-family: var(--font-display); font-weight: 800; color: #fff; flex-shrink: 0; }
+    .grade-scale-row .sw.c { color: #2a1f00; }
+    .grade-scale-row .t { font-size: 0.7rem; line-height: 1.45; color: var(--text-muted); }
+    .grade-scale-row .t strong { color: var(--text); }
+    .method-callout { background: rgba(245,158,11,.08); border: 1px solid rgba(245,158,11,.3); border-radius: 10px; padding: 0.65rem 0.8rem; font-size: 0.72rem; line-height: 1.55; color: var(--text); margin: 0.6rem 0 0.9rem; }
+    .conf-legend { display: grid; gap: 0.35rem; margin: 0.4rem 0 0.8rem; }
+    .conf-legend div { display: flex; align-items: center; gap: 0.5rem; font-size: 0.72rem; color: var(--text-muted); }
+    .conf-legend strong { color: var(--text); }
+    .ns-method-link { margin-top: 0.5rem; font-size: 0.66rem; }
+    .ns-method-link button, .footer-link-btn { background: none; border: none; padding: 0; color: var(--teal); font-family: var(--font-body); font-size: inherit; cursor: pointer; text-decoration: underline; text-decoration-style: dotted; }
+    .footer-link-btn { color: var(--text-muted); }
+    .footer-link-btn:hover, .ns-method-link button:hover { opacity: 0.8; }
+
+    /* ── Legend as grade filter ── */
+    .legend-item[data-grade-filter] { cursor: pointer; border-radius: 6px; padding: 0.15rem 0.3rem; transition: background 120ms, opacity 120ms; }
+    .legend-item[data-grade-filter]:hover { background: var(--surface); }
+    .legend.has-filter .legend-item[data-grade-filter] { opacity: 0.4; }
+    .legend.has-filter .legend-item.is-active { opacity: 1; background: var(--surface); box-shadow: 0 0 0 1px var(--border); }
+    .legend-hint { font-size: 0.58rem; color: var(--text-faint); margin-top: 0.4rem; }
+    .ns-map-badge.is-filtered { opacity: 0.12; filter: saturate(0.4); }
+
     /* ── Country panel ── */
     .country-panel { display: none; }
     .country-panel.active { display: block; }
@@ -1249,14 +1349,14 @@
 
       <div class="header-meta">
         <div class="header-tagline">Carte mondiale des théories complotistes</div>
-        <div class="header-sub">Nutri-Score A–E · Sondages 2018–2025 · <span data-country-count-label>67 pays</span></div>
+        <div class="header-sub">Nutri-Score A–E · Sondages 2017–2026 · <span data-country-count-label>71 pays</span></div>
       </div>
     </div>
 
     <div class="header-right">
       <div class="stat-chip">
         <div class="stat-chip-dot"></div>
-        <span data-country-count-label>67 pays couverts</span>
+        <span data-country-count-label>71 pays couverts</span>
       </div>
       <button class="theme-btn" data-theme-toggle aria-label="Changer le thème">
         <svg width="13" height="13" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M21 12.79A9 9 0 1 1 11.21 3 7 7 0 0 0 21 12.79z"/></svg>
@@ -1275,11 +1375,12 @@
         <p class="map-intro-body">Chaque pays combine un grade A-E, un contexte synthétique et des sondages cliquables. Commence par un pays fort, puis compare avec un profil plus bas.</p>
         <div class="map-intro-actions">
           <button class="intro-btn intro-btn-primary" data-jump-country="US">Voir un cas fort</button>
+          <button class="intro-btn intro-btn-secondary" data-open-ranking>Voir le classement</button>
           <button class="intro-btn intro-btn-secondary" data-jump-method>Comprendre la méthode</button>
         </div>
         <div class="map-intro-meta">
-          <span class="map-intro-chip"><span data-country-count-label>67 pays couverts</span></span>
-          <span class="map-intro-chip">Sondages 2018-2025</span>
+          <span class="map-intro-chip"><span data-country-count-label>71 pays couverts</span></span>
+          <span class="map-intro-chip">Sondages 2017-2026</span>
           <span class="map-intro-chip">Lecture comparative</span>
         </div>
       </div>
@@ -1312,6 +1413,8 @@
             <div class="placeholder-actions">
               <button class="placeholder-btn" data-jump-country="US">Commencer par les États-Unis</button>
               <button class="placeholder-btn" data-jump-country="FR">Voir la France</button>
+              <button class="placeholder-btn" data-open-ranking>Classement des <span data-country-count-label>71 pays</span></button>
+              <button class="placeholder-btn" data-jump-method>Comprendre les grades</button>
             </div>
           </div>
           <div class="placeholder-card">
@@ -1352,19 +1455,26 @@
 
         <!-- Country panel -->
         <div class="country-panel" id="country-panel"></div>
+
+        <!-- Ranking panel -->
+        <div class="ranking-panel" id="ranking-panel"></div>
+
+        <!-- Method panel -->
+        <div class="ranking-panel method-panel" id="method-panel"></div>
       </div>
 
       <!-- Legend -->
       <div class="legend">
         <div class="legend-label">Nutri-Score complotisme</div>
         <div class="legend-row">
-          <div class="legend-item"><div class="legend-swatch" style="background:#15803d">A</div>Très faible</div>
-          <div class="legend-item"><div class="legend-swatch" style="background:#4d9e38">B</div>Faible</div>
-          <div class="legend-item"><div class="legend-swatch c" style="background:#ca8a04">C</div>Modéré</div>
-          <div class="legend-item"><div class="legend-swatch" style="background:#c2610c">D</div>Élevé</div>
-          <div class="legend-item"><div class="legend-swatch" style="background:#c0392b">E</div>Très élevé</div>
+          <div class="legend-item" data-grade-filter="A" role="button" tabindex="0" title="Filtrer la carte sur le grade A"><div class="legend-swatch" style="background:#15803d">A</div>Très faible</div>
+          <div class="legend-item" data-grade-filter="B" role="button" tabindex="0" title="Filtrer la carte sur le grade B"><div class="legend-swatch" style="background:#4d9e38">B</div>Faible</div>
+          <div class="legend-item" data-grade-filter="C" role="button" tabindex="0" title="Filtrer la carte sur le grade C"><div class="legend-swatch c" style="background:#ca8a04">C</div>Modéré</div>
+          <div class="legend-item" data-grade-filter="D" role="button" tabindex="0" title="Filtrer la carte sur le grade D"><div class="legend-swatch" style="background:#c2610c">D</div>Élevé</div>
+          <div class="legend-item" data-grade-filter="E" role="button" tabindex="0" title="Filtrer la carte sur le grade E"><div class="legend-swatch" style="background:#c0392b">E</div>Très élevé</div>
           <div class="legend-item"><div class="legend-swatch" style="background:var(--no-data);opacity:.6">—</div>N/D</div>
         </div>
+        <div class="legend-hint">Cliquer sur un grade pour ne voir que ces pays · re-cliquer pour tout afficher</div>
       </div>
     </div>
   </div>
@@ -1408,6 +1518,7 @@
       scoreDetail: "<strong>Pourquoi E ?</strong> Les États-Unis cumulent : des niveaux record sur les théories institutionnelles (74% pensent que les médias obéissent à des élites), des croyances QAnon enracinées (PRRI 2023), et une polarisation politique extrême.",
       context: "Les États-Unis enregistrent des niveaux record de complotisme, renforcés par la méfiance institutionnelle. <strong>75% croient que les médias obéissent à des élites</strong>, et 60% pensent que des agents gouvernementaux ont fomenté le 6 janvier 2021.",
       surveys: [
+        { source: "Carsey School (UNH) — POLES 2025", url: "https://carsey.unh.edu/publication/can-government-control-hurricanes-new-survey-results-conspiracies-science", year: "2025", topic: "14 affirmations mêlant complots et faits scientifiques (n>1 000, 2025)", data: [{ label: "Gouvernements cachent les preuves sur les OVNI", val: 38 }] },
         { source: "Change Research", url: "https://changeresearch.com/beyond-the-fringe/", year: "2025", topic: "Complotisme institutionnel (1 590 électeurs inscrits)", data: [{ label: "Médias contrôlés par élites", val: 74 }, { label: "Epstein assassiné pour taire", val: 75 }, { label: "Pharma cache des remèdes", val: 72 }, { label: "COVID créé en labo", val: 56 }, { label: "Fraude électorale 2020", val: 42 }, { label: "Alunissage truqué", val: 22 }] },
         { source: "Ipsos — Perils of Perception 2024", url: "https://www.ipsos.com/sites/default/files/ct/news/documents/2024-11/ipsos-the-perils-of-perception-2024.pdf", year: "2024", topic: "2 théories politiques — 30 pays (sept.–oct. 2024)", data: [{ label: "« Grand remplacement » orchestré par les élites", val: 27 }, { label: "Élections non fiables / truquées", val: 30 }] },
         { source: "PRRI (Public Religion Research Inst.)", url: "https://www.prri.org/research/qanon-conspiracy-american-politics-october-2020/", year: "2023", topic: "Croyances de type QAnon", data: [{ label: "Élite pédosataniste (QAnon)", val: 23 }, { label: "Tempête imminente (QAnon)", val: 27 }, { label: "Biden élu illégitimement", val: 38 }] },
@@ -1420,6 +1531,8 @@
       scoreDetail: "<strong>Pourquoi C ?</strong> Les sondages convergent vers un niveau modéré. Les théories liées aux vaccins et à l'immigration progressent, particulièrement dans les Länder est et parmi les électeurs AfD. Harvard HKS 2024 donne 55% ouvert à ≥1 théorie sur 10.",
       context: "L'Allemagne présente un niveau modéré d'adhésion complotiste. La méfiance envers les vaccins et les théories sur les élites restent significatives, notamment dans les Länder de l'Est et parmi les électeurs AfD.",
       surveys: [
+        { source: "Special Eurobarometer 557 — Science & technologie (Commission européenne)", url: "https://europa.eu/eurobarometer/surveys/detail/3227", year: "2024", topic: "Théories complotistes scientifiques — UE27 + Balkans + Turquie + RU (terrain sept.–oct. 2024, n≈37 000)", data: [{ label: "Virus créés en labo par les gouvernements", val: 17 }] },
+        { source: "Bertelsmann Stiftung — Religionsmonitor", url: "https://www.bertelsmann-stiftung.de/de/unsere-projekte/religionsmonitor/projektnachrichten/verschwoerungsglaube-ruecklaeufig-aber-risiken-bleiben-bestehen-1", year: "2024", topic: "Croyance complotiste en Allemagne (terrain sept. 2024, comparaison 2022)", data: [{ label: "Organisations secrètes influencent la politique", val: 28 }, { label: "Événements sans lien = activités secrètes", val: 19 }, { label: "L'État surveille tous les citoyens", val: 17 }] },
         { source: "Ipsos — Perils of Perception 2024", url: "https://www.ipsos.com/sites/default/files/ct/news/documents/2024-11/ipsos-the-perils-of-perception-2024.pdf", year: "2024", topic: "2 théories politiques — 30 pays (sept.–oct. 2024)", data: [{ label: "« Grand remplacement » orchestré par les élites", val: 22 }, { label: "Élections non fiables / truquées", val: 17 }] },
         { source: "Harvard / HKS Misinformation Review", url: "https://misinforeview.hks.harvard.edu/article/the-impact-of-conspiracy-belief-on-democratic-culture-evidence-from-europe/", year: "2024", topic: "Théories immigr. & COVID (10 pays UE, automne 2022, n=20 449)", data: [{ label: "Ouvert à ≥1 théorie (6-10/10)", val: 55 }] },
         { source: "Ipsos / Entretiens de Royaumont", url: "https://www.ipsos.com/en-us/perils-perception-prejudice-and-conspiracy-theories", year: "2023", topic: "3 théories complotistes testées", data: [{ label: "Gouvernement ukrainien néo-nazi", val: 24 }, { label: "Grand Remplacement", val: 15 }, { label: "Alunissage mis en scène", val: 24 }] },
@@ -1440,11 +1553,12 @@
       ]
     },
     "GR": {
-      name: "Grèce", flag: "🇬🇷", nutriscore: "D", levelColor: "#c2610c",
-      scoreMeta: "Harvard HKS 2024 positionne la Grèce parmi les 4 pays avec les niveaux les plus élevés d'Europe (estimé 65%). YouGov 2020 donne 56% sur « monde gouverné en secret ».",
-      scoreDetail: "<strong>Pourquoi D ?</strong> La Grèce est le pays européen avec les taux d'adhésion les plus élevés parmi les démocraties occidentales. La crise économique de 2010–2018 a profondément érodé la confiance institutionnelle.",
+      name: "Grèce", flag: "🇬🇷", nutriscore: "E", levelColor: "#c0392b",
+      scoreMeta: "Special Eurobarometer 557 (terrain sept.–oct. 2024) : <strong>56% des Grecs croient que les virus sont créés en labo par les gouvernements — 3e rang UE27</strong>. Harvard HKS 2024 positionne la Grèce parmi les 4 pays les plus élevés d'Europe (estimé 65%). YouGov 2020 : 56% sur « monde gouverné en secret ». Grade E.",
+      scoreDetail: "<strong>Pourquoi E ?</strong> La Grèce cumule le 3e rang de l'UE27 sur la théorie des virus de laboratoire (EB 557, 2024), le top 4 européen selon Harvard HKS et 56% sur le « monde gouverné en secret ». Ce niveau, équivalent à la Hongrie (58%) classée E, justifie le relèvement de D à E. La crise économique de 2010–2018 a profondément érodé la confiance institutionnelle.",
       context: "La Grèce est le pays européen avec les taux de croyance aux théories complotistes les plus élevés. La crise économique de 2010-2018 et la méfiance structurelle envers les institutions ont fortement favorisé la propagation des théories du complot.",
       surveys: [
+        { source: "Special Eurobarometer 557 — Science & technologie (Commission européenne)", url: "https://europa.eu/eurobarometer/surveys/detail/3227", year: "2024", topic: "Théories complotistes scientifiques — UE27 + Balkans + Turquie + RU (terrain sept.–oct. 2024, n≈37 000)", data: [{ label: "Virus créés en labo par les gouvernements", val: 56 }] },
         { source: "Harvard / HKS Misinformation Review", url: "https://misinforeview.hks.harvard.edu/article/the-impact-of-conspiracy-belief-on-democratic-culture-evidence-from-europe/", year: "2024", topic: "Complotisme immigr. & COVID (CHES survey, automne 2022)", data: [{ label: "Parmi les + élevés d'Europe", val: 65 }] },
         { source: "YouGov-Cambridge Globalism", url: "https://yougov.com/en-gb/articles/33746-global-where-believe-conspiracy-theories-true", year: "2020", topic: "Théories spécifiques", data: [{ label: "Monde gouverné en secret", val: 56 }, { label: "Vaccins : effets cachés", val: 39 }, { label: "AIDS créé délibérément", val: 24 }, { label: "Alunissage truqué", val: 22 }, { label: "Changement climatique : canular", val: 22 }] },
       ]
@@ -1455,6 +1569,8 @@
       scoreDetail: "<strong>Pourquoi E ?</strong> La Hongrie cumule le score le plus élevé des 30 pays Ipsos 2024 sur les deux items politiques, une position de tête en Europe (Harvard HKS) et un gouvernement qui diffuse lui-même des narratifs complotistes (contre Soros, les « élites mondialistes »). Cette convergence justifie le relèvement de D à E.",
       context: "La Hongrie enregistre des niveaux très élevés, corrélés à la rhétorique officielle du gouvernement Orbán contre les « élites mondialistes ». Les théories sur les extra-terrestres, le Grand Remplacement et le contrôle secret du monde y sont particulièrement répandues.",
       surveys: [
+        { source: "Special Eurobarometer 557 — Science & technologie (Commission européenne)", url: "https://europa.eu/eurobarometer/surveys/detail/3227", year: "2024", topic: "Théories complotistes scientifiques — UE27 + Balkans + Turquie + RU (terrain sept.–oct. 2024, n≈37 000)", data: [{ label: "Virus créés en labo par les gouvernements", val: 58 }] },
+        { source: "CEDMO / HDMO — Enquête comparative Europe centrale", url: "https://politicalcapital.hu/pc-admin/source/documents/HDMO-CEDMO-BROD_survey_2024_ENG.pdf", year: "2024", topic: "Théories complotistes COVID — pays de Visegrád (3 théories testées, 2024)", data: [{ label: "≥1 des 3 théories COVID jugée vraie", val: 56 }, { label: "Les 3 théories jugées vraies", val: 26 }] },
         { source: "Ipsos — Perils of Perception 2024", url: "https://www.ipsos.com/sites/default/files/ct/news/documents/2024-11/ipsos-the-perils-of-perception-2024.pdf", year: "2024", topic: "2 théories politiques — 30 pays (sept.–oct. 2024)", data: [{ label: "« Grand remplacement » orchestré par les élites", val: 42 }, { label: "Élections non fiables / truquées", val: 52 }] },
         { source: "Harvard / HKS Misinformation Review", url: "https://misinforeview.hks.harvard.edu/article/the-impact-of-conspiracy-belief-on-democratic-culture-evidence-from-europe/", year: "2024", topic: "Complotisme immigr. & COVID (automne 2022, n=20 449)", data: [{ label: "Parmi les 4 + élevés d'Europe", val: 68 }] },
         { source: "YouGov-Cambridge Globalism", url: "https://yougov.com/en-gb/articles/33746-global-where-believe-conspiracy-theories-true", year: "2020", topic: "Théories spécifiques", data: [{ label: "Contact aliens secret", val: 36 }, { label: "Alunissage truqué", val: 23 }, { label: "Changement climatique : canular", val: 22 }] },
@@ -1473,11 +1589,12 @@
       ]
     },
     "ES": {
-      name: "Espagne", flag: "🇪🇸", nutriscore: "C", levelColor: "#ca8a04",
-      scoreMeta: "Harvard HKS 2024 classe l'Espagne parmi les niveaux faibles-modérés d'Europe. YouGov 2020 donne 55% sur « monde gouverné en secret » mais 20–22% sur d'autres théories.",
-      scoreDetail: "<strong>Pourquoi C ?</strong> L'Espagne présente un profil hétérogène : forte adhésion aux théories de gouvernance secrète (55%), mais faible sur les théories les plus extrêmes. Harvard HKS la place dans les pays à niveau « plus faible » d'Europe.",
+      name: "Espagne", flag: "🇪🇸", nutriscore: "D", levelColor: "#c2610c",
+      scoreMeta: "Fundación BBVA (nov. 2025, n≈4 000) : <strong>50% pensent que l'industrie pharmaceutique cache les dangers des vaccins, 40% que les gouvernements créent des virus en labo</strong>, 35% qu'un remède anticancer est caché. YouGov 2020 : 55% « monde gouverné en secret ». Ipsos 2024 : 23–24% sur les items politiques. Grade D.",
+      scoreDetail: "<strong>Pourquoi D et non C ?</strong> Sur les théories politiques (Ipsos, Harvard HKS), l'Espagne reste modérée. Mais sur les théories scientifiques et sanitaires, la grande enquête BBVA 2025 mesure 35 à 50%, au-dessus des moyennes européennes (EB 557 : 34–35%), et YouGov donne 55% sur le « monde gouverné en secret ». Le D reflète ce profil contrasté : faible sur le complotisme politique, élevé sur le complotisme sanitaire.",
       context: "L'Espagne montre des taux élevés sur certaines théories (monde gouverné en secret) mais modérés sur d'autres. Le contexte de crise économique et la polarisation politique Vox/gauche favorisent une certaine perméabilité.",
       surveys: [
+        { source: "Fundación BBVA — Estudio de Cultura Científica en España", url: "https://www.fbbva.es/wp-content/uploads/2026/01/Estudio_FBBVA_Cultura_Cientifica_Espana.pdf", year: "2025", topic: "Théories complotistes scientifiques (terrain nov. 2025, n=2 014 + 2 042, publ. jan. 2026)", data: [{ label: "Pharma cache les dangers des vaccins", val: 50 }, { label: "Gouvernements créent des virus en labo", val: 40 }, { label: "Remède anticancer caché", val: 35 }, { label: "Vaccins causent l'autisme", val: 25 }, { label: "Visites extraterrestres cachées", val: 18 }, { label: "Négation du changement climatique", val: 15 }, { label: "Terre plate", val: 5 }] },
         { source: "Ipsos State of Democracy", url: "https://www.ipsos.com/en/the-state-of-democracy-2025", year: "2025", topic: "Confiance institutionnelle & complotisme (9 pays)", data: [{ label: "Méfiance envers institutions", val: 45 }] },
         { source: "Ipsos — Perils of Perception 2024", url: "https://www.ipsos.com/sites/default/files/ct/news/documents/2024-11/ipsos-the-perils-of-perception-2024.pdf", year: "2024", topic: "2 théories politiques — 30 pays (sept.–oct. 2024)", data: [{ label: "« Grand remplacement » orchestré par les élites", val: 23 }, { label: "Élections non fiables / truquées", val: 24 }] },
         { source: "Harvard / HKS Misinformation Review", url: "https://misinforeview.hks.harvard.edu/article/the-impact-of-conspiracy-belief-on-democratic-culture-evidence-from-europe/", year: "2024", topic: "Théories immigr. & COVID", data: [{ label: "Parmi les + faibles d'Europe", val: 42 }] },
@@ -1504,6 +1621,8 @@
       surveys: [
         { source: "REDACT Project — Univ. Manchester", url: "https://www.manchester.ac.uk/about/news/how-conspiracy-theories-go-mainstream-across-europe/", year: "2025", topic: "Complotisme grand public en Europe (UK, Allemagne, Balkans, Baltes, Slovaquie, Pologne)", data: [{ label: "Complotisme mainstream (Pologne)", val: 62 }, { label: "Confiance médias alternatifs", val: 54 }] },
         { source: "Ipsos State of Democracy", url: "https://www.ipsos.com/en/the-state-of-democracy-2025", year: "2025", topic: "Confiance institutionnelle & complotisme (9 pays)", data: [{ label: "Méfiance envers institutions", val: 55 }] },
+        { source: "Special Eurobarometer 557 — Science & technologie (Commission européenne)", url: "https://europa.eu/eurobarometer/surveys/detail/3227", year: "2024", topic: "Théories complotistes scientifiques — UE27 + Balkans + Turquie + RU (terrain sept.–oct. 2024, n≈37 000)", data: [{ label: "Virus créés en labo par les gouvernements", val: 50 }, { label: "Remède anticancer caché (intérêts commerciaux)", val: 45 }] },
+        { source: "CEDMO / HDMO — Enquête comparative Europe centrale", url: "https://politicalcapital.hu/pc-admin/source/documents/HDMO-CEDMO-BROD_survey_2024_ENG.pdf", year: "2024", topic: "Théories complotistes COVID — pays de Visegrád (3 théories testées, 2024)", data: [{ label: "≥1 des 3 théories COVID jugée vraie", val: 48 }, { label: "Les 3 théories jugées vraies", val: 21 }] },
         { source: "Ipsos — Perils of Perception 2024", url: "https://www.ipsos.com/sites/default/files/ct/news/documents/2024-11/ipsos-the-perils-of-perception-2024.pdf", year: "2024", topic: "2 théories politiques — 30 pays (sept.–oct. 2024)", data: [{ label: "« Grand remplacement » orchestré par les élites", val: 19 }, { label: "Élections non fiables / truquées", val: 16 }] },
         { source: "Harvard / HKS Misinformation Review", url: "https://misinforeview.hks.harvard.edu/article/the-impact-of-conspiracy-belief-on-democratic-culture-evidence-from-europe/", year: "2024", topic: "Complotisme COVID (au-dessus moy.)", data: [{ label: "Ouvert théories COVID", val: 58 }] },
         { source: "Ipsos / Entretiens de Royaumont", url: "https://www.ipsos.com/en-us/perils-perception-prejudice-and-conspiracy-theories", year: "2023", topic: "3 théories complotistes testées", data: [{ label: "Gouvernement ukrainien néo-nazi", val: 27 }, { label: "Grand Remplacement", val: 20 }, { label: "Alunissage mis en scène", val: 27 }] },
@@ -1564,14 +1683,16 @@
       ]
     },
     "JP": {
-      name: "Japon", flag: "🇯🇵", nutriscore: "A", levelColor: "#15803d",
-      scoreMeta: "Ipsos 2023 donne 10–11% sur 3 théories dures. YouGov 2022 : 4% « COVID est un mythe », 19% « monde gouverné en secret ». Le Japon est systématiquement le pays le plus bas.",
-      scoreDetail: "<strong>Pourquoi A ?</strong> Le Japon affiche le taux le plus bas parmi tous les pays testés. La culture du consensus, la confiance dans les experts et les institutions publiques expliquent cette faible perméabilité.",
+      name: "Japon", flag: "🇯🇵", nutriscore: "B", levelColor: "#4d9e38",
+      scoreMeta: "Enquêtes internationales : Ipsos 2023, 10–11% sur 3 théories dures ; YouGov 2022, 19% « monde gouverné en secret ». Mais les enquêtes nationales en japonais mesurent davantage : <strong>PLOS One 2024 (n=28 175, représentatif) : 24,4% adhèrent à ≥1 théorie COVID</strong> ; IUJ 2023 : 39% « élection US 2020 truquée », 27% « élites secrètes derrière les grands événements ». Grade B.",
+      scoreDetail: "<strong>Pourquoi B et non A ?</strong> Sur les enquêtes internationales, le Japon reste parmi les pays les plus bas. Mais les grandes enquêtes nationales mesurent 24 à 39% selon les items, un niveau incompatible avec le A de la Suède (9%) ou du Danemark. Le B reflète cet écart : faible perméabilité aux théories « dures » occidentales, sensibilité réelle aux narratifs domestiques et anti-étrangers. La culture du consensus et la confiance dans les experts restent des facteurs protecteurs.",
       context: "Le Japon affiche le taux le plus bas parmi tous les pays testés. La culture du consensus, la confiance dans les experts et les institutions publiques expliquent cette faible perméabilité.",
       surveys: [
         { source: "Ipsos — Perils of Perception 2024", url: "https://www.ipsos.com/sites/default/files/ct/news/documents/2024-11/ipsos-the-perils-of-perception-2024.pdf", year: "2024", topic: "2 théories politiques — 30 pays (sept.–oct. 2024)", data: [{ label: "« Grand remplacement » orchestré par les élites", val: 19 }, { label: "Élections non fiables / truquées", val: 16 }] },
+        { source: "Yamaguchi & Watanabe (IUJ) / Hata (Kyoto) — via Goethe-Institut", url: "https://www.goethe.de/ins/jp/en/kul/dis/fac/ctj.html", year: "2023", topic: "Théories complotistes au Japon — synthèse d'enquêtes nationales (2021–2023)", data: [{ label: "Élection US 2020 truquée", val: 39 }, { label: "USA dirigés par des réseaux pédocriminels (QAnon)", val: 29 }, { label: "Élites secrètes derrière les grands événements", val: 27 }] },
         { source: "Ipsos / Entretiens de Royaumont", url: "https://www.ipsos.com/en-us/perils-perception-prejudice-and-conspiracy-theories", year: "2023", topic: "3 théories complotistes testées", data: [{ label: "Gouvernement ukrainien néo-nazi", val: 10 }, { label: "Grand Remplacement", val: 11 }, { label: "Alunissage mis en scène", val: 10 }] },
         { source: "YouGov-Cambridge Globalism", url: "https://yougov.com/en-gb/articles/33746-global-where-believe-conspiracy-theories-true", year: "2022", topic: "Théories spécifiques", data: [{ label: "COVID est un mythe", val: 4 }, { label: "Monde gouverné en secret", val: 19 }] },
+        { source: "PLOS One — Enquête nationale représentative (n=28 175)", url: "https://journals.plos.org/plosone/article?id=10.1371%2Fjournal.pone.0310673", year: "2021", topic: "Croyances complotistes COVID au Japon (terrain sept.–oct. 2021, publ. 2024)", data: [{ label: "≥1 théorie complotiste COVID", val: 24 }, { label: "Confiance dans le gouvernement", val: 37 }] },
       ]
     },
     "DK": {
@@ -1591,15 +1712,17 @@
       context: "La République tchèque est l'un des foyers les plus actifs de désinformation en Europe. Les réseaux pro-russes y ont fortement influencé l'opinion, en particulier sur les théories liées à l'Ukraine et aux vaccins.",
       surveys: [
         { source: "REDACT Project — Univ. Manchester", url: "https://www.manchester.ac.uk/about/news/how-conspiracy-theories-go-mainstream-across-europe/", year: "2025", topic: "Complotisme grand public en Europe", data: [{ label: "Médias alternatifs complotistes", val: 58 }] },
+        { source: "CEDMO / HDMO — Enquête comparative Europe centrale", url: "https://politicalcapital.hu/pc-admin/source/documents/HDMO-CEDMO-BROD_survey_2024_ENG.pdf", year: "2024", topic: "Théories complotistes COVID — pays de Visegrád (3 théories testées, 2024)", data: [{ label: "≥1 des 3 théories COVID jugée vraie", val: 54 }, { label: "Les 3 théories jugées vraies", val: 24 }] },
         { source: "Harvard / HKS Misinformation Review", url: "https://misinforeview.hks.harvard.edu/article/the-impact-of-conspiracy-belief-on-democratic-culture-evidence-from-europe/", year: "2024", topic: "Parmi les plus élevés d'Europe (automne 2022, n=20 449)", data: [{ label: "Complotisme immigration (rang 1)", val: 72 }, { label: "Complotisme COVID (rang 1)", val: 69 }] },
       ]
     },
     "RU": {
-      name: "Russie", flag: "🇷🇺", nutriscore: "E", levelColor: "#c0392b",
-      scoreMeta: "Les données disponibles sont limitées. YouGov 2022 : 37% « Biden a volé l'élection ». Le complotisme en Russie est partiellement instrumentalisé par l'État (RT, Sputnik). Grade E par défaut.",
-      scoreDetail: "<strong>Pourquoi E ?</strong> En l'absence de sondages indépendants fiables, le grade E repose sur : propagande d'État massive, instrumentalisation officielle du complotisme géopolitique, et les quelques mesures disponibles.",
+      name: "Russie", flag: "🇷🇺", nutriscore: "D", levelColor: "#c2610c",
+      scoreMeta: "VCIOM (déc. 2025) : <strong>40% des Russes croient à l'existence d'un « gouvernement mondial secret »</strong> (37% en 2022, 67% en 2018), 46% refusent d'y croire. YouGov 2022 : 37% « Biden a volé l'élection ». Le complotisme en Russie est partiellement instrumentalisé par l'État (RT, Sputnik). Grade D.",
+      scoreDetail: "<strong>Pourquoi D et non E ?</strong> La seule mesure nationale récente (VCIOM 2025 : 40% « gouvernement mondial secret », en net recul depuis 67% en 2018) situe la Russie au niveau de pays classés D (France 32%, États-Unis 37%), loin des 56 à 78% de la Grèce, du Nigeria ou de la Thaïlande. L'ancien E reposait sur l'instrumentalisation d'État du complotisme, pas sur une mesure. Le D s'en tient aux données, avec une réserve : le VCIOM est un institut public, et aucun sondage indépendant récent n'existe.",
       context: "La Russie présente un niveau très élevé, en partie instrumentalisé par les médias d'État (RT, Sputnik) qui diffusent des théories complotistes comme outil géopolitique. La méfiance envers l'Occident est structurelle.",
       surveys: [
+        { source: "VCIOM (ВЦИОМ) — via The Moscow Times", url: "https://www.moscowtimes.ru/2025/12/03/vtsiom-40-rossiyan-veryat-v-tainoe-mirovoe-pravitelstvo-a181802", year: "2025", topic: "Croyance en un « gouvernement mondial secret » (déc. 2025 ; 37% en 2022, 67% en 2018)", data: [{ label: "Un gouvernement mondial secret existe", val: 40 }, { label: "Refusent d'y croire", val: 46 }] },
         { source: "YouGov-Cambridge Globalism", url: "https://yougov.com/en-gb/articles/33746-global-where-believe-conspiracy-theories-true", year: "2022", topic: "Complots politiques", data: [{ label: "Biden a volé l'élection 2020", val: 37 }] },
       ]
     },
@@ -1629,6 +1752,7 @@
       scoreDetail: "<strong>Pourquoi B ?</strong> L'Australie présente des niveaux relativement bas sur les théories dures. La pandémie a provoqué une hausse sur les théories anti-vaccins dans les milieux ruraux, mais les chiffres globaux restent contenus.",
       context: "L'Australie présente des niveaux relativement modérés. La pandémie de COVID-19 a entraîné une hausse des théories anti-vaccins, notamment dans les milieux ruraux et chez les électeurs du One Nation Party.",
       surveys: [
+        { source: "Macquarie University — Collabra: Psychology", url: "https://online.ucpress.edu/collabra/article/12/1/159253/217850/Do-People-Sincerely-Believe-Conspiracy-Theories", year: "2026", topic: "Sincérité des réponses complotistes (n=1 044, publ. 2026)", data: [{ label: "Théorie la plus crue (sur 6 testées)", val: 19 }, { label: "Élite pédosataniste contrôle gouv. & médias (QAnon)", val: 13 }, { label: "Théorie la moins crue (sur 6 testées)", val: 10 }] },
         { source: "Ipsos — Perils of Perception 2024", url: "https://www.ipsos.com/sites/default/files/ct/news/documents/2024-11/ipsos-the-perils-of-perception-2024.pdf", year: "2024", topic: "2 théories politiques — 30 pays (sept.–oct. 2024)", data: [{ label: "« Grand remplacement » orchestré par les élites", val: 16 }, { label: "Élections non fiables / truquées", val: 14 }] },
         { source: "Ipsos / Entretiens de Royaumont", url: "https://www.ipsos.com/en-us/perils-perception-prejudice-and-conspiracy-theories", year: "2023", topic: "3 théories complotistes testées", data: [{ label: "Gouvernement ukrainien néo-nazi", val: 16 }, { label: "Grand Remplacement", val: 11 }, { label: "Alunissage mis en scène", val: 16 }] },
       ]
@@ -1639,6 +1763,7 @@
       scoreDetail: "<strong>Pourquoi C ?</strong> Le Canada se situe entre le bas niveau anglo-saxon (UK, Australie) et un niveau plus élevé. Les tensions liées à la COVID et la montée du Parti populaire signalent une perméabilité croissante mais encore modérée.",
       context: "Le Canada affiche des niveaux modérés mais en hausse. Les convois de camionneurs en 2022 et la montée du Parti populaire du Canada illustrent la perméabilité à certaines théories complotistes.",
       surveys: [
+        { source: "Media Ecosystem Observatory (McGill / U. de Toronto)", url: "https://meo.ca/work/conspiratorial-claims-and-institutional-distrust-in-canadas-online-ecosystem", year: "2026", topic: "Adhésion à des affirmations complotistes (n=1 187 anglophones, publ. fév. 2026)", data: [{ label: "Écoles endoctrinent les enfants (idéologie de genre)", val: 21 }, { label: "Collusion médias–élites", val: 16 }] },
         { source: "Ipsos — Perils of Perception 2024", url: "https://www.ipsos.com/sites/default/files/ct/news/documents/2024-11/ipsos-the-perils-of-perception-2024.pdf", year: "2024", topic: "2 théories politiques — 30 pays (sept.–oct. 2024)", data: [{ label: "« Grand remplacement » orchestré par les élites", val: 22 }, { label: "Élections non fiables / truquées", val: 18 }] },
         { source: "YouGov-Cambridge Globalism", url: "https://yougov.com/en-gb/articles/33746-global-where-believe-conspiracy-theories-true", year: "2022", topic: "Collusion Trump-Russie", data: [{ label: "Trump-Russie collusion", val: 61 }] },
         { source: "YouGov-Cambridge Globalism", url: "https://yougov.com/en-gb/articles/33746-global-where-believe-conspiracy-theories-true", year: "2020", topic: "Théories spécifiques", data: [{ label: "Monde gouverné en secret", val: 36 }, { label: "Alunissage truqué", val: 13 }, { label: "Aliens : contact secret", val: 30 }] },
@@ -1720,6 +1845,24 @@
         { source: "YouGov-Cambridge Globalism Project", url: "https://yougov.com/en-gb/articles/33746-global-where-believe-conspiracy-theories-true", year: "2020", topic: "Théories spécifiques — 21 pays (n=1 537 pour l'Égypte)", data: [{ label: "Monde gouverné en secret", val: 55 }, { label: "Vaccins : effets cachés", val: 45 }, { label: "USA impliqués dans le 11-Sept.", val: 27 }] },
       ]
     },
+    "JO": {
+      name: "Jordanie", flag: "🇯🇴", nutriscore: "D", levelColor: "#c2610c",
+      scoreMeta: "Sallam et al. (Vaccines, jan. 2021 ; 3 414 répondants arabes dont 64% en Jordanie) : <strong>59,5% pensent que le COVID a été fabriqué par l'homme</strong>, 27,7% que les vaccins servent à implanter des puces, 23,4% qu'ils rendent infertiles. ⚠️ Échantillon en ligne non représentatif, terrain fin 2020. Grade D, fiabilité fragile.",
+      scoreDetail: "<strong>Pourquoi D ?</strong> Les niveaux mesurés (près de 60% sur l'origine artificielle du virus, plus d'un quart sur les puces) sont élevés, mais proviennent d'un échantillon de convenance en ligne pendant la pandémie, ce qui surestime probablement la prévalence. D prudent plutôt que E, en attendant une mesure représentative (l'Arab Barometer Wave IX, terrain 2025, ne publie pas encore d'item complotiste).",
+      context: "La Jordanie a montré une forte perméabilité aux théories sanitaires pendant la pandémie, dans un contexte régional de défiance envers les institutions internationales et de circulation massive de désinformation sur les réseaux sociaux. Données limitées à une étude en ligne de 2020-2021.",
+      surveys: [
+        { source: "Sallam et al. — Vaccines (MDPI) / PMC", url: "https://pmc.ncbi.nlm.nih.gov/articles/PMC7826844/", year: "2021", topic: "Hésitation vaccinale et croyances complotistes — échantillon majoritairement jordanien (64%), enquête en ligne déc. 2020–jan. 2021", data: [{ label: "Le COVID a été fabriqué par l'homme", val: 60 }, { label: "Les vaccins servent à implanter des puces", val: 28 }, { label: "Les vaccins rendent infertiles", val: 23 }] },
+      ]
+    },
+    "LB": {
+      name: "Liban", flag: "🇱🇧", nutriscore: "C", levelColor: "#ca8a04",
+      scoreMeta: "Stockemer & Bordeleau (HKS Misinformation Review, terrain déc. 2022–jan. 2023, ≈1 000 répondants) : <strong>22% des Libanais estiment que le changement climatique est un canular</strong>, avec 46,5% d'indécis — l'une des proportions d'incertitude les plus élevées des 8 pays étudiés. ⚠️ Un seul item mesuré. Grade C, fiabilité fragile.",
+      scoreDetail: "<strong>Pourquoi C ?</strong> Le seul item disponible (22%, niveau des États-Unis ou du Brésil) suggère une adhésion modérée-élevée, mais la forte part d'indécis et l'absence de mesure sur les théories politiques ou sanitaires interdisent d'aller plus loin. L'Arab Opinion Index 2024-25 documente une défiance géopolitique massive envers les États-Unis, qui n'est pas du complotisme au sens strict.",
+      context: "Le Liban cumule effondrement économique, défiance institutionnelle extrême et polarisation confessionnelle : un terreau documenté pour les récits conspirationnistes, mais très peu mesuré par des sondages comparables. Données limitées.",
+      surveys: [
+        { source: "Stockemer & Bordeleau — HKS Misinformation Review", url: "https://misinforeview.hks.harvard.edu/article/understanding-climate-change-conspiracy-beliefs-a-comparative-outlook/", year: "2023", topic: "« Le changement climatique est un canular » — 8 pays (déc. 2022–jan. 2023)", data: [{ label: "Le changement climatique est un canular", val: 22 }, { label: "Indécis sur la question", val: 47 }] },
+      ]
+    },
 
     // ── EUROPE (ESS Round 10, 2021-22) ──
     "BG": {
@@ -1728,6 +1871,7 @@
       scoreDetail: "<strong>Pourquoi E ?</strong> La Bulgarie affiche les chiffres les plus élevés d'Europe sur les deux métriques ESS disponibles, se plaçant au niveau du Nigéria ou de la Russie sur certaines questions. L'effondrement de confiance institutionnelle post-communiste, la forte influence des médias pro-russes et les inégalités persistantes alimentent une défiance systémique profonde.",
       context: "La Bulgarie présente le niveau de croyance complotiste le plus élevé d'Union européenne selon l'ESS Round 10. Le contexte post-soviétique, la faible confiance dans les institutions et l'exposition aux narratifs russes expliquent ces scores extrêmes.",
       surveys: [
+        { source: "Special Eurobarometer 557 — Science & technologie (Commission européenne)", url: "https://europa.eu/eurobarometer/surveys/detail/3227", year: "2024", topic: "Théories complotistes scientifiques — UE27 + Balkans + Turquie + RU (terrain sept.–oct. 2024, n≈37 000)", data: [{ label: "Virus créés en labo par les gouvernements", val: 52 }] },
         { source: "European Social Survey Round 10 — Scientific Reports / PMC", url: "https://pmc.ncbi.nlm.nih.gov/articles/PMC10593806/", year: "2022", topic: "Croyances complotistes COVID — 26 pays européens (n=55 555)", data: [{ label: "COVID : complot délibéré", val: 55 }, { label: "Groupe secret contrôle la politique mondiale", val: 57 }] },
       ]
     },
@@ -1749,12 +1893,23 @@
         { source: "European Social Survey Round 10 — Scientific Reports / PMC", url: "https://pmc.ncbi.nlm.nih.gov/articles/PMC10593806/", year: "2022", topic: "Croyances complotistes COVID — 26 pays européens", data: [{ label: "COVID : complot délibéré", val: 39 }] },
       ]
     },
+    "ME": {
+      name: "Monténégro", flag: "🇲🇪", nutriscore: "E", levelColor: "#c0392b",
+      scoreMeta: "UNICEF Monténégro / Ipsos (mars 2021, n=821) : <strong>61% croient qu'un groupe secret de puissants contrôle le monde</strong>, 43% que la vérité sur les vaccins est cachée. De Boer & Aiking (2024, Eurobaromètre 95.2) : le Monténégro est <strong>le plus complotiste des 38 pays européens</strong> — 59% soutiennent les deux théories anti-science testées, 16% seulement les rejettent. Grade E.",
+      scoreDetail: "<strong>Pourquoi E ?</strong> Deux sources indépendantes convergent : 61% sur la théorie centrale du « groupe secret » (niveau du Kenya ou du Nigeria) et le 1er rang sur 38 pays européens pour le soutien combiné aux théories anti-science (Eurobaromètre 2021 : seuls 22% répondent « faux » à « virus créés en labo »). Petit pays très polarisé, exposé aux narratifs pro-russes et serbes, avec une confiance institutionnelle très faible.",
+      context: "Le Monténégro affiche les niveaux d'adhésion complotiste les plus élevés d'Europe. La polarisation identitaire (pro-serbe / pro-occidentale), la forte influence des médias russes et serbes et une défiance profonde envers les institutions nourrissent un terreau où <strong>plus de 6 citoyens sur 10 croient qu'un groupe secret dirige le monde</strong>.",
+      surveys: [
+        { source: "de Boer & Aiking — Public Understanding of Science (Eurobaromètre 95.2)", url: "https://pmc.ncbi.nlm.nih.gov/articles/PMC11505401/", year: "2021", topic: "Soutien aux théories anti-science — 38 pays européens (terrain printemps 2021)", data: [{ label: "Soutient les 2 théories (1er rang sur 38)", val: 59 }, { label: "Rejette les 2 théories", val: 16 }] },
+        { source: "UNICEF Monténégro / Ipsos", url: "https://www.unicef.org/montenegro/en/stories/secret-group-powerful-people-control-world-%E2%80%92-61-montenegrin-citizens-believe", year: "2021", topic: "Désinformation et théories du complot (24–26 mars 2021, n=821)", data: [{ label: "Un groupe secret de puissants contrôle le monde", val: 61 }, { label: "Vérité sur les vaccins cachée", val: 43 }] },
+      ]
+    },
     "HR": {
-      name: "Croatie", flag: "🇭🇷", nutriscore: "D", levelColor: "#c2610c",
-      scoreMeta: "ESS Round 10 (2021-22) : 39,0% approuvent « le COVID résulte d'efforts délibérés dissimulés ». PAS Journals : 51% pour « groupe secret contrôle la politique mondiale ». Grade D.",
-      scoreDetail: "<strong>Pourquoi D ?</strong> La Croatie présente un score ESS de 39% (COVID) et 51% sur les conspirations générales selon PAS Journals. Cet écart entre les deux métriques est typique d'un pays à croyances complotistes générales élevées mais COVID-spécifiques modérées. Le grade D reflète la convergence.",
+      name: "Croatie", flag: "🇭🇷", nutriscore: "E", levelColor: "#c0392b",
+      scoreMeta: "Special Eurobarometer 557 (terrain sept.–oct. 2024) : <strong>55% des Croates croient que les virus sont créés en labo par les gouvernements — 4e rang UE27</strong> (50% en 2021, en hausse). ESS Round 10 : 39% « COVID = complot délibéré », 51% « groupe secret contrôle la politique mondiale ». Grade E.",
+      scoreDetail: "<strong>Pourquoi E ?</strong> La Croatie se classe 4e de l'UE27 sur la théorie des virus de laboratoire (EB 557, 2024), en progression depuis 2021, et affiche 51% sur le « groupe secret » (ESS). Ce profil, aligné sur la Hongrie (58%) et la Grèce (56%) classées E, justifie le relèvement de D à E.",
       context: "La Croatie, malgré son intégration à l'UE, présente des niveaux de croyance complotiste notables, hérités du contexte balkanique et de la méfiance envers les institutions post-yougoslaves.",
       surveys: [
+        { source: "Special Eurobarometer 557 — Science & technologie (Commission européenne)", url: "https://europa.eu/eurobarometer/surveys/detail/3227", year: "2024", topic: "Théories complotistes scientifiques — UE27 + Balkans + Turquie + RU (terrain sept.–oct. 2024, n≈37 000)", data: [{ label: "Virus créés en labo par les gouvernements", val: 55 }] },
         { source: "European Social Survey Round 10 — Scientific Reports / PMC", url: "https://pmc.ncbi.nlm.nih.gov/articles/PMC10593806/", year: "2022", topic: "Croyances complotistes COVID — 26 pays européens", data: [{ label: "COVID : complot délibéré", val: 39 }, { label: "Groupe secret contrôle la politique mondiale", val: 51 }] },
       ]
     },
@@ -1764,6 +1919,7 @@
       scoreDetail: "<strong>Pourquoi D ?</strong> La Slovaquie combine un score ESS significatif (37,4%) et le classement GLOBSEC 2022 qui la désigne comme la plus sujette au complotisme parmi les pays d'Europe centrale. Ce double ancrage — source académique et think tank spécialisé — renforce la fiabilité du grade D.",
       context: "La Slovaquie est identifiée comme particulièrement vulnérable à la désinformation en Europe centrale selon le GLOBSEC. La proximité culturelle avec la Russie, les narratifs anti-OTAN et anti-vaccins très actifs, ainsi que la faible confiance médiatique (27% selon Reuters Institute) expliquent ces scores.",
       surveys: [
+        { source: "CEDMO / HDMO — Enquête comparative Europe centrale", url: "https://politicalcapital.hu/pc-admin/source/documents/HDMO-CEDMO-BROD_survey_2024_ENG.pdf", year: "2024", topic: "Théories complotistes COVID — pays de Visegrád (3 théories testées, 2024)", data: [{ label: "≥1 des 3 théories COVID jugée vraie", val: 56 }, { label: "Les 3 théories jugées vraies", val: 29 }] },
         { source: "European Social Survey Round 10 — Scientific Reports / PMC", url: "https://pmc.ncbi.nlm.nih.gov/articles/PMC10593806/", year: "2022", topic: "Croyances complotistes COVID — 26 pays européens", data: [{ label: "COVID : complot délibéré", val: 37 }] },
         { source: "GLOBSEC Trends 2022 — EU DisinfoLab", url: "https://www.disinfo.eu/wp-content/uploads/2023/09/20230919_SK_DisinfoFS.pdf", year: "2022", topic: "Classement complotisme pays Europe centrale et orientale", data: [{ label: "1er rang : pays le plus exposé aux théories complotistes en CEE", val: 72 }] },
       ]
@@ -1774,6 +1930,7 @@
       scoreDetail: "<strong>Pourquoi D ?</strong> La Slovénie affiche un score ESS de 35%, au-dessus de la moyenne d'Europe occidentale. Son positionnement balkanique et le contexte politique polarisé des années 2020-22 expliquent ce niveau.",
       context: "La Slovénie présente des niveaux de complotisme supérieurs à ses voisins autrichiens et italiens, reflet d'une polarisation politique marquée et d'une méfiance accrue envers les institutions internationales dans le contexte post-COVID.",
       surveys: [
+        { source: "Special Eurobarometer 557 — Science & technologie (Commission européenne)", url: "https://europa.eu/eurobarometer/surveys/detail/3227", year: "2024", topic: "Théories complotistes scientifiques — UE27 + Balkans + Turquie + RU (terrain sept.–oct. 2024, n≈37 000)", data: [{ label: "Virus créés en labo par les gouvernements", val: 40 }, { label: "Remède anticancer caché (intérêts commerciaux)", val: 43 }] },
         { source: "European Social Survey Round 10 — Scientific Reports / PMC", url: "https://pmc.ncbi.nlm.nih.gov/articles/PMC10593806/", year: "2022", topic: "Croyances complotistes COVID — 26 pays européens", data: [{ label: "COVID : complot délibéré", val: 35 }] },
       ]
     },
@@ -1833,11 +1990,12 @@
       ]
     },
     "CH": {
-      name: "Suisse", flag: "🇨🇭", nutriscore: "B", levelColor: "#4d9e38",
-      scoreMeta: "ESS Round 10 (2021-22) : 17,3% approuvent « le COVID résulte d'efforts délibérés dissimulés ». Grade B.",
-      scoreDetail: "<strong>Pourquoi B ?</strong> La Suisse affiche 17,3% sur l'ESS, nettement au-dessous de ses voisins France (26%), Italie (25%) et Allemagne (16,8%). Sa stabilité institutionnelle historique, sa démocratie directe et son multilinguisme lui confèrent une résilience notable.",
+      name: "Suisse", flag: "🇨🇭", nutriscore: "C", levelColor: "#ca8a04",
+      scoreMeta: "ZHAW 2024 (n>2 000) : <strong>36,9% de mentalité complotiste</strong>, en hausse après la parenthèse COVID (27,1% en 2022, 35,9% en 2018). ESS Round 10 (2021-22) : 17,3% « le COVID résulte d'efforts délibérés dissimulés ». Grade C.",
+      scoreDetail: "<strong>Pourquoi C et non B ?</strong> L'ESS (17%) place la Suisse au niveau de l'Autriche, mais la mesure de mentalité complotiste de la ZHAW (36,9%) est nettement supérieure aux 20% mesurés en Autriche sur une échelle comparable, et repart à la hausse. Le C reflète cette tension entre deux sources : résilience institutionnelle réelle (démocratie directe, confiance fédérale), mais une minorité complotiste plus large qu'on ne le pense.",
       context: "La Suisse figure parmi les pays européens les moins perméables au complotisme. Sa tradition de démocratie directe et de consensus politique, combinée à une forte confiance dans les institutions fédérales, explique ce résultat.",
       surveys: [
+        { source: "ZHAW — Dirk Baier, enquête extrémisme (n>2 000)", url: "https://www.watson.ch/schweiz/wissen/236832066-studie-jeder-dritte-schweizer-glaubt-an-verschwoerungstheorien", year: "2024", topic: "Mentalité complotiste en Suisse (enquête en ligne 2024, publ. 2025)", data: [{ label: "Mentalité complotiste (2024)", val: 37 }, { label: "Mentalité complotiste (2022)", val: 27 }, { label: "Mentalité complotiste (2018)", val: 36 }] },
         { source: "European Social Survey Round 10 — Scientific Reports / PMC", url: "https://pmc.ncbi.nlm.nih.gov/articles/PMC10593806/", year: "2022", topic: "Croyances complotistes COVID — 26 pays européens", data: [{ label: "COVID : complot délibéré", val: 17 }] },
       ]
     },
@@ -1847,6 +2005,7 @@
       scoreDetail: "<strong>Pourquoi B ?</strong> L'Autriche affiche 16,8% sur l'ESS, le score le plus bas de l'étude avec les pays nordiques. Bien que le FPÖ (parti d'extrême-droite) ait promu des narratifs complotistes, la population dans son ensemble résiste.",
       context: "L'Autriche présente un niveau faible de croyances complotistes malgré la montée du FPÖ. La forte confiance institutionnelle et le système médiatique structuré semblent contrebalancer les discours politiques d'extrême-droite.",
       surveys: [
+        { source: "Univ. Salzburg & Lausanne — Salzburger Jahrbuch für Politik", url: "https://uni-salzburg.elsevierpure.com/de/publications/wie-verbreitet-ist-die-verschw%C3%B6rungsmentalit%C3%A4t-in-%C3%B6sterreich-und-/", year: "2023", topic: "Mentalité complotiste en Autriche (terrain nov. 2023, représentatif, publ. 2025)", data: [{ label: "Tendance complotiste (ensemble du pays)", val: 20 }, { label: "Carinthie (Land le plus élevé)", val: 31 }, { label: "Burgenland (Land le plus bas)", val: 13 }] },
         { source: "European Social Survey Round 10 — Scientific Reports / PMC", url: "https://pmc.ncbi.nlm.nih.gov/articles/PMC10593806/", year: "2022", topic: "Croyances complotistes COVID — 26 pays européens", data: [{ label: "COVID : complot délibéré", val: 17 }] },
       ]
     },
@@ -2082,11 +2241,12 @@
 
     // ── PAYS UE AJOUTÉS ──
     "CY": {
-      name: "Chypre", flag: "🇨🇾", nutriscore: "D", levelColor: "#c2610c",
-      scoreMeta: "Spécial Eurobaromètre 516 « Sciences & Technologies » (2021, 27 pays UE) : <strong>74% des Chypriotes croient que les virus sont produits dans des laboratoires gouvernementaux pour contrôler la population</strong> — 2e rang UE derrière la Bulgarie. 71% estiment qu'on « ne peut plus faire confiance aux scientifiques » — 1er rang UE. 63% croient que les grands groupes pharmaceutiques cachent un remède contre le cancer. Grade D.",
-      scoreDetail: "<strong>Pourquoi D et non E ?</strong> Les données disponibles portent principalement sur des théories à dimension scientifique (COVID, vaccins, big pharma) plutôt que sur un spectre large de complotisme politique. Bien que les chiffres soient parmi les plus élevés d'Europe pour ces théories spécifiques, un grade E nécessiterait des données sur les théories institutionnelles et politiques comparables à celles mesurées dans les pays grade E (Turquie, Nigéria, Pakistan). Les indicateurs disponibles justifient clairement un D.",
+      name: "Chypre", flag: "🇨🇾", nutriscore: "E", levelColor: "#c0392b",
+      scoreMeta: "Special Eurobarometer 557 (terrain sept.–oct. 2024) : <strong>63% des Chypriotes croient que les virus sont créés en labo par les gouvernements — 1er rang de l'UE27</strong>. Déjà 74% en 2021 (EB 516, 2e rang), 71% ne font plus confiance aux scientifiques (1er rang UE), 63% croient qu'un remède anticancer est caché. Grade E.",
+      scoreDetail: "<strong>Pourquoi E ?</strong> Chypre occupe le sommet du classement européen sur deux vagues consécutives de l'Eurobaromètre (74% en 2021, 63% en 2024 — 1er rang UE27) pour la théorie des virus fabriqués en laboratoire, et le 1er rang pour la défiance envers les scientifiques. Cette constance au plus haut niveau, cohérente avec la Hongrie (58%) et la Grèce (56%) classées E, justifie le relèvement de D à E.",
       context: "Chypre affiche l'un des niveaux de méfiance envers la science les plus élevés d'Europe. Selon le Spécial Eurobaromètre 2021, <strong>74% des Chypriotes pensent que les gouvernements produisent des virus pour contrôler la population</strong> — 2e rang UE. 71% ne font plus confiance aux scientifiques (1er rang UE). Ces chiffres reflètent une défiance institutionnelle profonde amplifiée par les crises financières et politiques qu'a traversées l'île.",
       surveys: [
+        { source: "Special Eurobarometer 557 — Science & technologie (Commission européenne)", url: "https://europa.eu/eurobarometer/surveys/detail/3227", year: "2024", topic: "Théories complotistes scientifiques — UE27 + Balkans + Turquie + RU (terrain sept.–oct. 2024, n≈37 000)", data: [{ label: "Virus créés en labo par les gouvernements", val: 63 }] },
         { source: "Flash Eurobaromètre 522 — Démocratie & Désinformation", url: "https://www.ipsos.com/sites/default/files/ct/news/documents/2023-12/Democracy_fl_522_report_en.pdf", year: "2023", topic: "Exposition à la désinformation et confiance — 27 pays UE", data: [{ label: "Exposition à la désinformation politique en ligne (parmi les 5 pays les plus élevés)", val: 42 }] },
         { source: "Spécial Eurobaromètre 516 — Sciences & Technologies (Commission européenne)", url: "https://europa.eu/eurobarometer/surveys/detail/2237", year: "2021", topic: "Attitudes envers la science et théories complotistes — 27 pays UE", data: [{ label: "Virus produits en labo par des gouvernements pour contrôler la population", val: 74 }, { label: "Ne peut plus faire confiance aux scientifiques (1er rang UE)", val: 71 }, { label: "Big pharma cache un remède contre le cancer", val: 63 }] },
       ]
@@ -2132,7 +2292,7 @@
     "PK":"Pakistan","PE":"Peru","CO":"Colombia",
     "NZ":"New Zealand","KR":"South Korea",
     "CN":"China","TN":"Tunisia","MA":"Morocco","DZ":"Algeria",
-    "CY":"Cyprus","MT":"Malta","LU":"Luxembourg"
+    "CY":"Cyprus","MT":"Malta","LU":"Luxembourg","ME":"Montenegro","JO":"Jordan","LB":"Lebanon"
   };
 
   // ── Country centroids ──
@@ -2155,7 +2315,7 @@
     "PK":[30.0,70.0],"PE":[-9.2,-75.0],"CO":[4.0,-74.0],
     "NZ":[-41.5,172.5],"KR":[36.5,127.5],
     "CN":[35.0,105.0],"TN":[33.8,9.5],"MA":[31.8,-7.1],"DZ":[28.0,2.5],
-    "CY":[35.0,33.0],"MT":[35.9,14.4],"LU":[49.8,6.1]
+    "CY":[35.0,33.0],"MT":[35.9,14.4],"LU":[49.8,6.1],"ME":[42.7,19.3],"JO":[31.2,36.5],"LB":[33.9,35.9]
   };
 
   // ── NS fill color (slightly darker for map) ──
@@ -2199,6 +2359,7 @@
 
   let geoLayer = null;
   let selectedISO = null;
+  let gradeFilter = null;
   const geoByISO = {};
   const badgeMarkers = {};
 
@@ -2212,8 +2373,9 @@
 
   function featureStyleFor(iso) {
     const active = selectedISO && iso === selectedISO;
+    const filteredOut = gradeFilter && COUNTRIES[iso] && COUNTRIES[iso].nutriscore !== gradeFilter && !active;
     return {
-      fillOpacity: active ? 0.95 : 0.7,
+      fillOpacity: active ? 0.95 : (filteredOut ? 0.12 : 0.7),
       weight: active ? 2.4 : 0.8,
       color: active ? '#ffffff' : borderColorForTheme(),
       opacity: 0.95
@@ -2248,6 +2410,7 @@
       badge.classList.toggle('is-active', iso === selectedISO);
       badge.classList.toggle('is-dimmed', !!selectedISO && iso !== selectedISO);
       badge.classList.toggle('is-overview', overviewMode && iso !== selectedISO);
+      badge.classList.toggle('is-filtered', !!gradeFilter && COUNTRIES[iso].nutriscore !== gradeFilter && iso !== selectedISO);
     }
   }
 
@@ -2332,11 +2495,13 @@
     const d = COUNTRIES[iso];
     const panel = document.getElementById('country-panel');
     document.getElementById('placeholder').style.display = 'none';
+    closeAuxPanels();
     panel.classList.add('active');
     document.querySelector('.sidebar-content').scrollTop = 0;
     selectCountry(iso);
 
     const nc = NS_CONFIG[d.nutriscore];
+    const conf = confidenceOf(d);
     const validSurveyRows = d.surveys.flatMap(s => s.data.filter(r => typeof r.val === 'number'));
     const latestYear = d.surveys
       .map(s => parseInt(String(s.year), 10))
@@ -2390,6 +2555,7 @@
         <span class="cp-meta-chip">${d.surveys.length} source${d.surveys.length > 1 ? 's' : ''}</span>
         <span class="cp-meta-chip">${validSurveyRows.length} donnée${validSurveyRows.length > 1 ? 's' : ''} comparables</span>
         <span class="cp-meta-chip${latestYear && latestYear < 2022 ? ' cp-meta-chip--stale' : ''}">${latestYear && latestYear < 2022 ? '⚠ ' : ''}Dernière vague ${latestYear || 'N/D'}</span>
+        <span class="cp-meta-chip conf-chip" title="Fiabilité de l'estimation : ${conf.desc}"><span class="conf-dot" style="background:${conf.color}"></span>Fiabilité ${conf.label.toLowerCase()}</span>
       </div>
 
       <div class="ns-block">
@@ -2405,6 +2571,7 @@
           <strong>Comment est établi ce grade ?</strong><br>${d.scoreMeta}
           <button class="method-toggle" onclick="this.nextElementSibling.classList.toggle('open');this.textContent=this.nextElementSibling.classList.contains('open')?'▲ Moins':'▼ Détail méthodologique'">▼ Détail méthodologique</button>
           <div class="method-detail">${d.scoreDetail}</div>
+          <div class="ns-method-link">Le grade est une synthèse éditoriale, pas une mesure unique · <button type="button" data-jump-method>Comment lire les grades ?</button></div>
         </div>
       </div>
 
@@ -2414,6 +2581,184 @@
       <div style="height:1rem"></div>
     `;
   }
+
+  // ── Ranking panel (all countries grouped by grade) ──
+  function latestYearOf(d) {
+    return d.surveys.map(s => parseInt(String(s.year), 10)).filter(Number.isFinite).sort((a, b) => b - a)[0];
+  }
+  function showRanking() {
+    const panel = document.getElementById('ranking-panel');
+    if (!panel) return;
+    document.getElementById('placeholder').style.display = 'none';
+    document.getElementById('country-panel').classList.remove('active');
+    closeAuxPanels();
+    selectedISO = null;
+    refreshMapBorders();
+    document.querySelector('.sidebar-content').scrollTop = 0;
+
+    const groups = ['E', 'D', 'C', 'B', 'A'].map(g => {
+      const rows = Object.entries(COUNTRIES)
+        .filter(([, d]) => d.nutriscore === g)
+        .sort((a, b) => a[1].name.localeCompare(b[1].name, 'fr'))
+        .map(([iso, d]) => {
+          const y = latestYearOf(d);
+          const stale = y && y < 2022;
+          const conf = confidenceOf(d);
+          return `<button class="rank-row" type="button" data-rank-iso="${iso}">
+            <span class="rank-flag">${d.flag}</span>
+            <span class="rank-name">${d.name}</span>
+            <span class="rank-conf" style="background:${conf.color}" title="Fiabilité ${conf.label.toLowerCase()} : ${conf.desc}"></span>
+            <span class="rank-year${stale ? ' stale' : ''}" title="Sondage le plus récent">${stale ? '⚠ ' : ''}${y || 'N/D'}</span>
+          </button>`;
+        });
+      const nc = NS_CONFIG[g];
+      return `<div class="rank-group">
+        <div class="rank-group-label"><span class="rank-group-swatch${g === 'C' ? ' c' : ''}" style="background:${nc.color}">${g}</span>${nc.level} · ${rows.length} pays</div>
+        ${rows.join('')}
+      </div>`;
+    }).join('');
+
+    panel.innerHTML = `
+      <div class="rank-header">
+        <div>
+          <div class="rank-title">Classement ComploScore</div>
+          <div class="rank-sub">${COUNTRY_COUNT} pays du plus complotiste (E) au moins complotiste (A). Le point coloré indique la fiabilité de l'estimation (vert solide, jaune moyenne, rouge fragile) ; l'année est celle du sondage le plus récent, ⚠ signale une donnée antérieure à 2022.</div>
+        </div>
+        <button class="rank-back" type="button" data-close-ranking>← Carte</button>
+      </div>
+      ${groups}
+      <div style="height:1rem"></div>
+    `;
+    panel.classList.add('active');
+    panel.querySelectorAll('[data-rank-iso]').forEach(el => {
+      el.addEventListener('click', () => {
+        const iso = el.getAttribute('data-rank-iso');
+        showCountry(iso);
+        const layer = geoByISO[iso];
+        if (layer) map.fitBounds(layer.getBounds(), { padding:[40,40], maxZoom:5 });
+        else if (CENTROIDS[iso]) map.setView(CENTROIDS[iso], 4);
+      });
+    });
+    const back = panel.querySelector('[data-close-ranking]');
+    if (back) back.addEventListener('click', hideRanking);
+  }
+  function closeAuxPanels() {
+    ['ranking-panel', 'method-panel'].forEach(id => {
+      const el = document.getElementById(id);
+      if (el) el.classList.remove('active');
+    });
+  }
+  function anyAuxPanelOpen() {
+    return ['ranking-panel', 'method-panel'].some(id => {
+      const el = document.getElementById(id);
+      return el && el.classList.contains('active');
+    });
+  }
+  function hideRanking() {
+    closeAuxPanels();
+    if (!selectedISO) document.getElementById('placeholder').style.display = '';
+  }
+  document.querySelectorAll('[data-open-ranking]').forEach(el => el.addEventListener('click', showRanking));
+
+  // ── Confidence of the estimate (sources × freshness × comparable data points) ──
+  function confidenceOf(d) {
+    const sources = d.surveys.length;
+    const latest = latestYearOf(d) || 0;
+    const points = d.surveys.reduce((n, s) => n + s.data.filter(r => typeof r.val === 'number').length, 0);
+    let level = 0;
+    if (sources >= 3 && latest >= 2023 && points >= 4) level = 2;
+    else if ((sources >= 2 && latest >= 2022) || sources >= 3) level = 1;
+    return [
+      { label: 'Fragile', color: '#c0392b', desc: 'une seule source, ou des données anciennes. Le grade est une estimation prudente qui peut bouger d\'un cran avec un nouveau sondage' },
+      { label: 'Moyenne', color: '#ca8a04', desc: 'deux sources ou plus, mais pas toutes récentes ni directement comparables' },
+      { label: 'Solide', color: '#15803d', desc: 'plusieurs sources récentes qui convergent' }
+    ][level];
+  }
+
+  // ── Method panel (how to read the grades) ──
+  function showMethod() {
+    const panel = document.getElementById('method-panel');
+    if (!panel) return;
+    document.getElementById('placeholder').style.display = 'none';
+    document.getElementById('country-panel').classList.remove('active');
+    closeAuxPanels();
+    selectedISO = null;
+    refreshMapBorders();
+    document.querySelector('.sidebar-content').scrollTop = 0;
+
+    const counts = { A: 0, B: 0, C: 0, D: 0, E: 0 };
+    const confCounts = { Fragile: 0, Moyenne: 0, Solide: 0 };
+    for (const d of Object.values(COUNTRIES)) { counts[d.nutriscore]++; confCounts[confidenceOf(d).label]++; }
+    const scale = [
+      ['A', 'Très faible', 'Adhésion marginale : typiquement <strong>moins de 15 %</strong> sur les théories « dures » (groupe secret qui dirige le monde, vaccins, climat). Forte confiance institutionnelle.'],
+      ['B', 'Faible', 'Ordre de grandeur <strong>15 à 25 %</strong>. Des poches d\'adhésion existent, sans basculement de l\'opinion.'],
+      ['C', 'Modéré', 'Ordre de grandeur <strong>25 à 35 %</strong>, ou des sources qui se contredisent (faible sur le politique, élevé sur le sanitaire, par exemple).'],
+      ['D', 'Élevé', 'Ordre de grandeur <strong>35 à 50 %</strong> sur au moins une théorie centrale, ou convergence de plusieurs sources au-dessus de la moyenne européenne.'],
+      ['E', 'Très élevé', '<strong>Plus de 50 %</strong> sur une théorie centrale, ou tête de classement dans plusieurs enquêtes internationales.']
+    ].map(([g, lvl, txt]) => `<div class="grade-scale-row"><div class="sw${g === 'C' ? ' c' : ''}" style="background:${NS_CONFIG[g].color}">${g}</div><div class="t"><strong>${lvl}</strong> · ${counts[g]} pays<br>${txt}</div></div>`).join('');
+
+    panel.innerHTML = `
+      <div class="rank-header">
+        <div>
+          <div class="rank-title">Comment lire les grades</div>
+          <div class="rank-sub">Le ComploScore est une synthèse éditoriale, pas un thermomètre. Voici ce qu'il mesure, et surtout ce qu'il ne mesure pas.</div>
+        </div>
+        <button class="rank-back" type="button" data-close-ranking>← Carte</button>
+      </div>
+
+      <div class="method-callout"><strong>À lire avant de comparer deux pays.</strong> Il n'existe aucun sondage mondial posant la même question, la même année, avec le même échantillon, dans ces ${COUNTRY_COUNT} pays. Chaque grade est donc une lecture croisée de sources différentes. Un pays peut changer de grade selon la source retenue : le gradient A–E est <strong>indicatif</strong>, pas une mesure au point près.</div>
+
+      <h4>L'échelle, en ordre de grandeur</h4>
+      <div class="grade-scale">${scale}</div>
+      <p>Les seuils ci-dessus ne sont pas appliqués mécaniquement. Le grade privilégie la source la plus récente et la plus robuste (échantillon représentatif, question comparable), et signale dans chaque fiche pourquoi il n'est pas un cran au-dessus ou en dessous.</p>
+
+      <h4>Pourquoi c'est approximatif</h4>
+      <ul>
+        <li><strong>La question change tout.</strong> « Adhérer à au moins une théorie sur dix » donne 79 % en France ; « se déclarer complotiste » donne 35 %. Les deux sont vrais.</li>
+        <li><strong>Les échantillons diffèrent.</strong> Enquêtes représentatives, panels en ligne, échantillons urbains (Ipsos le signale pour 13 pays) : ils ne se valent pas.</li>
+        <li><strong>Le biais d'acquiescement.</strong> Dans certaines cultures, on tend à dire « oui » à une affirmation, quelle qu'elle soit. Cela gonfle les scores de plusieurs pays du Sud.</li>
+        <li><strong>Les items « frontière ».</strong> « Grand remplacement » ou « élections truquées » sont autant des opinions politiques que des croyances complotistes. Ils comptent, mais moins qu'une théorie « dure ».</li>
+        <li><strong>La fraîcheur.</strong> Certains pays n'ont qu'un sondage de 2017 ou 2020. Les données COVID (2020-2022) surestiment probablement les niveaux actuels.</li>
+        <li><strong>Pas de marge d'erreur unique.</strong> Chaque sondage a la sienne (souvent ±3 points) ; la synthèse en hérite sans pouvoir la calculer.</li>
+      </ul>
+
+      <h4>L'indicateur de fiabilité</h4>
+      <p>Pour rendre cette incertitude visible, chaque fiche affiche une fiabilité calculée automatiquement à partir du nombre de sources, de leur fraîcheur et du nombre de données comparables :</p>
+      <div class="conf-legend">
+        <div><span class="conf-dot" style="background:#15803d"></span><strong>Solide</strong> · ${confCounts.Solide} pays — au moins 3 sources, dont une de 2023 ou plus récente</div>
+        <div><span class="conf-dot" style="background:#ca8a04"></span><strong>Moyenne</strong> · ${confCounts.Moyenne} pays — 2 sources ou plus, pas toutes récentes</div>
+        <div><span class="conf-dot" style="background:#c0392b"></span><strong>Fragile</strong> · ${confCounts.Fragile} pays — une seule source, ou des données anciennes</div>
+      </div>
+      <p>Un grade « fragile » n'est pas faux : c'est la meilleure estimation possible avec ce qui existe. Il est juste plus susceptible de bouger.</p>
+
+      <h4>Ce que la carte n'est pas</h4>
+      <p>Ce n'est ni un classement moral des peuples, ni une mesure de « crédulité ». Le complotisme mesuré ici est fortement corrélé à la défiance envers les institutions, elle-même liée à l'histoire politique, à la corruption perçue et à la qualité de l'information disponible. Les pays absents de la carte ne sont pas « sans complotisme » : ils sont sans sondage exploitable.</p>
+      <div style="height:1rem"></div>
+    `;
+    panel.classList.add('active');
+    const back = panel.querySelector('[data-close-ranking]');
+    if (back) back.addEventListener('click', hideRanking);
+  }
+  document.addEventListener('click', e => {
+    const t = e.target.closest('[data-jump-method]');
+    if (t) { e.preventDefault(); showMethod(); }
+  });
+
+  // ── Legend as grade filter ──
+  (function(){
+    const legend = document.querySelector('.legend');
+    const items = document.querySelectorAll('.legend-item[data-grade-filter]');
+    function apply(g) {
+      gradeFilter = (gradeFilter === g) ? null : g;
+      items.forEach(it => it.classList.toggle('is-active', it.getAttribute('data-grade-filter') === gradeFilter));
+      if (legend) legend.classList.toggle('has-filter', !!gradeFilter);
+      refreshMapBorders();
+    }
+    items.forEach(it => {
+      it.addEventListener('click', () => apply(it.getAttribute('data-grade-filter')));
+      it.addEventListener('keydown', e => { if (e.key === 'Enter' || e.key === ' ') { e.preventDefault(); apply(it.getAttribute('data-grade-filter')); } });
+    });
+  })();
 
   // ── Theme toggle ──
   (function(){
@@ -2438,18 +2783,6 @@
       if (layer) {
         map.fitBounds(layer.getBounds(), { padding:[40,40], maxZoom:5 });
       }
-    });
-  });
-
-  document.querySelectorAll('[data-jump-method]').forEach(el => {
-    el.addEventListener('click', () => {
-      showCountry('FR');
-      const detail = document.querySelector('.method-detail');
-      if (detail && !detail.classList.contains('open')) {
-        detail.classList.add('open');
-      }
-      const toggle = document.querySelector('.method-toggle');
-      if (toggle) toggle.textContent = '▲ Moins';
     });
   });
 
@@ -2546,11 +2879,14 @@
 
   // ── ESC to deselect country ──
   document.addEventListener('keydown', e => {
-    if (e.key === 'Escape' && selectedISO) {
-      selectedISO = null;
-      refreshMapBorders();
-      document.getElementById('placeholder').style.display = '';
-      document.getElementById('country-panel').classList.remove('active');
+    if (e.key === 'Escape') {
+      if (anyAuxPanelOpen()) { hideRanking(); return; }
+      if (selectedISO) {
+        selectedISO = null;
+        refreshMapBorders();
+        document.getElementById('placeholder').style.display = '';
+        document.getElementById('country-panel').classList.remove('active');
+      }
     }
   });
 
@@ -2580,16 +2916,16 @@
 
   <footer class="site-footer">
     <div class="site-footer-top">
-      <span><span data-country-count-label>67 pays</span> · Nutri-Score complotisme</span>
+      <span><span data-country-count-label>71 pays</span> · Nutri-Score complotisme</span>
       <span class="site-footer-sep">·</span>
       <span>Un projet de <a class="footer-accent" href="https://tristan.pro" target="_blank" rel="noopener noreferrer">Tristan</a></span>
       <span class="site-footer-sep">·</span>
-      <a href="https://www.perplexity.ai/computer" target="_blank" rel="noopener noreferrer">Created with Perplexity Computer</a>
+      <button type="button" class="footer-link-btn" data-jump-method>Comment lire les grades ?</button>
     </div>
     <details class="footer-sources">
       <summary>Voir les sources</summary>
       <div class="footer-sources-list">
-        Sources : IFOP/Jean-Jaurès/Conspiracy Watch, IFOP/Reboot 2022, YouGov-Cambridge Globalism, Ipsos Perils of Perception 2024, Ipsos State of Democracy 2025, Harvard HKS Misinformation Review 2024, Walter &amp; Drochon (2022), Change Research (2025), REDACT/Univ. Manchester (2025), PLOS Global Public Health (2024), Frontiers in Psychology — Caycho-Rodríguez et al. (2022), <a href="https://pmc.ncbi.nlm.nih.gov/articles/PMC10593806/" target="_blank" rel="noopener noreferrer">ESS Round 10 — Scientific Reports/PMC (2022)</a>, <a href="https://www.ponarseurasia.org/who-cares-about-conspiracy-theories-evidence-from-a-new-survey-in-georgia-and-kazakhstan/" target="_blank" rel="noopener noreferrer">PONARS Eurasia (Géorgie/Kazakhstan)</a>, <a href="https://www.usip.org/sites/default/files/2022-11/20221117_sr_514-losing-facts-fiction-nationalism-misinformation-conspiracy-theories-pakistan.pdf" target="_blank" rel="noopener noreferrer">USIP (Pakistan 2022)</a>, <a href="https://www.nature.com/articles/s41598-023-42614-z" target="_blank" rel="noopener noreferrer">Nature Scientific Reports — Asie du Sud-Est (2023)</a>, <a href="https://latamjournalismreview.org/articles/brazil-and-colombia-rank-lowest-in-identifying-false-content-online-fact-checkers-arent-surprised/" target="_blank" rel="noopener noreferrer">LatAm Journalism Review / OECD (2024)</a>, <a href="https://journals.plos.org/globalpublichealth/article?id=10.1371/journal.pgph.0005939" target="_blank" rel="noopener noreferrer">PLOS Global Public Health — US/Chine (2023)</a>, <a href="https://pmc.ncbi.nlm.nih.gov/articles/PMC9904989/" target="_blank" rel="noopener noreferrer">PMC — Nationalism & Conspiracy China (2023)</a>, <a href="https://www.arabbarometer.org/surveys/arab-barometer-wave-vii/" target="_blank" rel="noopener noreferrer">Arab Barometer Wave VII (2022)</a>, <a href="https://www.irsem.fr/storage/file_manager_files/2025/03/rp-irsem-no66-2019.pdf" target="_blank" rel="noopener noreferrer">IRSEM — Médias russes Afrique (2019)</a>, Sigma Conseil / Konrad Adenauer Stiftung (Maghreb 2016).
+        Sources : <a href="https://europa.eu/eurobarometer/surveys/detail/3227" target="_blank" rel="noopener noreferrer">Special Eurobarometer 557 — Science & technologie (2024)</a>, IFOP/Jean-Jaurès/Conspiracy Watch, IFOP/Reboot 2022, YouGov-Cambridge Globalism, Ipsos Perils of Perception 2024, Ipsos State of Democracy 2025, Harvard HKS Misinformation Review 2024, <a href="https://crrc.ge/wp-content/uploads/2025/11/ned-report-25.02-final.pdf" target="_blank" rel="noopener noreferrer">CRRC-Georgia / NED (2024)</a>, <a href="https://politicalcapital.hu/pc-admin/source/documents/HDMO-CEDMO-BROD_survey_2024_ENG.pdf" target="_blank" rel="noopener noreferrer">CEDMO/HDMO Europe centrale (2024)</a>, <a href="https://www.fbbva.es/wp-content/uploads/2026/01/Estudio_FBBVA_Cultura_Cientifica_Espana.pdf" target="_blank" rel="noopener noreferrer">Fundación BBVA Cultura Científica (2025)</a>, Bertelsmann Religionsmonitor (2024), Media Ecosystem Observatory Canada (2026), UNICEF Monténégro / Ipsos (2021), de Boer &amp; Aiking — Public Understanding of Science (2024), VCIOM (2025), ZHAW Suisse (2024), PLOS One Japon (2024), Carsey/UNH POLES (2025), Walter &amp; Drochon (2022), Change Research (2025), REDACT/Univ. Manchester (2025), PLOS Global Public Health (2024), Frontiers in Psychology — Caycho-Rodríguez et al. (2022), <a href="https://pmc.ncbi.nlm.nih.gov/articles/PMC10593806/" target="_blank" rel="noopener noreferrer">ESS Round 10 — Scientific Reports/PMC (2022)</a>, <a href="https://www.ponarseurasia.org/who-cares-about-conspiracy-theories-evidence-from-a-new-survey-in-georgia-and-kazakhstan/" target="_blank" rel="noopener noreferrer">PONARS Eurasia (Géorgie/Kazakhstan)</a>, <a href="https://www.usip.org/sites/default/files/2022-11/20221117_sr_514-losing-facts-fiction-nationalism-misinformation-conspiracy-theories-pakistan.pdf" target="_blank" rel="noopener noreferrer">USIP (Pakistan 2022)</a>, <a href="https://www.nature.com/articles/s41598-023-42614-z" target="_blank" rel="noopener noreferrer">Nature Scientific Reports — Asie du Sud-Est (2023)</a>, <a href="https://latamjournalismreview.org/articles/brazil-and-colombia-rank-lowest-in-identifying-false-content-online-fact-checkers-arent-surprised/" target="_blank" rel="noopener noreferrer">LatAm Journalism Review / OECD (2024)</a>, <a href="https://journals.plos.org/globalpublichealth/article?id=10.1371/journal.pgph.0005939" target="_blank" rel="noopener noreferrer">PLOS Global Public Health — US/Chine (2023)</a>, <a href="https://pmc.ncbi.nlm.nih.gov/articles/PMC9904989/" target="_blank" rel="noopener noreferrer">PMC — Nationalism & Conspiracy China (2023)</a>, <a href="https://www.arabbarometer.org/surveys/arab-barometer-wave-vii/" target="_blank" rel="noopener noreferrer">Arab Barometer Wave VII (2022)</a>, <a href="https://www.irsem.fr/storage/file_manager_files/2025/03/rp-irsem-no66-2019.pdf" target="_blank" rel="noopener noreferrer">IRSEM — Médias russes Afrique (2019)</a>, Sigma Conseil / Konrad Adenauer Stiftung (Maghreb 2016).
       </div>
     </details>
   </footer>
