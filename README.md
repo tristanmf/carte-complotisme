@@ -7,7 +7,7 @@ ComploScore est une carte interactive qui visualise les niveaux d'adhésion aux 
 
 ## Fonctionnalités
 
-- Carte mondiale cliquable avec 67 pays couverts
+- Carte mondiale cliquable avec 71 pays couverts
 - Système de notation A→E inspiré du Nutri-Score
 - Fiches détaillées par pays avec sources académiques citées
 - Mode clair / mode sombre
