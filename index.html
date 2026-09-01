@@ -1273,17 +1273,19 @@
        RESPONSIVE
     ══════════════════════════════════════════ */
     @media (max-width: 768px) {
+      /* Deux blocs empilés qui ne se chevauchent jamais : la carte prend l'espace restant,
+         le panneau occupe 46 % de l'écran. Plus de badge ni de bouton coupés à la jonction. */
+      .main-layout { flex-direction: column; }
+      .map-stage { flex: 1; min-height: 0; }
       .sidebar {
         width: 100%;
-        position: fixed; bottom: 0; left: 0; right: 0;
-        height: 48vh;
+        position: relative;
+        flex: 0 0 46vh;
+        height: 46vh;
         border-left: none;
         border-top: 1px solid var(--border);
-        z-index: 1000;
+        z-index: 2;
       }
-      .main-layout { flex-direction: column; }
-      #map { height: 52vh; }
-      .map-stage { min-height: 52vh; }
       .map-intro {
         top: 0.75rem;
         left: 0.75rem;
@@ -1305,7 +1307,7 @@
       }
       .map-guide-toggle {
         left: 0.75rem;
-        bottom: calc(48vh + 0.85rem);
+        bottom: 0.85rem;
         padding: 0.55rem 0.78rem;
       }
       .map-intro-kicker,
@@ -2344,11 +2346,27 @@
   }
 
   // ── Init map ──
+  // Bornes du monde : empêche de faire glisser la carte dans le vide (fond noir)
+  const WORLD_BOUNDS = L.latLngBounds([[-58, -180], [84, 180]]);
+  const HAS_HOVER = !!(window.matchMedia && window.matchMedia('(hover: hover)').matches);
   const map = L.map('map', {
-    center: [22, 12], zoom: 2.2, minZoom: 1.8, maxZoom: 6,
-    worldCopyJump: false, zoomControl: false
+    center: [22, 12], zoom: 2.2, minZoom: 1.2, maxZoom: 6,
+    zoomSnap: 0.25, zoomDelta: 0.5,
+    worldCopyJump: false, zoomControl: false,
+    maxBounds: WORLD_BOUNDS.pad(0.02), maxBoundsViscosity: 1.0
   });
   L.control.zoom({ position: 'topright' }).addTo(map);
+  // Le zoom minimum est celui qui remplit exactement l'écran : plus de bandes noires,
+  // quel que soit le format (portrait mobile ou grand écran).
+  function fitMinZoom() {
+    const z = map.getBoundsZoom(WORLD_BOUNDS, true);
+    if (!Number.isFinite(z)) return;
+    const minZ = Math.max(1.2, Math.min(z, 4));
+    map.setMinZoom(minZ);
+    if (map.getZoom() < minZ) map.setZoom(minZ);
+  }
+  fitMinZoom();
+  map.on('resize', fitMinZoom);
 
   const scoreMap = {};
   for (const [iso, d] of Object.entries(COUNTRIES)) {
@@ -2447,7 +2465,8 @@
           }
         });
 
-        layer.bindTooltip(`
+        // Infobulle de survol : uniquement sur les appareils avec pointeur (au doigt, taper ouvre la fiche)
+        if (HAS_HOVER) layer.bindTooltip(`
           <div class="cs-tooltip">
             <div class="cs-tooltip-flag">${d.flag}</div>
             <div class="cs-tooltip-name">${d.name}</div>
@@ -2455,7 +2474,7 @@
             <div class="cs-tooltip-level">${nc.level}</div>
             <div class="cs-tooltip-cta">Cliquer pour les sondages →</div>
           </div>
-        `, { sticky: true, opacity: 1, className: '' });
+        `, { sticky: true, opacity: 1, className: '', direction: 'auto' });
       }
     }).addTo(map);
 
@@ -2473,7 +2492,7 @@
       const marker = L.marker(c, { icon, interactive: true, zIndexOffset: 1000 }).addTo(map);
       badgeMarkers[iso] = marker;
       marker.on('click', () => showCountry(iso));
-      marker.bindTooltip(`
+      if (HAS_HOVER) marker.bindTooltip(`
         <div class="cs-tooltip">
           <div class="cs-tooltip-flag">${d.flag}</div>
           <div class="cs-tooltip-name">${d.name}</div>
@@ -2481,7 +2500,7 @@
           <div class="cs-tooltip-level">${nc.level}</div>
           <div class="cs-tooltip-cta">Cliquer pour les sondages →</div>
         </div>
-      `, { sticky: false, opacity: 1, className: '', direction: 'top', offset: [0, -18] });
+      `, { sticky: false, opacity: 1, className: '', direction: 'auto', offset: [0, -18] });
     }
     refreshMapBorders();
   });
