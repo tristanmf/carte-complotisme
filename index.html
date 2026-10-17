@@ -102,10 +102,16 @@
       font-family: var(--font-body);
       background: var(--bg);
       color: var(--text);
-      height: 100vh;
+    }
+    /* L'application tient dans un cadre de la hauteur de l'écran, sous la barre
+       de tristan.pro ; le pied « Parlons-en » du site vient en dessous. */
+    .cs-app {
+      margin-top: 84px;
+      height: calc(100vh - 84px);
       display: flex;
       flex-direction: column;
       overflow: hidden;
+      position: relative;
     }
 
     /* ══════════════════════════════════════════
@@ -1148,7 +1154,6 @@
       text-decoration: none;
       white-space: nowrap;
     }
-    .kofi-mobile { display: none; }
     .footer-kofi a:hover { background: color-mix(in srgb, var(--accent) 15%, transparent); }
     .site-footer-sep {
       color: var(--text-faint);
@@ -1248,7 +1253,9 @@
       .site-footer {
         padding: 0.5rem 0.75rem calc(0.6rem + env(safe-area-inset-bottom));
       }
-      .kofi-mobile { display: block; text-align: left; margin-top: 0.6rem; }
+      /* Sous la barre de tristan.pro, la page défile : carte, puis fiche pays, puis pied du site. */
+      .cs-app { margin-top: 76px; height: auto; overflow: visible; }
+      .sidebar { position: relative; height: 72vh; z-index: auto; }
       .site-footer-top {
         font-size: 0.62rem;
         gap: 0.3rem;
@@ -1260,6 +1267,9 @@
   </style>
 </head>
 <body>
+  <!-- En-tête et pied de tristan.pro (mode EMBED de tristan.pro/app.js) -->
+  <div id="tmf-entete" data-vue="productions"></div>
+  <div class="cs-app">
 
   <!-- ═══════════════ HEADER ═══════════════ -->
   <header>
@@ -1389,8 +1399,6 @@
           <div class="legend-item"><div class="legend-swatch" style="background:#c0392b">E</div>Très élevé</div>
           <div class="legend-item"><div class="legend-swatch" style="background:var(--no-data);opacity:.6">—</div>N/D</div>
         </div>
-        <!-- Sur mobile, le panneau couvre le pied de page : la ligne de soutien est répétée ici. -->
-        <div class="footer-kofi kofi-mobile">Cette carte est en accès libre, mais les outils d'IA qu'elle demande sont payants. Si vous voulez soutenir ce travail&nbsp;:<a href="https://ko-fi.com/tristanmf" target="_blank" rel="noopener">☕ Offrir un café</a></div>
       </div>
     </div>
   </div>
@@ -2589,5 +2597,12 @@
       </div>
     </details>
   </footer>
+  </div>
+  <div id="tmf-pied" data-vue="productions"></div>
+  <link rel="stylesheet" href="/assets/fonts/site.css">
+  <script src="/vendor/react.production.min.js"></script>
+  <script src="/vendor/react-dom.production.min.js"></script>
+  <script src="/vendor/framer-motion.js"></script>
+  <script src="/app.js"></script>
 </body>
 </html>
