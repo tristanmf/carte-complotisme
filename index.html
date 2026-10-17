@@ -1127,6 +1127,29 @@
       color: var(--accent);
       font-weight: 600;
     }
+    /* Soutien (Ko-fi) : simple lien, aucun widget chargé */
+    .footer-kofi {
+      margin-top: 0.4rem;
+      font-size: 0.68rem;
+      line-height: 1.45;
+      color: var(--text-muted);
+      text-align: center;
+    }
+    .footer-kofi a {
+      display: inline-flex;
+      align-items: center;
+      gap: 0.3em;
+      margin-left: 0.35em;
+      padding: 0.12rem 0.55rem;
+      border-radius: 999px;
+      border: 1px solid var(--accent);
+      color: var(--accent);
+      font-weight: 600;
+      text-decoration: none;
+      white-space: nowrap;
+    }
+    .kofi-mobile { display: none; }
+    .footer-kofi a:hover { background: color-mix(in srgb, var(--accent) 15%, transparent); }
     .site-footer-sep {
       color: var(--text-faint);
     }
@@ -1225,6 +1248,7 @@
       .site-footer {
         padding: 0.5rem 0.75rem calc(0.6rem + env(safe-area-inset-bottom));
       }
+      .kofi-mobile { display: block; text-align: left; margin-top: 0.6rem; }
       .site-footer-top {
         font-size: 0.62rem;
         gap: 0.3rem;
@@ -1365,6 +1389,8 @@
           <div class="legend-item"><div class="legend-swatch" style="background:#c0392b">E</div>Très élevé</div>
           <div class="legend-item"><div class="legend-swatch" style="background:var(--no-data);opacity:.6">—</div>N/D</div>
         </div>
+        <!-- Sur mobile, le panneau couvre le pied de page : la ligne de soutien est répétée ici. -->
+        <div class="footer-kofi kofi-mobile">Cette carte est en accès libre, mais les outils d'IA qu'elle demande sont payants. Si vous voulez soutenir ce travail&nbsp;:<a href="https://ko-fi.com/tristanmf" target="_blank" rel="noopener">☕ Offrir un café</a></div>
       </div>
     </div>
   </div>
@@ -2555,6 +2581,7 @@
       <span class="site-footer-sep">·</span>
       <a href="https://www.perplexity.ai/computer" target="_blank" rel="noopener noreferrer">Created with Perplexity Computer</a>
     </div>
+    <div class="footer-kofi">Cette carte est en accès libre, mais les outils d'IA qu'elle demande sont payants. Si vous voulez soutenir ce travail&nbsp;:<a href="https://ko-fi.com/tristanmf" target="_blank" rel="noopener">☕ Offrir un café</a></div>
     <details class="footer-sources">
       <summary>Voir les sources</summary>
       <div class="footer-sources-list">
