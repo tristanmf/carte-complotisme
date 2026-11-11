@@ -6,6 +6,20 @@
   <meta name="author" content="Tristan">
   <meta name="description" content="ComploScore : carte mondiale interactive de l'adhésion aux théories du complot, pays par pays, avec un grade A–E, les sondages sources et un indicateur de fiabilité.">
   <title>ComploScore — Carte mondiale des théories complotistes</title>
+  <meta name="description" content="La carte mondiale des théories complotistes : 70 pays notés de A à E, comme un Nutri-Score, à partir de sondages 2018-2025.">
+  <!-- Aperçu de partage (image fabriquée par scripts/apercus/ du dépôt tristanmf.github.io) -->
+  <meta property="og:type" content="website">
+  <meta property="og:url" content="https://tristan.pro/carte-complotisme/">
+  <meta property="og:site_name" content="Tristan Mendès France">
+  <meta property="og:title" content="ComploScore — Carte mondiale des théories complotistes">
+  <meta property="og:description" content="70 pays notés de A à E, comme un Nutri-Score, à partir de sondages 2018-2025.">
+  <meta property="og:image" content="https://tristan.pro/carte-complotisme/apercu.jpg">
+  <meta property="og:image:width" content="1200">
+  <meta property="og:image:height" content="630">
+  <meta property="og:image:alt" content="ComploScore, la carte mondiale des théories complotistes notées de A à E">
+  <meta property="og:locale" content="fr_FR">
+  <meta name="twitter:card" content="summary_large_image">
+  <meta name="twitter:image" content="https://tristan.pro/carte-complotisme/apercu.jpg">
   <link rel="preconnect" href="https://fonts.googleapis.com">
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
   <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700&family=Sora:wght@300;400;600;700;800&display=swap" rel="stylesheet">
@@ -75,10 +89,16 @@
       font-family: var(--font-body);
       background: var(--bg);
       color: var(--text);
-      height: 100vh;
+    }
+    /* L'application tient dans un cadre de la hauteur de l'écran, sous la barre
+       de tristan.pro ; le pied « Parlons-en » du site vient en dessous. */
+    .cs-app {
+      margin-top: 84px;
+      height: calc(100vh - 84px);
       display: flex;
       flex-direction: column;
       overflow: hidden;
+      position: relative;
     }
 
     /* ══════════════════════════════════════════
@@ -1227,6 +1247,28 @@
       color: var(--accent);
       font-weight: 600;
     }
+    /* Soutien (Ko-fi) : simple lien, aucun widget chargé */
+    .footer-kofi {
+      margin-top: 0.4rem;
+      font-size: 0.68rem;
+      line-height: 1.45;
+      color: var(--text-muted);
+      text-align: center;
+    }
+    .footer-kofi a {
+      display: inline-flex;
+      align-items: center;
+      gap: 0.3em;
+      margin-left: 0.35em;
+      padding: 0.12rem 0.55rem;
+      border-radius: 999px;
+      border: 1px solid var(--accent);
+      color: var(--accent);
+      font-weight: 600;
+      text-decoration: none;
+      white-space: nowrap;
+    }
+    .footer-kofi a:hover { background: color-mix(in srgb, var(--accent) 15%, transparent); }
     .site-footer-sep {
       color: var(--text-faint);
     }
@@ -1327,6 +1369,9 @@
       .site-footer {
         padding: 0.5rem 0.75rem calc(0.6rem + env(safe-area-inset-bottom));
       }
+      /* Sous la barre de tristan.pro, la page défile : carte, puis fiche pays, puis pied du site. */
+      .cs-app { margin-top: 76px; height: auto; overflow: visible; }
+      .sidebar { position: relative; height: 72vh; z-index: auto; }
       .site-footer-top {
         font-size: 0.62rem;
         gap: 0.3rem;
@@ -1338,6 +1383,9 @@
   </style>
 </head>
 <body>
+  <!-- En-tête et pied de tristan.pro (mode EMBED de tristan.pro/app.js) -->
+  <div id="tmf-entete" data-vue="productions"></div>
+  <div class="cs-app">
 
   <!-- ═══════════════ HEADER ═══════════════ -->
   <header>
@@ -2941,6 +2989,7 @@
       <span class="site-footer-sep">·</span>
       <button type="button" class="footer-link-btn" data-jump-method>Comment lire les grades ?</button>
     </div>
+    <div class="footer-kofi">Cette carte est en accès libre, mais les outils d'IA qu'elle demande sont payants. Si vous voulez soutenir ce travail&nbsp;:<a href="https://ko-fi.com/tristanmf" target="_blank" rel="noopener">☕ Offrir un café</a></div>
     <details class="footer-sources">
       <summary>Voir les sources</summary>
       <div class="footer-sources-list">
@@ -2948,5 +2997,12 @@
       </div>
     </details>
   </footer>
+  </div>
+  <div id="tmf-pied" data-vue="productions"></div>
+  <link rel="stylesheet" href="/assets/fonts/site.css">
+  <script src="/vendor/react.production.min.js"></script>
+  <script src="/vendor/react-dom.production.min.js"></script>
+  <script src="/vendor/framer-motion.js"></script>
+  <script src="/app.js"></script>
 </body>
 </html>
