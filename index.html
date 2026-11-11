@@ -1380,6 +1380,72 @@
         font-size: 0.58rem;
       }
     }
+
+    /* ══════════════════════════════════════════
+       RETOUCHES NOVEMBRE 2026 — accueil et fiche pays
+    ══════════════════════════════════════════ */
+    .map-intro {
+      top: auto; bottom: 1rem; left: 1rem;
+      width: auto; max-width: min(330px, calc(100% - 2rem));
+      padding: 0.7rem 3rem 0.75rem 0.95rem;
+      border-radius: 14px;
+    }
+    .map-intro-kicker { margin-bottom: 0.2rem; }
+    .map-intro-body { font-size: 0.8rem; line-height: 1.4; color: #e8ecf4; max-width: none; }
+    .map-intro-close { top: 50%; right: 0.6rem; transform: translateY(-50%); width: 30px; height: 30px; }
+    .map-guide-toggle { display: none !important; }
+
+    .placeholder { justify-content: flex-start; }
+    .placeholder-title { line-height: 1.12; margin-bottom: 0.5rem; }
+    .placeholder-body { max-width: none; }
+    .grade-dist { display: flex; flex-direction: column; gap: 0.3rem; margin-bottom: 0.55rem; }
+    .grade-row {
+      display: grid; grid-template-columns: 26px 5.6rem 1fr 1.6rem; align-items: center; gap: 0.6rem;
+      background: transparent; border: 1px solid transparent; border-radius: 10px;
+      padding: 0.3rem 0.4rem; cursor: pointer; color: var(--text);
+      font-family: var(--font-body); font-size: 0.74rem; text-align: left; width: 100%;
+    }
+    .grade-row:hover, .grade-row:focus-visible { background: var(--surface); border-color: var(--border); outline: none; }
+    .grade-row-swatch {
+      width: 26px; height: 26px; border-radius: 7px; display: flex; align-items: center; justify-content: center;
+      font-family: var(--font-display); font-weight: 800; font-size: 0.8rem;
+    }
+    .grade-row-bar { height: 8px; border-radius: 999px; background: var(--border-subtle); overflow: hidden; }
+    .grade-row-bar span { display: block; height: 100%; border-radius: 999px; }
+    .grade-row-count { text-align: right; font-weight: 700; font-variant-numeric: tabular-nums; }
+
+    .cp-nav { display: flex; justify-content: space-between; gap: 0.5rem; margin-bottom: 0.8rem; }
+    .cp-nav-btn {
+      background: transparent; border: 1px solid var(--border); color: var(--text-muted);
+      border-radius: 999px; padding: 0.4rem 0.75rem; font-size: 0.68rem; font-weight: 600;
+      font-family: var(--font-body); cursor: pointer;
+    }
+    .cp-nav-btn:hover, .cp-nav-btn:focus-visible { color: var(--text); border-color: var(--text-faint); outline: none; }
+    .cp-header { align-items: center; }
+    .cp-head-text { flex: 1; min-width: 0; }
+    .cp-name { font-size: 1.5rem; }
+    .cp-meta-line {
+      display: flex; flex-wrap: wrap; gap: 0.15rem 0.7rem; margin-top: 0.35rem;
+      font-size: 0.68rem; color: var(--text-muted);
+    }
+    .cp-meta-line > span { display: inline-flex; align-items: center; gap: 0.3rem; white-space: nowrap; }
+    .cp-meta-line .is-stale { color: #c2610c; font-weight: 700; }
+    .cp-grade {
+      flex-shrink: 0; width: 68px; border-radius: 16px; padding: 0.45rem 0.3rem 0.5rem;
+      display: flex; flex-direction: column; align-items: center; gap: 0.1rem;
+      box-shadow: 0 6px 18px rgba(0,0,0,.28);
+    }
+    .cp-grade-letter { font-family: var(--font-display); font-weight: 800; font-size: 2rem; line-height: 1; }
+    .cp-grade-level { font-size: 0.56rem; font-weight: 700; letter-spacing: 0.05em; text-transform: uppercase; text-align: center; line-height: 1.1; }
+
+    @media (max-width: 768px) {
+      .map-intro { top: auto; bottom: 0.75rem; left: 0.75rem; right: auto; max-width: calc(100% - 1.5rem); padding: 0.6rem 2.9rem 0.65rem 0.8rem; }
+      .map-intro-close { left: auto; right: 0.5rem; top: 50%; width: 30px; height: 30px; }
+      .map-intro-kicker, .map-intro-body { padding-left: 0; }
+      .map-intro-body { font-size: 0.78rem; }
+      .leaflet-top.leaflet-right { top: 0.75rem; }
+      .cp-nav-btn { padding: 0.55rem 0.85rem; font-size: 0.72rem; }
+    }
   </style>
 </head>
 <body>
@@ -1419,20 +1485,9 @@
   <div class="main-layout">
     <div class="map-stage">
       <div class="map-intro">
-        <button class="map-intro-close" type="button" aria-label="Fermer la lecture guidée" data-close-intro>×</button>
-        <div class="map-intro-kicker">Lecture guidée</div>
-        <div class="map-intro-title">Explorer le complotisme comme une carte éditoriale</div>
-        <p class="map-intro-body">Chaque pays combine un grade A-E, un contexte synthétique et des sondages cliquables. Commence par un pays fort, puis compare avec un profil plus bas.</p>
-        <div class="map-intro-actions">
-          <button class="intro-btn intro-btn-primary" data-jump-country="US">Voir un cas fort</button>
-          <button class="intro-btn intro-btn-secondary" data-open-ranking>Voir le classement</button>
-          <button class="intro-btn intro-btn-secondary" data-jump-method>Comprendre la méthode</button>
-        </div>
-        <div class="map-intro-meta">
-          <span class="map-intro-chip"><span data-country-count-label>73 pays couverts</span></span>
-          <span class="map-intro-chip">Sondages 2017-2026</span>
-          <span class="map-intro-chip">Lecture comparative</span>
-        </div>
+        <button class="map-intro-close" type="button" aria-label="Fermer" data-close-intro>×</button>
+        <div class="map-intro-kicker"><span data-country-count-label>73 pays</span> notés de A à E</div>
+        <p class="map-intro-body">Choisissez un pays sur la carte pour lire ses sondages.</p>
       </div>
       <button class="map-guide-toggle" type="button" data-open-intro hidden>Afficher le guide</button>
       <div id="map"></div>
@@ -1455,28 +1510,18 @@
       <div class="sidebar-content">
         <!-- Placeholder -->
         <div class="placeholder" id="placeholder">
-          <div class="placeholder-card">
-            <div class="placeholder-kicker">Mode d'emploi</div>
-            <div class="placeholder-globe">🌍</div>
-            <div class="placeholder-title">Choisis un pays pour ouvrir sa lecture détaillée</div>
-            <p class="placeholder-body">Le panneau affiche d’abord le niveau général, puis le résumé, puis les sondages. L’objectif n’est pas seulement de cliquer, mais de comparer les profils.</p>
-            <div class="placeholder-actions">
-              <button class="placeholder-btn" data-jump-country="US">Commencer par les États-Unis</button>
-              <button class="placeholder-btn" data-jump-country="FR">Voir la France</button>
-              <button class="placeholder-btn" data-open-ranking>Classement des <span data-country-count-label>73 pays</span></button>
-              <button class="placeholder-btn" data-jump-method>Comprendre les grades</button>
-            </div>
+          <div class="home-head">
+            <div class="placeholder-title">Où croit-on le plus aux théories du complot ?</div>
+            <p class="placeholder-body"><span data-country-count-label>73 pays</span> notés de A à E, comme un Nutri-Score, à partir de sondages publiés. Choisissez un pays sur la carte ou partez de la répartition.</p>
           </div>
           <div class="placeholder-card">
-            <div class="placeholder-kicker">Lecture rapide</div>
-            <div class="ns-preview-row">
-              <div class="ns-preview-cell" style="background:#15803d">A</div>
-              <div class="ns-preview-cell" style="background:#4d9e38">B</div>
-              <div class="ns-preview-cell c" style="background:#ca8a04">C</div>
-              <div class="ns-preview-cell" style="background:#c2610c">D</div>
-              <div class="ns-preview-cell" style="background:#c0392b">E</div>
-            </div>
-            <div class="placeholder-hint">A = très faible adhésion · E = très élevée</div>
+            <div class="placeholder-kicker">Répartition des grades</div>
+            <div class="grade-dist" id="grade-dist"></div>
+            <div class="placeholder-hint">Cliquer sur une ligne pour ne voir que ces pays sur la carte.</div>
+          </div>
+          <div class="placeholder-actions">
+            <button class="placeholder-btn" data-open-ranking>Classement des <span data-country-count-label>73 pays</span></button>
+            <button class="placeholder-btn" data-jump-method>Comment lire les grades</button>
           </div>
           <div class="quick-list">
             <button class="quick-item" data-jump-country="US">
@@ -2551,9 +2596,38 @@
       `, { sticky: false, opacity: 1, className: '', direction: 'auto', offset: [0, -18] });
     }
     refreshMapBorders();
+    const fromHash = decodeURIComponent(location.hash.slice(1)).toUpperCase();
+    if (COUNTRIES[fromHash]) {
+      showCountry(fromHash);
+      const layer = geoByISO[fromHash];
+      if (layer) map.fitBounds(layer.getBounds(), { padding:[40,40], maxZoom:5 });
+      else if (CENTROIDS[fromHash]) map.setView(CENTROIDS[fromHash], 4);
+    }
   });
 
   map.on('zoomend', refreshMapBorders);
+
+  // ── Répartition des grades (accueil du panneau) ──
+  (function () {
+    const box = document.getElementById('grade-dist');
+    if (!box) return;
+    const counts = { A: 0, B: 0, C: 0, D: 0, E: 0 };
+    Object.values(COUNTRIES).forEach(d => { if (counts[d.nutriscore] !== undefined) counts[d.nutriscore]++; });
+    const max = Math.max(...Object.values(counts));
+    box.innerHTML = ['E', 'D', 'C', 'B', 'A'].map(g => {
+      const nc = NS_CONFIG[g];
+      return `<button type="button" class="grade-row" data-dist-grade="${g}" title="Ne voir que les pays de grade ${g}">
+        <span class="grade-row-swatch" style="background:${nc.color};color:${nc.textColor}">${g}</span>
+        <span class="grade-row-label">${nc.level}</span>
+        <span class="grade-row-bar"><span style="width:${Math.round(counts[g] / max * 100)}%;background:${nc.color}"></span></span>
+        <span class="grade-row-count">${counts[g]}</span>
+      </button>`;
+    }).join('');
+    box.querySelectorAll('[data-dist-grade]').forEach(el => el.addEventListener('click', () => {
+      const leg = document.querySelector('.legend-item[data-grade-filter="' + el.getAttribute('data-dist-grade') + '"]');
+      if (leg) leg.click();
+    }));
+  })();
 
   window._cs = iso => showCountry(iso);
 
@@ -2605,24 +2679,29 @@
     }).join('');
 
     panel.innerHTML = `
+      <div class="cp-nav">
+        <button type="button" class="cp-nav-btn" data-go-home>← Tous les pays</button>
+        <button type="button" class="cp-nav-btn" data-copy-link>Copier le lien</button>
+      </div>
       <div class="cp-header">
         <div class="cp-flag">${d.flag}</div>
-        <div>
+        <div class="cp-head-text">
           <div class="cp-name">${d.name}</div>
-          <span class="cp-level-badge" style="background:${d.levelColor}18;color:${d.levelColor}">${nc.level}</span>
+          <div class="cp-meta-line">
+            <span>${d.surveys.length} source${d.surveys.length > 1 ? 's' : ''}</span>
+            <span class="${latestYear && latestYear < 2022 ? 'is-stale' : ''}">${latestYear && latestYear < 2022 ? '⚠ ' : ''}dernière vague ${latestYear || 'N/D'}</span>
+            <span title="Fiabilité de l'estimation : ${conf.desc}"><span class="conf-dot" style="background:${conf.color}"></span>fiabilité ${conf.label.toLowerCase()}</span>
+          </div>
+        </div>
+        <div class="cp-grade" style="background:${nc.color};color:${nc.textColor}" aria-label="Grade ${d.nutriscore}, ${nc.level}">
+          <span class="cp-grade-letter">${d.nutriscore}</span>
+          <span class="cp-grade-level">${nc.level}</span>
         </div>
       </div>
 
       <div class="cp-summary">
         <div class="cp-summary-title">Lecture rapide</div>
         <p>${d.context}</p>
-      </div>
-
-      <div class="cp-meta-row">
-        <span class="cp-meta-chip">${d.surveys.length} source${d.surveys.length > 1 ? 's' : ''}</span>
-        <span class="cp-meta-chip">${validSurveyRows.length} donnée${validSurveyRows.length > 1 ? 's' : ''} comparables</span>
-        <span class="cp-meta-chip${latestYear && latestYear < 2022 ? ' cp-meta-chip--stale' : ''}">${latestYear && latestYear < 2022 ? '⚠ ' : ''}Dernière vague ${latestYear || 'N/D'}</span>
-        <span class="cp-meta-chip conf-chip" title="Fiabilité de l'estimation : ${conf.desc}"><span class="conf-dot" style="background:${conf.color}"></span>Fiabilité ${conf.label.toLowerCase()}</span>
       </div>
 
       <div class="ns-block">
@@ -2647,6 +2726,24 @@
 
       <div style="height:1rem"></div>
     `;
+    panel.querySelector('[data-go-home]').addEventListener('click', goHome);
+    panel.querySelector('[data-copy-link]').addEventListener('click', ev => {
+      const b = ev.currentTarget;
+      const done = () => { b.textContent = 'Lien copié'; setTimeout(() => { b.textContent = 'Copier le lien'; }, 1800); };
+      if (navigator.clipboard) navigator.clipboard.writeText(location.href).then(done, () => {});
+    });
+    try { history.replaceState(null, '', '#' + iso); } catch (e) {}
+  }
+
+  // ── Retour à l'accueil du panneau ──
+  function goHome() {
+    document.getElementById('country-panel').classList.remove('active');
+    closeAuxPanels();
+    document.getElementById('placeholder').style.display = '';
+    document.querySelector('.sidebar-content').scrollTop = 0;
+    selectedISO = null;
+    refreshMapBorders();
+    try { history.replaceState(null, '', location.pathname + location.search); } catch (e) {}
   }
 
   // ── Ranking panel (all countries grouped by grade) ──
