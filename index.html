@@ -1414,6 +1414,11 @@
     .grade-row-bar span { display: block; height: 100%; border-radius: 999px; }
     .grade-row-count { text-align: right; font-weight: 700; font-variant-numeric: tabular-nums; }
 
+    /* Intitulés des questions lisibles en entier (au doigt, pas d'infobulle) */
+    .data-row { align-items: flex-start; padding: 0.12rem 0; }
+    .data-row-label { white-space: normal; overflow: visible; text-overflow: clip; line-height: 1.35; }
+    .data-row-bar-wrap { margin-top: 0.38rem; }
+
     .cp-nav { display: flex; justify-content: space-between; gap: 0.5rem; margin-bottom: 0.8rem; }
     .cp-nav-btn {
       background: transparent; border: 1px solid var(--border); color: var(--text-muted);
@@ -1445,6 +1450,12 @@
       .map-intro-body { font-size: 0.78rem; }
       .leaflet-top.leaflet-right { top: 0.75rem; }
       .cp-nav-btn { padding: 0.55rem 0.85rem; font-size: 0.72rem; }
+      /* iPhone : c'est la page entière qui défile (carte, puis fiche), plus de
+         petite fenêtre de défilement coincée sous la barre de Safari. */
+      .main-layout { overflow: visible; }
+      .map-stage { flex: 0 0 46vh; min-height: 46vh; }
+      .sidebar { flex: 0 0 auto; height: auto; min-height: 60vh; overflow: visible; }
+      .sidebar-content { flex: none; overflow: visible; }
     }
   </style>
 </head>
@@ -2761,6 +2772,17 @@
       if (navigator.clipboard) navigator.clipboard.writeText(location.href).then(done, () => {});
     });
     try { history.replaceState(null, '', '#' + iso); } catch (e) {}
+    try { setIntroVisibility(false); } catch (e) {}
+    revealPanel();
+  }
+
+  // ── Petit écran : amener le panneau sous les yeux en gardant un bout de carte ──
+  function revealPanel() {
+    if (!window.matchMedia('(max-width: 768px)').matches) return;
+    const el = document.querySelector('.sidebar');
+    if (!el) return;
+    const y = el.getBoundingClientRect().top + window.scrollY - Math.round(window.innerHeight * 0.38);
+    window.scrollTo({ top: Math.max(0, y), behavior: 'smooth' });
   }
 
   // ── Retour à l'accueil du panneau ──
@@ -2772,6 +2794,7 @@
     selectedISO = null;
     refreshMapBorders();
     try { history.replaceState(null, '', location.pathname + location.search); } catch (e) {}
+    if (window.matchMedia('(max-width: 768px)').matches) window.scrollTo({ top: 0, behavior: 'smooth' });
   }
 
   // ── Ranking panel (all countries grouped by grade) ──
@@ -2833,6 +2856,7 @@
     });
     const back = panel.querySelector('[data-close-ranking]');
     if (back) back.addEventListener('click', hideRanking);
+    revealPanel();
   }
   function closeAuxPanels() {
     ['ranking-panel', 'method-panel'].forEach(id => {
@@ -2930,6 +2954,7 @@
     panel.classList.add('active');
     const back = panel.querySelector('[data-close-ranking]');
     if (back) back.addEventListener('click', hideRanking);
+    revealPanel();
   }
   document.addEventListener('click', e => {
     const t = e.target.closest('[data-jump-method]');
