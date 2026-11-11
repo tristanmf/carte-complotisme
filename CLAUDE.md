@@ -8,7 +8,7 @@ Carte mondiale interactive de l'adhésion aux théories du complot, pays par pay
 - Répartition des grades : A 8 · B 8 · C 16 · D 22 · E 19.
 - Fraîcheur (au 11/11/2026) : 53 pays ont une donnée de 2024 ou plus récente ; 5 pays restent sur des données antérieures à 2022 (Kazakhstan 2017, Égypte 2020, Arabie Saoudite 2020, Kenya 2021, Ukraine 2021). Pour ces 5, aucune donnée récente exploitable n'existe : ce n'est pas un oubli.
 - Fiabilité (indicateur calculé, au 11/11/2026) : 31 pays solides, 28 moyens, 14 fragiles.
-- Branche de travail : `claude/fusion-novembre-2026` (créée le 11/11/2026, **locale, pas poussée**) = `claude/ecstatic-brahmagupta-7z3qwb` + `main` (en-tête/pied tristan.pro, Ko-fi, aperçu de partage) + retouches et données de novembre. `main` n'a pas encore été mis à jour : publication à décider par Tristan.
+- **Publié le 11/11/2026** : `main` contient tout (fusion de la branche de septembre, retouches et données de novembre, demande de fusion n°4). La page en ligne `tristan.pro/carte-complotisme/` affiche 73 pays. Partir de `main` pour la suite.
 
 ## Architecture
 
