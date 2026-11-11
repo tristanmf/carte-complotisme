@@ -7,7 +7,7 @@ ComploScore est une carte interactive qui visualise les niveaux d'adhésion aux 
 
 ## Fonctionnalités
 
-- Carte mondiale cliquable avec 67 pays couverts
+- Carte mondiale cliquable avec 71 pays couverts
 - Système de notation A→E inspiré du Nutri-Score
 - Fiches détaillées par pays avec sources académiques citées
 - Mode clair / mode sombre
@@ -25,8 +25,8 @@ Les données proviennent de sources académiques et institutionnelles : IFOP, Ip
 
 ## Live
 
-→ [comploscore.tristan.pro](https://tristan.pro) *(ou via Perplexity Computer)*
+→ [comploscore.tristan.pro](https://tristan.pro)
 
----
+## Lire les grades
 
-*Created with [Perplexity Computer](https://www.perplexity.ai/computer)*
+Le grade A–E est une **synthèse éditoriale**, pas une mesure unique : les sondages diffèrent par leur question, leur échantillon et leur année. Chaque fiche pays affiche un indicateur de fiabilité (fragile / moyenne / solide) selon le nombre de sources, leur fraîcheur et le nombre de données comparables. Le panneau « Comment lire les grades ? » détaille la méthode et ses limites.
