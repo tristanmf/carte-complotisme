@@ -6,9 +6,9 @@ Carte mondiale interactive de l'adhésion aux théories du complot, pays par pay
 
 - **73 pays** couverts, chacun avec un grade A–E, un résumé, une justification du grade, un contexte et de 1 à 6 sondages sourcés (URL + année de terrain).
 - Répartition des grades : A 8 · B 8 · C 16 · D 22 · E 19.
-- Fraîcheur : 34 pays ont une donnée de 2024 ou plus récente ; 5 pays restent sur des données antérieures à 2022 (Kazakhstan 2017, Égypte 2020, Arabie Saoudite 2020, Kenya 2021, Ukraine 2021). Pour ces 5, aucune donnée récente exploitable n'existe : ce n'est pas un oubli.
-- Fiabilité (indicateur calculé) : 20 pays solides, 31 moyens, 22 fragiles.
-- Branche de travail : `claude/ecstatic-brahmagupta-7z3qwb`. Tout est poussé. `main` n'a pas encore été mis à jour (fusion à faire par Tristan).
+- Fraîcheur (au 11/11/2026) : 53 pays ont une donnée de 2024 ou plus récente ; 5 pays restent sur des données antérieures à 2022 (Kazakhstan 2017, Égypte 2020, Arabie Saoudite 2020, Kenya 2021, Ukraine 2021). Pour ces 5, aucune donnée récente exploitable n'existe : ce n'est pas un oubli.
+- Fiabilité (indicateur calculé, au 11/11/2026) : 31 pays solides, 28 moyens, 14 fragiles.
+- Branche de travail : `claude/fusion-novembre-2026` (créée le 11/11/2026, **locale, pas poussée**) = `claude/ecstatic-brahmagupta-7z3qwb` + `main` (en-tête/pied tristan.pro, Ko-fi, aperçu de partage) + retouches et données de novembre. `main` n'a pas encore été mis à jour : publication à décider par Tristan.
 
 ## Architecture
 
@@ -139,3 +139,14 @@ Puis vérifier depuis l'environnement Claude que le distant correspond (`git fet
 ### Réseau
 
 L'environnement ne peut lire que github.com ; `WebFetch` est bloqué pour tout autre domaine, `WebSearch` fonctionne. La vérification à la source passe donc par les extraits de recherche, ou par un outil externe (Cowork) auquel on donne un prompt de sourcing strict. Le format de sortie qui s'intègre le mieux : un bloc par pays avec source, URL, année de terrain, données « libellé : valeur », note.
+
+## Mise à jour du 11 novembre 2026 (Claude Code, session ~/Sites)
+
+- **Fusion** de la branche de septembre avec `main`. La fusion passait sans conflit mais **cassait le mobile** : `.cs-app { height: auto }` (octobre) + `.map-stage { flex: 1; min-height: 0 }` (septembre) donnaient une carte de hauteur nulle. Corrigé : `.map-stage { flex: 0 0 52vh; min-height: 52vh }`.
+- **Interface** : l'encart « Lecture guidée » devient une ligne discrète en bas à gauche de la carte. L'accueil du panneau montre la répartition des grades (cliquable = filtre). La fiche pays a un grand grade coloré, une ligne de repères, un bouton « Tous les pays » et un lien direct par pays (`#FR`, bouton « Copier le lien »). Styles regroupés en fin de feuille sous « RETOUCHES NOVEMBRE 2026 ».
+- **Eurobaromètre 557 : les deux items par pays, lus dans l'annexe officielle** (QA17.9 cancer p. 91, QA17.10 virus p. 92, `europa.eu/eurobarometer/api/deliverable/download/file?deliverableId=94633`) pour les 32 pays du projet couverts. Une entrée normalisée par pays, avec les libellés officiels français.
+- **Erreur corrigée** : dans cinq fiches (GR, HU, CY, HR, BG) le chiffre étiqueté « virus créés en labo » était celui de l'item **cancer** (ou la valeur 2021 pour BG). Textes de GR, HR, CY et MT réalignés. Les valeurs 2021 de CY (virus 52, cancer 58) et MT (cancer 38) sont recalculées d'après les écarts publiés dans l'annexe 557, le rapport EB 516 n'ayant pas été rouvert. Le « 71 % ne font plus confiance aux scientifiques » de Chypre, non retrouvé, a été retiré.
+- **Sources ajoutées** : SEE Check / Ipsos déc. 2025 (RS, ME), INSCOP oct. 2025 (RO), Mitte-Studie 2024/25 (DE).
+- **Aucun grade modifié.** Écarts à arbitrer par Tristan : au-dessus de leur fourchette PT (virus 62, grade D), RS (55 à 71, D), RO (58 à 61, D), GB, BE et LU (35 à 39, grade B), IT, EE, LV, LT, IE (grade C). En dessous SK et CZ (27 à 34, grade D).
+- **Rien trouvé** : Arab Barometer IX n'a aucun item complotiste (questionnaire vérifié), pas de nouvelle vague IFOP/Jean-Jaurès, YouGov Globalism ni Ipsos Perils. **Piste à ouvrir à la main** : GLOBSEC Trends 2025 et 2026 (item « groupes secrets » pour BG, CZ, EE, HU, LV, LT, PL, RO, SK), site derrière un contrôle anti-robot. Albanie, Bosnie et Kosovo sont dans l'EB 557 et SEE Check : candidats à un ajout.
+- `node` n'est pas installé sur le Mac mini : vérifier le script dans le navigateur (aucune erreur console, les 73 fiches s'ouvrent).
